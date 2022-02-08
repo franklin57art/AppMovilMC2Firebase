@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_clientes"
+            android:icon="@drawable/ic_baseline_client_24"
+            android:title="Clientes" />
+        <item
+            android:id="@+id/nav_puntosdemedida"
+            android:icon="@drawable/ic_baseline_puntosdemedida_24"
+            android:title="Puntos de medida" />
+        <item
+            android:id="@+id/nav_estadomedidores"
+            android:icon="@drawable/ic_baseline_estadomedidores_24"
+            android:title="Estado medidores" />
+        <item
+            android:id="@+id/nav_alarmas"
+            android:icon="@drawable/ic_baseline_alarm_24"
+            android:title="Alarmas" />
+        <item
+            android:id="@+id/nav_visualizadorgráficas"
+            android:icon="@drawable/ic_baseline_graph_24"
+            android:title="Visualizador gráficas" />
+        <item
+            android:id="@+id/nav_informes"
+            android:icon="@drawable/ic_baseline_informes_24"
+            android:title="Informes" />
+        <item
+            android:id="@+id/nav_usuarios"
+            android:icon="@drawable/ic_baseline_usuario_24"
+            android:title="Usuarios" />
+        <item
+            android:id="@+id/nav_configuracion"
+            android:icon="@drawable/ic_baseline_configuracion_24"
+            android:title="Configuración" />
+    </group>
+</menu>

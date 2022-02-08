@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_clientes">
+
+    <fragment
+        android:id="@+id/nav_clientes"
+        android:name="com.example.appmovilmc2firebase.ui.clientes.ClienteFragment"
+        android:label="@string/menu_clientes"
+        tools:layout="@layout/fragment_client" />
+
+    <fragment
+        android:id="@+id/nav_puntosdemedida"
+        android:name="com.example.appmovilmc2firebase.ui.estadoMedidores.EstadomedidoresFragment"
+        android:label="@string/menu_puntosdemedida"
+        tools:layout="@layout/fragment_puntosdemedida" />
+
+    <fragment
+        android:id="@+id/nav_estadomedidores"
+        android:name="com.example.appmovilmc2firebase.ui.puntosDeMedida.PuntosmedidaFragment"
+        android:label="@string/menu_estadomedidores"
+        tools:layout="@layout/fragment_estadomedidores" />
+
+    <fragment
+        android:id="@+id/nav_alarmas"
+        android:name="com.example.appmovilmc2firebase.ui.alarmas.AlarmaFragment"
+        android:label="@string/menu_alarmas"
+        tools:layout="@layout/fragment_alarmas" />
+
+    <fragment
+        android:id="@+id/nav_visualizadorgráficas"
+        android:name="com.example.appmovilmc2firebase.ui.graficas.GraficasFragment"
+        android:label="@string/menu_visualizador"
+        tools:layout="@layout/fragment_graficas" />
+
+    <fragment
+        android:id="@+id/nav_informes"
+        android:name="com.example.appmovilmc2firebase.ui.informes.InformesFragment"
+        android:label="@string/menu_informes"
+        tools:layout="@layout/fragment_informes" />
+
+    <fragment
+        android:id="@+id/nav_usuarios"
+        android:name="com.example.appmovilmc2firebase.ui.usuarios.UsuariosFragment"
+        android:label="@string/menu_usuarios"
+        tools:layout="@layout/fragment_usuarios" />
+
+    <fragment
+        android:id="@+id/nav_configuracion"
+        android:name="com.example.appmovilmc2firebase.ui.configuracion.ConfiguracionFragment"
+        android:label="@string/menu_configuracion"
+        tools:layout="@layout/fragment_configuracion" />
+</navigation>

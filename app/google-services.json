@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "435136755387",
+    "project_id": "fir-tfg-farestiz",
+    "storage_bucket": "fir-tfg-farestiz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435136755387:android:5feec240c07770ec6e5b9e",
+        "android_client_info": {
+          "package_name": "com.example.appmovilmc2firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435136755387-vr6ph3f3g2qrd11u0u1rhjnvar813qlk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBu0YkeFgynTC-l5_Zi3Q3K7UdxE75tRbI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435136755387-vr6ph3f3g2qrd11u0u1rhjnvar813qlk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
