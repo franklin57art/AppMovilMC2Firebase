@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.appmovilmc2firebase.R;
 import com.example.appmovilmc2firebase.databinding.FragmentEstadomedidoresBinding;
-import com.example.appmovilmc2firebase.ui.alarmas.AlarmaViewModel;
+;
 
 public class EstadomedidoresFragment extends Fragment {
 

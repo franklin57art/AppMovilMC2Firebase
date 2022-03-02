@@ -1,10 +1,14 @@
 package com.example.appmovilmc2firebase;
 
+import android.app.ProgressDialog;
+import android.content.ClipData;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -46,14 +50,15 @@ enum ProviderType {
 public class HomeActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-
     private FirebaseFirestore db;
+    ProgressDialog mLoadingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppThemeMC2);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        mLoadingBar=new ProgressDialog(HomeActivity.this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //FloatingActionButton fab = findViewById(R.id.fab);
@@ -76,7 +81,6 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-
         db = FirebaseFirestore.getInstance();
 
         //setUp
@@ -92,12 +96,49 @@ public class HomeActivity extends AppCompatActivity {
         prefs.apply();
     }
 
-    /*@Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home, menu);
+        MenuInflater inflater = getMenuInflater();
+        ((MenuInflater) inflater).inflate(R.menu.home, menu);
         return true;
-    }*/
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.profile_edit:
+                editProfile();
+                return true;
+            case R.id.disconnect:
+                desconectar();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void desconectar() {
+        //Borrado de datos
+        SharedPreferences.Editor prefs = (SharedPreferences.Editor) getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit();
+        prefs.clear();
+        prefs.apply();
+
+        FirebaseAuth.getInstance().signOut();
+        onBackPressed();
+
+        mLoadingBar.setTitle("Saliendo...");
+        mLoadingBar.setCanceledOnTouchOutside(false);
+        mLoadingBar.show();
+        Intent i = new Intent(this, AuthActivity.class);
+        startActivity(i);
+    }
+
+    //Abrira un nuevo acitvity para editar los datos del Perfil. Parecido al de registar usuario
+    private void editProfile() {
+        Toast.makeText(this, "Aún no esta disponible esta opción", Toast.LENGTH_LONG).show();
+    }
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -125,6 +166,9 @@ public class HomeActivity extends AppCompatActivity {
 
             FirebaseAuth.getInstance().signOut();
             onBackPressed();
+
+            Intent i = new Intent(this, AuthActivity.class);
+            startActivity(i);
         });
     }
 }

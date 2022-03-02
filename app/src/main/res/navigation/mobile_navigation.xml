@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/nav_puntosdemedida"
-        android:name="com.example.appmovilmc2firebase.ui.estadoMedidores.EstadomedidoresFragment"
+        android:name="com.example.appmovilmc2firebase.ui.puntosDeMedida.PuntosmedidaFragment"
         android:label="@string/menu_puntosdemedida"
         tools:layout="@layout/fragment_puntosdemedida" />
 
     <fragment
         android:id="@+id/nav_estadomedidores"
-        android:name="com.example.appmovilmc2firebase.ui.puntosDeMedida.PuntosmedidaFragment"
+        android:name="com.example.appmovilmc2firebase.ui.estadoMedidores.EstadomedidoresFragment"
         android:label="@string/menu_estadomedidores"
         tools:layout="@layout/fragment_estadomedidores" />
 

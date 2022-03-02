@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -96,25 +97,23 @@ public class AuthActivity extends AppCompatActivity {
         Button logInButton = findViewById(R.id.loginButton);
         Button googleButton = findViewById(R.id.loginButtonGoogle);
 
-        String email = emailEditText.getText().toString();
-        String password = passwordEditText.getText().toString();
+        /*emailEditText.setText("farestiz@alumnos.unex.es");
+        passwordEditText.setText("123456");*/
 
-        email = "farestiz@alumnos.unex.es";
-        password = "123456";
+        /*Log.d("Valor email: ",emailEditText.getText().toString());
+        Log.d("Valor password: ",passwordEditText.getText().toString());*/
 
-        String finalEmail = email;
-        String finalPassword = password;
         logInButton.setOnClickListener(view -> {
-            if (finalEmail.isEmpty()) {
+            if (TextUtils.isEmpty(emailEditText.getText().toString())) {
                 showError(emailEditText, "Email de usuario vacio. Es necesario introducir un email registrado");
-            } else if (finalPassword.isEmpty()) {
+            } else if (TextUtils.isEmpty(passwordEditText.getText().toString())) {
                 showError(passwordEditText, "Contraseña vacia");
             } else {
                 mLoadingBar.setTitle("Autenticacion");
                 mLoadingBar.setMessage("Espere mientras comprobamos los datos introducidos");
                 mLoadingBar.setCanceledOnTouchOutside(false);
                 mLoadingBar.show();
-                mFirebaseAuth.signInWithEmailAndPassword(finalEmail, finalPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                mFirebaseAuth.signInWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -148,7 +147,7 @@ public class AuthActivity extends AppCompatActivity {
         });
 
         olvidarContraseniaTextView.setOnClickListener(view -> {
-            Toast.makeText(this, "Aun no esta disponible esta opcion", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Aún no esta disponible esta opcion", Toast.LENGTH_LONG).show();
         });
     }
 
@@ -164,6 +163,7 @@ public class AuthActivity extends AppCompatActivity {
     private void showError(EditText input, String s) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Error");
+        builder.setPositiveButton("Aceptar", null);
         input.setError(s);
         input.requestFocus();
         AlertDialog dialog = builder.create();
