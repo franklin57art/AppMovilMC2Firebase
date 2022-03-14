@@ -20,21 +20,33 @@ import com.example.appmovilmc2firebase.R;
 import com.example.appmovilmc2firebase.adaptadores.AdapterPsum;
 import com.example.appmovilmc2firebase.databinding.FragmentPuntosdemedidaBinding;
 import com.example.appmovilmc2firebase.io.ApiAdapter;
-import com.example.appmovilmc2firebase.io.response.PsumResponse;
+import com.example.appmovilmc2firebase.io.ApiService;
 import com.example.appmovilmc2firebase.models.Psum;
+import com.example.appmovilmc2firebase.models.PsumAllowedPsums;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PuntosmedidaFragment extends Fragment {
+
+    private  static final String TAG = "Puntos Medida Fragment";
 
     private FragmentPuntosdemedidaBinding binding;
     private PuntosmedidaViewModel puntosmedidaViewModel;
     private RecyclerView mRecyclerView;
-    private List<Psum> psumArrayList;
+    private ArrayList<Psum> psumList;
+
+    private static final String BASE_URL = "https://partners.emececuadrado.com/api/";
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container,
@@ -65,26 +77,40 @@ public class PuntosmedidaFragment extends Fragment {
         //Nuestro recycleview usara un linear layout manager
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        // Creamos un interceptor y le indicamos el log level a usar
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.level(HttpLoggingInterceptor.Level.BODY);
+        // Asociamos el interceptor a las peticiones
+        OkHttpClient httpClient = new OkHttpClient.Builder().addInterceptor(logging).build();
+
+        GsonBuilder gson = new GsonBuilder();
+        gson.setLenient();
+
         //retrofit
-        Call<PsumResponse> call = ApiAdapter.getInstance().getApi().getPsums();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL).client(httpClient).addConverterFactory(GsonConverterFactory.create(gson.create())).build();
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<PsumAllowedPsums> call = apiService.getPsums();
 
-        call.enqueue(new Callback<PsumResponse>() {
+        call.enqueue(new Callback<PsumAllowedPsums>() {
+
             @Override
-            public void onResponse(Call<PsumResponse> call, Response<PsumResponse> response) {
-
+            public void onResponse(Call<PsumAllowedPsums> call, Response<PsumAllowedPsums> response) {
+                Log.d(TAG, "En respuesta: Servidor respondiendo: " + response.toString());
+                Log.d(TAG, "En respuesta: Información recibida: " + response.body().toString());
                 if(response.isSuccessful()){
-                    psumArrayList=response.body().getSuministros();
-                    mRecyclerView.setAdapter(new AdapterPsum(getActivity(),psumArrayList));
-                    Log.d("En respuesta de los Suministros", "Tamaño de los Suministros => " + psumArrayList.size());
+                    psumList=response.body().getAllowed_psums();
+                    mRecyclerView.setAdapter(new AdapterPsum(getActivity(),psumList));
+                    Log.e(TAG, "Tamaño de los Suministros => " + psumList.size());
                 }else{
-                    Toast.makeText(getActivity(), response.body().getError(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), response.body().toString(), Toast.LENGTH_LONG).show();
                 }
 
             }
 
             @Override
-            public void onFailure(Call<PsumResponse> call, Throwable t) {
-                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+            public void onFailure(Call<PsumAllowedPsums> call, Throwable t) {
+                Log.e(TAG, "ERROR en la respuesta de la API: " + t.getMessage());
+                Toast.makeText(getActivity(), "Algo salio mal", Toast.LENGTH_LONG).show();
             }
         });
     }

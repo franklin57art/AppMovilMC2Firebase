@@ -68,4 +68,13 @@ public class Psum {
         return "Este es el ID Cups del suministro: " + getCups() + ".";
     }
 
+    @Override
+    public String toString() {
+        return "Psum{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", cups='" + cups + '\'' +
+                ", idPsumForClient=" + idPsumForClient +
+                '}';
+    }
 }

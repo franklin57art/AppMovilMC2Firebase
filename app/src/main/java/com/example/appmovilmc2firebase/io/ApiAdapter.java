@@ -12,7 +12,7 @@ public class ApiAdapter {
 
     private static ApiAdapter apiRetrofitClient;
     private static Retrofit retrofit;
-    private static String BASE_URL = "https://partners.emececuadrado.com/api/psums/";
+    private static String BASE_URL = "https://partners.emececuadrado.com/api/";
     // Creamos un interceptor y le indicamos el log level a usar
     private HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
     // Asociamos el interceptor a las peticiones
