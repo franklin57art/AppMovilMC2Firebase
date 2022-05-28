@@ -1,4 +1,4 @@
-package com.example.appmovilmc2firebase.ui.usuarios;
+package com.example.appmovilmc2firebase.ui.configuracion;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,25 +12,24 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.appmovilmc2firebase.R;
-import com.example.appmovilmc2firebase.databinding.FragmentClientBinding;
-import com.example.appmovilmc2firebase.databinding.FragmentUsuariosBinding;
+import com.example.appmovilmc2firebase.databinding.FragmentConfiguracionBinding;
 import com.example.appmovilmc2firebase.ui.alarmas.AlarmaViewModel;
-import com.example.appmovilmc2firebase.ui.puntosDeMedida.PuntosmedidaViewModel;
 
 public class UsuariosFragment extends Fragment {
 
-    private FragmentClientBinding binding;
-    private UsuariosViewModel usuariosViewModel;
+    private FragmentConfiguracionBinding binding;
+
+    private ConfiguracionViewModel configuracionViewModel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container,
                              @NonNull Bundle savedInstanceState) {
 
-        usuariosViewModel = new ViewModelProvider(this).get(UsuariosViewModel.class);
+        configuracionViewModel = new ViewModelProvider(this).get(ConfiguracionViewModel.class);
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_usuarios, container, false);
-        final TextView textView = root.findViewById(R.id.textViewUsuarios);
-        usuariosViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        View root = inflater.inflate(R.layout.fragment_configuracion, container, false);
+        final TextView textView = root.findViewById(R.id.textViewConfiguracion);
+        configuracionViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
                 textView.setText(s);

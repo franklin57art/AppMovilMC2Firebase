@@ -83,7 +83,7 @@
                 android:layout_height="8dp"
                 android:layout_weight="1" />
 
-            <Button
+            <!--Button
                 android:id="@+id/loginButtonGoogle"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
                 android:textColor="@color/textColor"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                tools:text="Google" />
+                tools:text="Google" /-->
 
             <Space
                 android:layout_width="match_parent"
@@ -108,18 +108,18 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
+                <!--TextView
                     android:id="@+id/registerTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="¿No tienes cuenta? REGISTRATE"
                     android:textAlignment="center"
-                    android:textColor="@color/colorSecundary" />
+                    android:textColor="@color/colorSecundary" /-->
 
-                <Space
+                <!--Space
                     android:layout_width="match_parent"
                     android:layout_height="8dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1" /-->
 
                 <TextView
                     android:id="@+id/passwordForgotTextView"

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?><!--Layout que hara la fila que mostrará la información de cada usuario.-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/item_row_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Información de usuario"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Name"
+                app:layout_constraintStart_toEndOf="@+id/tvName2"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+            <TextView
+                android:id="@+id/tvName2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Nombre completo: "
+                app:layout_constraintStart_toStartOf="@+id/tvTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:text="Nombre usuario"
+                app:layout_constraintStart_toEndOf="@+id/tvUserName2"
+                app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+            <TextView
+                android:id="@+id/tvUserName2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Nombre de usuario: "
+                app:layout_constraintStart_toStartOf="@+id/tvName2"
+                app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Email"
+                app:layout_constraintStart_toEndOf="@+id/tvEmail2"
+                app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
+
+            <TextView
+                android:id="@+id/tvEmail2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Email: "
+                app:layout_constraintStart_toStartOf="@+id/tvUserName2"
+                app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
+
+            <TextView
+                android:id="@+id/tvTelefono"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:text="Telefono"
+                app:layout_constraintStart_toEndOf="@+id/tvTelefono2"
+                app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
+
+            <TextView
+                android:id="@+id/tvTelefono2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Telefono: "
+                app:layout_constraintStart_toStartOf="@+id/tvEmail2"
+                app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
+
+            <TextView
+                android:id="@+id/tvTypeUser"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:text="Tipo de usuario"
+                app:layout_constraintStart_toEndOf="@+id/tvTypeUser2"
+                app:layout_constraintTop_toBottomOf="@+id/tvTelefono" />
+
+            <TextView
+                android:id="@+id/tvTypeUser2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Tipo de usuario: "
+                app:layout_constraintStart_toStartOf="@+id/tvTelefono2"
+                app:layout_constraintTop_toBottomOf="@+id/tvTelefono" />
+
+            <TextView
+                android:id="@+id/tvTitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Cambiar contraseña"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTypeUser" />
+
+            <TextView
+                android:id="@+id/tvPassword2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="Contraseña actual: "
+                app:layout_constraintStart_toStartOf="@+id/tvTitle2"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle2" />
+
+            <TextView
+                android:id="@+id/tvPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Contraseña"
+                android:visibility="invisible"
+                app:layout_constraintStart_toEndOf="@+id/tvPassword2"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle2" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="25dp"
+                android:layout_height="19dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="4dp"
+                android:background="@color/backgroundButton1"
+                android:foreground="@android:drawable/ic_menu_view"
+                app:layout_constraintEnd_toStartOf="@+id/tvPassword2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle2" />
+
+            <TextView
+                android:id="@+id/tvPasswordNew2"
+                android:layout_width="120dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:text="Contraseña nueva: "
+                android:textAlignment="center"
+                app:layout_constraintStart_toStartOf="@+id/tvPassword2"
+                app:layout_constraintTop_toBottomOf="@+id/button" />
+
+            <EditText
+                android:id="@+id/tvPasswordNew"
+                android:layout_width="243dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="12dp"
+                android:ems="10"
+                android:hint="Contraseña"
+                android:importantForAutofill="no"
+                android:inputType="textVisiblePassword"
+                android:textColorHint="@color/textColor"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/tvPasswordNew2"
+                app:layout_constraintTop_toBottomOf="@+id/button"
+                tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/tvRepeatPassword2"
+                android:layout_width="123dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="Repetir contraseña: "
+                app:layout_constraintStart_toStartOf="@+id/tvPasswordNew2"
+                app:layout_constraintTop_toBottomOf="@+id/tvPasswordNew" />
+
+            <EditText
+                android:id="@+id/tvRepeatPassword"
+                android:layout_width="240dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="Contraseña"
+                android:importantForAutofill="no"
+                android:inputType="textVisiblePassword"
+                android:textColorHint="@color/textColor"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/tvRepeatPassword2"
+                app:layout_constraintTop_toBottomOf="@+id/tvPasswordNew" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/black"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints" />
+</LinearLayout>

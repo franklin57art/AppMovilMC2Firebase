@@ -1,6 +1,6 @@
+
 package com.example.appmovilmc2firebase;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -30,7 +31,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class AuthActivity extends AppCompatActivity {
+public class LoginActivityFirebase extends AppCompatActivity {
 
     private int GOOGLE_SIGN_IN = 100;
 
@@ -50,7 +51,7 @@ public class AuthActivity extends AppCompatActivity {
         setTheme(R.style.AppThemeMC2);
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_auth);
+        setContentView(R.layout.activity_login_firebase);
 
         //Analytics Event
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
@@ -59,7 +60,7 @@ public class AuthActivity extends AppCompatActivity {
         mFirebaseAnalytics.logEvent("InitScreen", bundle);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-        mLoadingBar = new ProgressDialog(AuthActivity.this);
+        mLoadingBar = new ProgressDialog(LoginActivityFirebase.this);
 
         //Setup
         setup();
@@ -69,7 +70,7 @@ public class AuthActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        findViewById(R.id.authLayout).setVisibility(View.VISIBLE);
+        findViewById(R.id.loginFirebaseLayout).setVisibility(View.VISIBLE);
     }
 
     private void session() {
@@ -78,7 +79,7 @@ public class AuthActivity extends AppCompatActivity {
         String provider = prefs.getString("provider", null);
 
         if (email != null && provider != null) {
-            findViewById(R.id.authLayout).setVisibility(View.INVISIBLE);
+            findViewById(R.id.loginFirebaseLayout).setVisibility(View.INVISIBLE);
             showHome(email, ProviderType.valueOf(provider));
         } else {
 
@@ -98,9 +99,9 @@ public class AuthActivity extends AppCompatActivity {
         Button googleButton = findViewById(R.id.loginButtonGoogle);
 
         /*emailEditText.setText("farestiz@alumnos.unex.es");
-        passwordEditText.setText("123456");*/
+        passwordEditText.setText("123456");
 
-        /*Log.d("Valor email: ",emailEditText.getText().toString());
+        Log.d("Valor email: ",emailEditText.getText().toString());
         Log.d("Valor password: ",passwordEditText.getText().toString());*/
 
         logInButton.setOnClickListener(view -> {
@@ -142,7 +143,7 @@ public class AuthActivity extends AppCompatActivity {
         });
 
         registroTextView.setOnClickListener(view -> {
-            Intent i = new Intent(this, RegisterActivity.class);
+            Intent i = new Intent(this, RegisterActivityFirebase.class);
             startActivity(i);
         });
 
@@ -204,6 +205,5 @@ public class AuthActivity extends AppCompatActivity {
             }
         }
     }
-
-
 }
+

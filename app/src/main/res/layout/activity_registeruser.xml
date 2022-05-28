@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="#e7eef1"
+    tools:context=".ui.usuarios.RegisterUserActivity">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvNuevoUsuario"
+            android:layout_width="285dp"
+            android:layout_height="32dp"
+            android:background="#4f6e7b"
+            android:text=" Nuevo Usuario"
+            android:textColor="@color/md_text_white"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonX"
+            android:layout_width="47dp"
+            android:layout_height="32dp"
+            android:background="#4f6e7b"
+            android:text="x"
+            android:textColor="@color/md_text_white"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/tvNuevoUsuario"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="28dp"
+            android:text="Usuario"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNuevoUsuario" />
+
+        <ImageView
+            android:id="@+id/ivUsuario"
+            android:layout_width="36dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvUsuario"
+            app:srcCompat="@drawable/ic_baseline_person_24" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextUserName"
+            android:layout_width="265dp"
+            android:layout_height="31dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/md_white_1000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/ivUsuario"
+            app:layout_constraintTop_toBottomOf="@+id/tvUsuario"
+            tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/tvExplain1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="4dp"
+            android:text="Nombre de usuario para acceder al panel"
+            android:textColor="@color/md_disabled_hint_text"
+            android:textSize="10dp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivUsuario"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tvEmailRegisterUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="28dp"
+            android:text="Email"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvExplain1" />
+
+        <ImageView
+            android:id="@+id/ivEmail"
+            android:layout_width="36dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvEmailRegisterUser"
+            app:srcCompat="@drawable/ic_baseline_alternate_email_24" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="265dp"
+            android:layout_height="31dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/md_white_1000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/ivEmail"
+            app:layout_constraintTop_toBottomOf="@+id/tvEmailRegisterUser"
+            tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/tvExplain2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="28dp"
+            android:text="La contraseña se generará de forma aleatoria y se enviará a este email"
+            android:textColor="@color/md_disabled_hint_text"
+            android:textSize="10dp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivEmail"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tvNombreRegisterUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="28dp"
+            android:text="Nombre completo"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvExplain2" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextNombreRegisterUser"
+            android:layout_width="300dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/md_white_1000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombreRegisterUser"
+            tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/tvExplain3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="28dp"
+            android:text="Nombre de la persona física"
+            android:textColor="@color/md_disabled_hint_text"
+            android:textSize="10dp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNombreRegisterUser"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tvTipoPersona"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="28dp"
+            android:text="Tipo de persona"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvExplain3" />
+
+        <Spinner
+            android:id="@+id/spinnerRegisterUser"
+            android:layout_width="300dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTipoPersona" />
+
+        <Button
+            android:id="@+id/buttonAcceptarRegisterUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Acceptar"
+            android:textColor="@color/md_text_white"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="@+id/spinnerRegisterUser"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerRegisterUser" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

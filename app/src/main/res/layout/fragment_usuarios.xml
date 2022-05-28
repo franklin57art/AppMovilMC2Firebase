@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     android:textAlignment="center"
     android:background="@color/background"
-    tools:context=".ui.usuarios.UsuariosFragment">
+    tools:context=".ui.configuracion.ConfiguracionFragment">
 
     <TextView
-        android:id="@+id/textViewUsuarios"
+        android:id="@+id/textViewConfiguracion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

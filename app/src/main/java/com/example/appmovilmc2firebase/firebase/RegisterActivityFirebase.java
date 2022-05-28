@@ -1,18 +1,17 @@
 package com.example.appmovilmc2firebase;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
-import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -25,7 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivityFirebase extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseFirestore db;
@@ -35,11 +34,11 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppThemeMC2);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_register_firebase);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-        mLoadingBar=new ProgressDialog(RegisterActivity.this);
+        mLoadingBar=new ProgressDialog(RegisterActivityFirebase.this);
 
         setup();
     }
@@ -92,8 +91,8 @@ public class RegisterActivity extends AppCompatActivity {
                             db.collection("usuarios").document(emailEditText.getText().toString()).set(usuarios).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Toast.makeText(RegisterActivity.this, "Usuario registrado con éxito", Toast.LENGTH_LONG).show();
-                                    Intent i = new Intent(RegisterActivity.this, AuthActivity.class);
+                                    Toast.makeText(RegisterActivityFirebase.this, "Usuario registrado con éxito", Toast.LENGTH_LONG).show();
+                                    Intent i = new Intent(RegisterActivityFirebase.this, LoginActivity.class);
                                     i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                     startActivity(i);
                                 }
@@ -105,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         }
                                     });
                         } else {
-                            Toast.makeText(RegisterActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivityFirebase.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -116,7 +115,7 @@ public class RegisterActivity extends AppCompatActivity {
             mLoadingBar.setTitle("Saliendo...");
             mLoadingBar.setCanceledOnTouchOutside(false);
             mLoadingBar.show();
-            Intent i = new Intent(this, AuthActivity.class);
+            Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
         });
     }
