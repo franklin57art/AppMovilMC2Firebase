@@ -45,11 +45,11 @@
         android:id="@+id/nav_usuarios"
         android:name="com.example.appmovilmc2firebase.ui.usuarios.UsuariosFragment"
         android:label="@string/menu_usuarios"
-        tools:layout="@layout/fragment_usuarios" />
+        tools:layout="@layout/fragment_configuracion" />
 
     <fragment
         android:id="@+id/nav_configuracion"
         android:name="com.example.appmovilmc2firebase.ui.configuracion.ConfiguracionFragment"
         android:label="@string/menu_configuracion"
-        tools:layout="@layout/fragment_configuracion" />
+        tools:layout="@layout/fragment_usuarios" />
 </navigation>

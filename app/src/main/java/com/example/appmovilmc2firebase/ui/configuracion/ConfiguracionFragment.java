@@ -1,8 +1,10 @@
-package com.example.appmovilmc2firebase.ui.usuarios;
+package com.example.appmovilmc2firebase.ui.configuracion;
 
 
-import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,19 +14,22 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.appmovilmc2firebase.GlobalInfo;
+import com.example.appmovilmc2firebase.PreferenceHelper;
 import com.example.appmovilmc2firebase.R;
-import com.example.appmovilmc2firebase.adaptadores.UserAdapter;
+import com.example.appmovilmc2firebase.adaptadores.ConfigUserAdapter;
 import com.example.appmovilmc2firebase.models.User;
 
 import org.json.JSONArray;
@@ -32,34 +37,47 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /*Fragment donde mostraremos nuestro RecyclerView con la lista de usuarios con los datos para la configuracion de sus parametros configurables.*/
 
-public class ConfiguracionFragment extends Fragment implements Response.Listener<JSONObject>, Response.ErrorListener {
+public class ConfiguracionFragment extends Fragment {
 
-    private static final String TAG = "UsuariosFragment";
+    private static final String TAG = "ConfiguracionFragment";
 
-    RecyclerView mRecyclerView;
-    ArrayList<User> listaUsuers;
+    private RecyclerView mRecyclerView;
+    private ArrayList<User> listaUsuers;
 
-    ProgressDialog progress;
+    private ProgressDialog progress;
 
-    RequestQueue request;
-    JsonObjectRequest jsonObjectRequest;
+    private RequestQueue request;
+    private JsonObjectRequest jsonObjectRequest;
 
-    public UsuariosFragment() {
+    private PreferenceHelper preferenceHelper;
+
+    private String authValue = "";
+
+    private int idPtUser = 00;
+
+    public ConfiguracionFragment() {
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View vista = inflater.inflate(R.layout.fragment_usuarios, container, false);
+        View vista = inflater.inflate(R.layout.fragment_configuracion, container, false);
 
         listaUsuers = new ArrayList<>();
 
-        mRecyclerView = (RecyclerView) vista.findViewById(R.id.recyclerview);
+        mRecyclerView = (RecyclerView) vista.findViewById(R.id.recyclerviewConfiguracion);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         mRecyclerView.setHasFixedSize(true);
+
+        //Leo el valor del AUTH TOKEN KEY guardado al hacer el Login
+        SharedPreferences sharedPref = this.getActivity().getSharedPreferences("AUTHTOKENKEY", Context.MODE_PRIVATE);
+        String authTokenValue = sharedPref.getString("AuthTokenKey", GlobalInfo.AUTH_TOKEN);
+        authValue = authTokenValue;
 
         request = Volley.newRequestQueue(getContext());
 
@@ -75,53 +93,79 @@ public class ConfiguracionFragment extends Fragment implements Response.Listener
         progress.setMessage("Consultando...");
         progress.show();
 
-        String url = "http://192.168.1.62/pt__users?select=*";
+        jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, GlobalInfo.URL_USER, null, new Response.Listener<JSONObject>() {
 
-        jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, this, this);
-        request.add(jsonObjectRequest);
-    }
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onResponse(JSONObject response) {
+                User user = null;
 
-    @Override
-    public void onErrorResponse(VolleyError error) {
-        Toast.makeText(getContext(), "No se puede conectar " + error.toString(), Toast.LENGTH_LONG).show();
-        System.out.println();
-        Log.d(TAG, "ERROR: "+ error.toString());
-        progress.hide();
-    }
+                preferenceHelper = new PreferenceHelper(getActivity());
 
-    @Override
-    public void onResponse(JSONObject response) {
-        User user = null;
+                JSONArray json = response.optJSONArray("result");
 
-        JSONArray json = response.optJSONArray("result");
+                String passwordDecrpyt = null;
 
-        try {
-            for (int i = 0; i < json.length(); i++) {
-                user = new User();
-                JSONObject jsonObject = null;
-                jsonObject = json.getJSONObject(i);
-                user.setName(jsonObject.optString("name"));
-                user.setUsername(jsonObject.optString("username"));
-                user.setEmail(jsonObject.optString("email"));
-                user.setPassword(jsonObject.optString("password"));
-                user.setBirthday(jsonObject.optString("birthday"));
-                user.setTelefono(jsonObject.optInt("telefono"));
-                listaUsuers.add(user);
+                //Convierto la variable id_pt_user obtenida en el login y guardada con el shared preferences como String a Int.
+                idPtUser = Integer.parseInt(preferenceHelper.getIdPtUser());
+
+                try {
+                    for (int i = 0; i < json.length(); i++) {
+                        //Compruebo si hay algun valor id_pt_user dentro del json igual al valor del usuario logeado que hemos guardado con el shared preferences
+                        if (json.getJSONObject(i).getInt("id_pt_user") == idPtUser) {
+                            user = new User();
+                            JSONObject jsonObject = null;
+                            jsonObject = json.getJSONObject(i);
+                            user.setName(jsonObject.optString("name"));
+                            user.setUsername(jsonObject.optString("username"));
+                            user.setEmail(jsonObject.optString("email"));
+                            user.setPassword(jsonObject.optString("password"));
+                            user.setType(jsonObject.optInt("type"));
+                            user.setTelefono(jsonObject.optString("telefono"));
+                            listaUsuers.add(user);
+                        } else {
+                            Log.e(TAG, "NO HAY COINCIDENCIA EN LOS ID_PT_USER");
+                        }
+                    }
+
+                    progress.hide();
+                    ConfigUserAdapter adapter = new ConfigUserAdapter(listaUsuers);
+                    mRecyclerView.setAdapter(adapter);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getContext(), "No se ha podido establecer conexion con el servidor " + response.toString(), Toast.LENGTH_LONG).show();
+                    progress.hide();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(getContext(), "No se ha podido desencriptar la contraseña " + response.toString(), Toast.LENGTH_LONG).show();
+                }
             }
-            progress.hide();
-            UserAdapter adapter = new UserAdapter(listaUsuers);
-            mRecyclerView.setAdapter(adapter);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-            Toast.makeText(getContext(), "No se ha podido establecer conexion con el servidor " + response.toString(), Toast.LENGTH_LONG).show();
-            progress.hide();
-        }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), "No se puede conectar " + error.toString(), Toast.LENGTH_LONG).show();
+                        System.out.println();
+                        Log.d(TAG, "ERROR: " + error.toString());
+                        progress.hide();
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+                headers.put("Accept", "*/*");
+                headers.put("Authorization", authValue);
+                return headers;
+            }
+        };
+        request.add(jsonObjectRequest);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mRecyclerView = view.findViewById(R.id.recyclerview);
+        mRecyclerView = view.findViewById(R.id.recyclerviewConfiguracion);
     }
 }

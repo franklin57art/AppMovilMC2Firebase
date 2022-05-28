@@ -5,7 +5,6 @@
     android:gravity="center"
     android:orientation="vertical">
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -25,8 +24,7 @@
                     android:id="@+id/tableRowCabeceras"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/table_degradate_shape"
-                    android:outlineSpotShadowColor="@color/black">
+                    android:background="@drawable/table_degradate_shape">
 
                     <TextView
                         android:id="@+id/espacioindice"
@@ -46,7 +44,7 @@
                         android:gravity="left"
                         android:padding="5dp"
                         android:text="Nombre"
-                        android:textColor="@color/white"
+                        android:textColor="@color/md_text_white"
                         android:textStyle="bold" />
 
                     <TextView
@@ -58,7 +56,7 @@
                         android:gravity="left"
                         android:padding="5dp"
                         android:text="CUPS"
-                        android:textColor="@color/white"
+                        android:textColor="@color/md_text_white"
                         android:textStyle="bold" />
 
                     <TextView
@@ -70,7 +68,7 @@
                         android:gravity="left"
                         android:padding="5dp"
                         android:text="Cliente"
-                        android:textColor="@color/white"
+                        android:textColor="@color/md_text_white"
                         android:textStyle="bold" />
 
                     <TextView
@@ -82,7 +80,7 @@
                         android:gravity="left"
                         android:padding="5dp"
                         android:text="Monitorización"
-                        android:textColor="@color/white"
+                        android:textColor="@color/md_text_white"
                         android:textStyle="bold" />
                 </TableRow>
 
@@ -90,7 +88,7 @@
                     android:id="@+id/tableRowDatos"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white">
+                    android:background="@color/md_text_white">
 
                     <TextView
                         android:id="@+id/espacioindice2"
@@ -112,7 +110,7 @@
                         android:gravity="left"
                         android:padding="5dp"
                         android:text="name"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/md_text" />
 
                     <TextView
                         android:id="@+id/cupsindice2"
@@ -123,7 +121,7 @@
                         android:gravity="left"
                         android:padding="5dp"
                         android:text="cups"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/md_text" />
 
                     <TextView
                         android:id="@+id/clienteindice2"
@@ -134,7 +132,7 @@
                         android:gravity="left"
                         android:padding="5dp"
                         android:text="cliente"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/md_text" />
 
                     <TextView
                         android:id="@+id/monitorizacionindice2"
@@ -144,12 +142,10 @@
                         android:background="@drawable/cell_shape"
                         android:gravity="left"
                         android:padding="5dp"
-                        android:text=" Sin configurar"
-                        android:textColor="@color/black"
+                        android:text="Sin configurar"
+                        android:textColor="@color/md_text"
                         android:textStyle="italic" />
                 </TableRow>
-
-
             </TableLayout>
         </HorizontalScrollView>
     </ScrollView>

@@ -1,16 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--- Tema base de la aplicacion -->
-    <style name="AppThemeMC2" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!--- Editar el tema aqui -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="AppThemeMc2Light" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Editar el tema aqui -->
+        <item name="colorPrimary">@color/md_green_500</item>
+        <item name="colorPrimaryDark">@color/md_green_800</item>
+        <item name="colorAccent">@color/md_red_A200</item>
+        <item name="android:colorButtonNormal">@color/md_blue_500</item>
+    </style>
+
+    <style name="AppThemeMc2.SplashTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowBackground">@drawable/splashscreen</item>
+        <item name="colorPrimary">@color/md_green_500</item>
+        <item name="colorPrimaryDark">@color/md_green_800</item>
+        <item name="colorAccent">@color/md_red_A200</item>
+        <item name="android:colorButtonNormal">@color/md_blue_500</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="SplashTheme" parent="Theme.AppCompat">
-        <item name="android:windowBackground">@drawable/splashscreen</item>
+    <style name="AppThemeMc2Light.NoActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/md_green_500</item>
+        <item name="colorPrimaryDark">@color/md_green_800</item>
+        <item name="colorAccent">@color/md_red_A200</item>
+        <item name="android:colorButtonNormal">@color/md_blue_500</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="MenuStyle.MyPopupTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textColor">@color/md_text</item>
+        <item name="android:colorBackground">@color/md_grey_300</item>
+    </style>
+
 </resources>

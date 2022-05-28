@@ -46,7 +46,7 @@
             android:ems="10"
             android:inputType="textEmailAddress"
             android:hint="Email@email.com"
-            android:textColor="@color/textPrimaryColor" />
+            android:textColor="@color/md_text" />
 
         <Space
             android:layout_width="match_parent"
@@ -59,7 +59,7 @@
             android:ems="10"
             android:inputType="textPassword"
             android:hint="Contraseña"
-            android:textColor="@color/textPrimaryColor" />
+            android:textColor="@color/md_text" />
 
         <Space
             android:layout_width="match_parent"
@@ -73,7 +73,7 @@
             android:ems="10"
             android:inputType="phone"
             android:hint="Télefono"
-            android:textColor="@color/textPrimaryColor" />
+            android:textColor="@color/md_text" />
 
         <Space
             android:layout_width="match_parent"
@@ -87,7 +87,7 @@
             android:ems="10"
             android:inputType="textPostalAddress"
             android:hint="Calle, número, piso"
-            android:textColor="@color/textPrimaryColor" />
+            android:textColor="@color/md_text" />
 
         <Space
             android:layout_width="match_parent"
@@ -101,7 +101,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:hint="Nombre"
-            android:textColor="@color/textPrimaryColor" />
+            android:textColor="@color/md_text" />
 
         <Space
             android:layout_width="match_parent"
@@ -115,7 +115,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:hint="Apellido1, Apellido2"
-            android:textColor="@color/textPrimaryColor" />
+            android:textColor="@color/md_text" />
 
         <Space
             android:layout_width="match_parent"

@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.appmovilmc2firebase" >
+    package="com.example.appmovilmc2firebase">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:largeHeap="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppMovilMC2Firebase" >
+        android:theme="@style/AppThemeMc2Light"
+        android:usesCleartextTraffic="true">
+
         <activity
-            android:name=".UserDataActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RegisterActivity"
+            android:name=".AjustesActivity"
             android:exported="true"
-            android:theme="@style/AppThemeMC2" />
+            android:theme="@style/AppThemeMc2Light"
+            android:parentActivityName=".HomeActivity"/>
+        <activity
+            android:name=".ui.usuarios.RegisterUserActivity"
+            android:exported="true"
+            android:theme="@style/AppThemeMc2Light.NoActionBar" />
         <activity
             android:name=".HomeActivity"
             android:exported="true"
-            android:theme="@style/AppThemeMC2" />
+            android:theme="@style/AppThemeMc2Light.NoActionBar" />
         <activity
-            android:name=".AuthActivity"
+            android:name=".LoginActivity"
             android:exported="true"
-            android:theme="@style/SplashTheme" >
+            android:theme="@style/AppThemeMc2.SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

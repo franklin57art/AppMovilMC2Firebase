@@ -1,0 +1,19 @@
+
+2. Crear otro tipo de permiso para los usarios de tipo master (Esto habra que verlo segun su type dentro de los metodos que añaden, borran o modifican datos de usuarios) ya que estos seran los unicos que puedan modificar datos, registrar usuarios, etc. El resto de usuario solo podrá consultar datos.
+En el propio metodo del fragment comprobar mediante volley obteniendo respuesta de todos los datos del usuario en cuestion. Si el usuario su type es igual a 7.
+Si es 7 podra actualizar(put) o introducir(post) datos
+3. Hacer todos los fragments de consultas correspondientes de cada tipo. Y luego continuar para modficarlos mediantes click mostrando otras pantallas con otros datos del mismo modo que en el pagina web.
+
+ARREGLAR
+- Mismo fragment que el anterior. Al pulsar el boton para ver la contraseña, mostrar esta desencriptada.
+- Mismo fragment hacer la logica para cambiar la contraseña.
+- Modificar las tablas para que la fila de cabecera solo aprezca una vez.
+
+EXTRA
+*. Si se cierra la app sin desconectar el usuario al volver a entrar en ella mantiene la sesion iniciada. Usar Shared preferences. PREGUNTAR SI HACER ESTO.
+*. Dar funcionalidad a la clase AjustesActivity. Modificacion de temas, tamaño de letra y colores de la app.
+
+
+
+
+

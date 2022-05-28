@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/profile_edit"
+        android:id="@+id/visual_edit"
         android:orderInCategory="100"
-        android:title="@string/edit_profile"
-        app:showAsAction="never" />
+        android:title="@string/ajustes"
+        app:showAsAction="withText" />
     <item
         android:id="@+id/disconnect"
         android:orderInCategory="100"
         android:title="@string/disconnect"
-        app:showAsAction="never" />
+        app:showAsAction="withText" />
 </menu>
