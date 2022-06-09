@@ -6,38 +6,43 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchViewUser"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/md_green_500">
+            android:layout_margin="8dp"
+            android:background="@color/md_disabled_hint_text_white"
+            android:backgroundTint="@color/md_black_1000"
+            android:iconifiedByDefault="false"
+            android:queryHint="Buscar aquí"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <SearchView
-                android:id="@+id/searchViewUser"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:layout_marginStart="28dp"
-                android:background="@color/md_disabled_hint_text_white"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="0dp"></SearchView>
+            <requestFocus />
+        </androidx.appcompat.widget.SearchView>
 
-            <Button
-                android:id="@+id/buttonAddUser"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="8dp"
-                android:layout_marginStart="200dp"
-                android:text="  Añadir usuario  "
-                android:background="@color/md_disabled_hint_text_white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/searchViewUser"
-                tools:layout_editor_absoluteY="0dp" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/buttonAddUser"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:background="@color/md_disabled_hint_text_white"
+            android:backgroundTint="@color/md_black_1000"
+            android:text="Añadir usuario"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/searchViewUser"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ScrollView
+    <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout_editor_absoluteX="0dp"
@@ -51,9 +56,6 @@
                     android:id="@+id/tablaUsuarios"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
                     android:stretchColumns="1,2,3,4">
 
                     <TableRow

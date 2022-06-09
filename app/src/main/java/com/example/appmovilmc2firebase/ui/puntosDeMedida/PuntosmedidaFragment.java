@@ -1,6 +1,5 @@
 package com.example.appmovilmc2firebase.ui.puntosDeMedida;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,7 +23,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appmovilmc2firebase.GlobalInfo;
-import com.example.appmovilmc2firebase.R;
 import com.example.appmovilmc2firebase.adaptadores.PuntosDeMedidaAdapter;
 import com.example.appmovilmc2firebase.models.PuntosDeMedida;
 
@@ -36,14 +34,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import appmovilmc2firebase.R;
+
 public class PuntosmedidaFragment extends Fragment {
 
     private static final String TAG = "PuntosMedidaFragment";
 
     private RecyclerView mRecyclerView;
     ArrayList<PuntosDeMedida> listaPuntosDeMedida;
-
-    ProgressDialog progress;
 
     RequestQueue request;
     JsonObjectRequest jsonObjectRequest;
@@ -81,10 +79,6 @@ public class PuntosmedidaFragment extends Fragment {
     //Con este metodo hago la conexion con el web service
     private void cargarWebService() {
 
-        progress = new ProgressDialog(getContext());
-        progress.setMessage("Consultando...");
-        progress.show();
-
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, GlobalInfo.URL_PUNTOS_DE_MEDIDA, null, new Response.Listener<JSONObject>() {
 
             @Override
@@ -102,13 +96,13 @@ public class PuntosmedidaFragment extends Fragment {
                         //pdm.setHas_monit(jsonObject.optInt("has_monit"));
                         listaPuntosDeMedida.add(pdm);
                     }
-                    progress.hide();
+
                     PuntosDeMedidaAdapter adapter = new PuntosDeMedidaAdapter(listaPuntosDeMedida);
                     mRecyclerView.setAdapter(adapter);
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Toast.makeText(getContext(), "No se ha podido establecer conexion con el servidor " + response.toString(), Toast.LENGTH_LONG).show();
-                    progress.hide();
+
                 }
             }
         },
@@ -118,7 +112,7 @@ public class PuntosmedidaFragment extends Fragment {
                         Toast.makeText(getContext(), "No se puede conectar " + error.toString(), Toast.LENGTH_LONG).show();
                         System.out.println();
                         Log.d(TAG, "ERROR: " + error.toString());
-                        progress.hide();
+
                     }
                 }
         ) {

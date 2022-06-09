@@ -6,20 +6,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.SearchView;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appmovilmc2firebase.R;
 import com.example.appmovilmc2firebase.models.User;
 import com.example.appmovilmc2firebase.ui.usuarios.RegisterUserActivity;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import appmovilmc2firebase.R;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UsuariosHolder> {
 
     private List<User> mUserList;
+    private ArrayList<User> arraylist;
 
     private Context context;
 
@@ -67,7 +70,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UsuariosHolder
 
         public UsuariosHolder(View itemView) {
             super(itemView);
-            mSearchView = itemView.findViewById(R.id.searchViewUser);
+            //mSearchView = itemView.findViewById(R.id.searchViewUser);
             mName = itemView.findViewById(R.id.nombreusuarioindice);
             mName2 = itemView.findViewById(R.id.nombreusuariodatos);
             mUserName = itemView.findViewById(R.id.usuarioindice);
@@ -76,7 +79,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UsuariosHolder
             mType2 = itemView.findViewById(R.id.tipousuariodatos);
             mUltimoAcceso = itemView.findViewById(R.id.ultimoaccesousuarioindice);
             mUltimoAcceso2 = itemView.findViewById(R.id.ultimoaccesousuariodatos);
-            mAddUserButton = itemView.findViewById(R.id.buttonAddUser);
+            //mAddUserButton = itemView.findViewById(R.id.buttonAddUser);
         }
     }
 }

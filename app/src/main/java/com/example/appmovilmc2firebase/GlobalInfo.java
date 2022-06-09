@@ -7,7 +7,8 @@ public class GlobalInfo {
     public static final String URL_PUNTOS_DE_MEDIDA = "http://192.168.1.62/sys__connections?select=*";
     public static final String URL_CLIENT = "http://192.168.1.62/sys__clients?select=*";
     public static final String URL_REGISTER = "http://192.168.1.62/pt__users?register=true";
-
-
+    public static final String URL_PARTNER = "http://192.168.1.62/sys__partners?select=*";
+    public static final String URL_SENDPASSWORD = "http://192.168.1.62/pt__users?sendpassword=true&suffix=user";
+    public static final String URL_CHANGEPASSWORD = "http://192.168.1.62/pt__users?changepassword=true&suffix=user";
 
 }

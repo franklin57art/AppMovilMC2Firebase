@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:textAlignment="center"
     android:background="@color/background"
-    tools:context=".ui.alarmas.AlarmaFragment">
+    tools:context="com.example.appmovilmc2firebase.ui.alarmas.AlarmaFragment">
 
     <TextView
         android:id="@+id/textViewAlarmas"

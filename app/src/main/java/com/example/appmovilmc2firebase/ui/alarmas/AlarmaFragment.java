@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.appmovilmc2firebase.R;
-import com.example.appmovilmc2firebase.databinding.FragmentAlarmasBinding;
+import appmovilmc2firebase.R;
+import appmovilmc2firebase.databinding.FragmentAlarmasBinding;
 
 public class AlarmaFragment extends Fragment {
 

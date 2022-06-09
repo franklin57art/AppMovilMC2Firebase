@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/cardview_light_background"
-    tools:context=".LoginActivity">
+    tools:context="com.example.appmovilmc2firebase.LoginActivity">
 
     <LinearLayout
         android:id="@+id/loginLayout"
@@ -43,28 +43,37 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Email@email.com"
+                android:textColorHint="@color/md_disabled_hint_text"
                 android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
-                android:textColorHint="@color/md_disabled_hint_text"
                 tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
-            <Space
+            <androidx.legacy.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
                 android:layout_weight="1" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/passwordTextInputEditTextAl"
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilPasswordLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Contraseña"
-                android:importantForAutofill="no"
-                android:inputType="textPassword"
-                android:textColorHint="@color/md_disabled_hint_text"
-                tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
+                app:passwordToggleEnabled="true">
 
-            <Space
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordTextInputEditTextAl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Contraseña"
+                    android:textColorHint="@color/md_disabled_hint_text"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <androidx.legacy.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="16dp"
                 android:layout_weight="1" />
@@ -81,7 +90,7 @@
                 android:textStyle="bold"
                 tools:text="Acceder" />
 
-            <Space
+            <androidx.legacy.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="16dp"
                 android:layout_weight="1" />

@@ -1,6 +1,5 @@
 package com.example.appmovilmc2firebase.ui.clientes;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,7 +23,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appmovilmc2firebase.GlobalInfo;
-import com.example.appmovilmc2firebase.R;
 import com.example.appmovilmc2firebase.adaptadores.ClientesAdapter;
 import com.example.appmovilmc2firebase.models.Client;
 
@@ -36,14 +34,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import appmovilmc2firebase.R;
+
 public class ClienteFragment extends Fragment {
 
     private static final String TAG = "ClienteFragment";
 
     private RecyclerView mRecyclerView;
     private ArrayList<Client> listaClients;
-
-    private ProgressDialog progress;
 
     private RequestQueue request;
     private JsonObjectRequest jsonObjectRequest;
@@ -81,10 +79,6 @@ public class ClienteFragment extends Fragment {
     //Con este metodo hago la conexion con el web service
     private void cargarWebService() {
 
-        progress = new ProgressDialog(getContext());
-        progress.setMessage("Consultando...");
-        progress.show();
-
         request = Volley.newRequestQueue(getContext());
 
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, GlobalInfo.URL_CLIENT, null, new Response.Listener<JSONObject>() {
@@ -104,13 +98,11 @@ public class ClienteFragment extends Fragment {
                         //cl.setLast_access(jsonObject.optInt("last_access"));
                         listaClients.add(cl);
                     }
-                    progress.hide();
                     ClientesAdapter adapter = new ClientesAdapter(listaClients);
                     mRecyclerView.setAdapter(adapter);
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Toast.makeText(getContext(), "No se ha podido establecer conexion con el servidor " + response.toString(), Toast.LENGTH_LONG).show();
-                    progress.hide();
                 }
             }
         },
@@ -120,7 +112,6 @@ public class ClienteFragment extends Fragment {
                         Toast.makeText(getContext(), "No se puede conectar " + error.toString(), Toast.LENGTH_LONG).show();
                         System.out.println();
                         Log.d(TAG, "ERROR: " + error.toString());
-                        progress.hide();
                     }
                 }
         ) {

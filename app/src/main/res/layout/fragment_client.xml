@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.clientes.ClienteFragment">
+    tools:context="com.example.appmovilmc2firebase.ui.clientes.ClienteFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewClient"

@@ -1,46 +1,51 @@
 package com.example.appmovilmc2firebase.ui.informes;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appmovilmc2firebase.R;
-import com.example.appmovilmc2firebase.databinding.FragmentConfiguracionBinding;
-import com.example.appmovilmc2firebase.databinding.FragmentInformesBinding;
-import com.example.appmovilmc2firebase.ui.alarmas.AlarmaViewModel;
+import com.example.appmovilmc2firebase.GlobalInfo;
+
+import appmovilmc2firebase.R;
 
 public class InformesFragment extends Fragment {
 
-    private FragmentInformesBinding binding;
-    private InformesViewModel informesViewModel;
+    private static final String TAG = "InformesFragment";
+
+    private RecyclerView mRecyclerView;
+    private ProgressDialog pDialog;
+    private String authValue = "";
+
+    public InformesFragment(){}
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container,
                              @NonNull Bundle savedInstanceState) {
-
-        informesViewModel = new ViewModelProvider(this).get(InformesViewModel.class);
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_informes, container, false);
-        final TextView textView = root.findViewById(R.id.textViewinformes);
-        informesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
+        View view = inflater.inflate(R.layout.fragment_informes, container, false);
+
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerviewInformes);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        mRecyclerView.setHasFixedSize(true);
+
+        //Leo el valor del AUTH TOKEN KEY guardado al hacer el Login
+        SharedPreferences sharedPref = this.getActivity().getSharedPreferences("AUTHTOKENKEY", Context.MODE_PRIVATE);
+        String authTokenValue = sharedPref.getString("AuthTokenKey", GlobalInfo.AUTH_TOKEN);
+        authValue = authTokenValue;
+
+
+
+        return view;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
+
 }

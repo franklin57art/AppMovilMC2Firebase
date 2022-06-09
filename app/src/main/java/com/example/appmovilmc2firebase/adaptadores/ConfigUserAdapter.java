@@ -1,22 +1,31 @@
 package com.example.appmovilmc2firebase.adaptadores;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appmovilmc2firebase.R;
+import com.example.appmovilmc2firebase.HomeActivity;
 import com.example.appmovilmc2firebase.models.User;
-import com.google.android.material.textfield.TextInputEditText;
+import com.example.appmovilmc2firebase.ui.configuracion.ChangePasswordConfigActivity;
 
 import java.util.List;
 
+import appmovilmc2firebase.R;
+
 public class ConfigUserAdapter extends RecyclerView.Adapter<ConfigUserAdapter.ConfigUsuariosHolder> {
+
     private List<User> mUserList;
+
+    private Context contextUser;
+
+    public Button mSalir, mAceptar;
 
     public ConfigUserAdapter(List<User> userList) {
         this.mUserList = userList;
@@ -24,12 +33,30 @@ public class ConfigUserAdapter extends RecyclerView.Adapter<ConfigUserAdapter.Co
 
     @Override
     public ConfigUsuariosHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_row_config, parent, false);
-        RecyclerView.LayoutParams layoutParams = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        itemView.setLayoutParams(layoutParams);
+        View itemViewUser = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_row_config_user, parent, false);
+        RecyclerView.LayoutParams layoutParamsUser = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        itemViewUser.setLayoutParams(layoutParamsUser);
+        contextUser = parent.getContext();
 
-        return new ConfigUsuariosHolder(itemView);
+        mSalir = itemViewUser.findViewById(R.id.buttonSalirConfigUser);
+        mSalir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(contextUser, HomeActivity.class);
+                contextUser.startActivity(intent);
+            }
+        });
+        mAceptar = itemViewUser.findViewById(R.id.buttonChangePasswordConfigUser);
+        mAceptar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(contextUser, ChangePasswordConfigActivity.class);
+                contextUser.startActivity(intent);
+            }
+        });
+
+        return new ConfigUsuariosHolder(itemViewUser);
     }
 
     @Override
@@ -47,17 +74,13 @@ public class ConfigUserAdapter extends RecyclerView.Adapter<ConfigUserAdapter.Co
     }
 
     public static class ConfigUsuariosHolder extends RecyclerView.ViewHolder {
-        public TextView mTitle, mTitle2, mTitle3, mUserRazonSocial2, mUserNamePartner2, mUserName2, mUserUserName2, mUserEmail2, mUserType2;
-        public EditText mUserRazonSocial, mUserNamePartner, mUserName, mUserUserName, mUserEmail, mUserType;
-        public TextInputEditText mUserPassword,mUserPasswordNew, mUserPasswordNewRepeat;
+        public TextView mTitle3, mUserName2, mUserUserName2, mUserEmail2, mUserType2;
+        public EditText mUserName, mUserUserName, mUserEmail, mUserType, mUserPassword;
+        public Button mSalir, mAceptar;
+
 
         public ConfigUsuariosHolder(View itemView) {
             super(itemView);
-            mTitle = itemView.findViewById(R.id.tvTitle);
-            mUserRazonSocial2 = itemView.findViewById(R.id.tvRazonSocial2);
-            mUserRazonSocial = itemView.findViewById(R.id.tvRazonSocial);
-            mUserNamePartner2 = itemView.findViewById(R.id.tvNamePartner2);
-            mUserNamePartner = itemView.findViewById(R.id.tvNamePartner);
             mTitle3 = itemView.findViewById(R.id.tvTitle3);
             mUserName2 = itemView.findViewById(R.id.tvName2);
             mUserName = itemView.findViewById(R.id.tvName);
@@ -67,12 +90,9 @@ public class ConfigUserAdapter extends RecyclerView.Adapter<ConfigUserAdapter.Co
             mUserEmail = itemView.findViewById(R.id.tvEmail);
             mUserType2 = itemView.findViewById(R.id.tvTypeUser2);
             mUserType = itemView.findViewById(R.id.tvTypeUser);
-            mTitle2 = itemView.findViewById(R.id.tvTitle2);
-
             mUserPassword = itemView.findViewById(R.id.tietPassword);
-            mUserPasswordNew = itemView.findViewById(R.id.tietPasswordNew);
-            mUserPasswordNewRepeat = itemView.findViewById(R.id.tietRepeatPassword);
-
+            mSalir = itemView.findViewById(R.id.buttonSalirConfigUser);
+            mAceptar = itemView.findViewById(R.id.buttonChangePasswordConfigUser);
         }
     }
 }

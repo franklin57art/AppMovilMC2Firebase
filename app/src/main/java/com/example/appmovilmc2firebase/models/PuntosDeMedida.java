@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.type.DateTime;
 
 import java.math.BigDecimal;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
 

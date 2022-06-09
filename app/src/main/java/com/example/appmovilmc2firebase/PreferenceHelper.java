@@ -11,6 +11,7 @@ public class PreferenceHelper {
     private final String USERNAME = "username";
     private final String PASSWORD = "password";
     private final String IDPTUSER = "id_pt_user";
+    private final String IDPARTNER = "id_partner";
     private final String TYPE = "TYPE";
     private SharedPreferences app_prefs;
     private Context context;
@@ -79,6 +80,16 @@ public class PreferenceHelper {
 
     public String getIdPtUser() {
         return app_prefs.getString(IDPTUSER, "");
+    }
+
+    public void putIdPartner(String loginorout) {
+        SharedPreferences.Editor edit = app_prefs.edit();
+        edit.putString(IDPARTNER, loginorout);
+        edit.commit();
+    }
+
+    public String getIdPartner() {
+        return app_prefs.getString(IDPARTNER, "");
     }
 
     public void putType(String loginorout) {

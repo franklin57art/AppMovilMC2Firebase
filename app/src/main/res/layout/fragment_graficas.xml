@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:textAlignment="center"
     android:background="@color/background"
-    tools:context=".ui.graficas.GraficasFragment">
+    tools:context="com.example.appmovilmc2firebase.ui.graficas.GraficasFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

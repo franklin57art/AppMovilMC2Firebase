@@ -8,10 +8,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appmovilmc2firebase.R;
 import com.example.appmovilmc2firebase.models.PuntosDeMedida;
 
 import java.util.List;
+
+import appmovilmc2firebase.R;
 
 public class PuntosDeMedidaAdapter extends RecyclerView.Adapter<PuntosDeMedidaAdapter.PuntosDeMedidaHolder> {
     private List<PuntosDeMedida> mPuntosDeMedidaList;

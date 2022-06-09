@@ -1,7 +1,6 @@
 package com.example.appmovilmc2firebase.ui.usuarios;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,15 +24,15 @@ import com.android.volley.toolbox.Volley;
 import com.example.appmovilmc2firebase.GlobalInfo;
 import com.example.appmovilmc2firebase.HomeActivity;
 import com.example.appmovilmc2firebase.PreferenceHelper;
-import com.example.appmovilmc2firebase.R;
 import com.google.android.material.textfield.TextInputEditText;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import appmovilmc2firebase.R;
 
 public class RegisterUserActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -44,13 +43,12 @@ public class RegisterUserActivity extends AppCompatActivity implements AdapterVi
     private TextInputEditText etusername, etemail, etnombre, etpassword;
     private Spinner spinner;
     private PreferenceHelper preferenceHelper;
-    private RequestQueue rQueue;
-    private ProgressDialog pdDialog;
+    private RequestQueue request;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
-        setTitle("Register");
+        setTitle("Nuevo Usuario");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registeruser);
 
@@ -62,9 +60,7 @@ public class RegisterUserActivity extends AppCompatActivity implements AdapterVi
         etpassword = findViewById(R.id.editTextPassword);
 
         exit = findViewById(R.id.buttonSalirRegisterUser);
-        aceptar = findViewById(R.id.buttonAcceptarRegisterUser);
-
-        pdDialog = new ProgressDialog(RegisterUserActivity.this);
+        aceptar = findViewById(R.id.buttonAceptarRegisterUser);
 
         info = findViewById(R.id.ivInfo);
         spinner = findViewById(R.id.spinnerRegisterUser);
@@ -92,7 +88,6 @@ public class RegisterUserActivity extends AppCompatActivity implements AdapterVi
         aceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 registerMe();
             }
         });
@@ -115,20 +110,15 @@ public class RegisterUserActivity extends AppCompatActivity implements AdapterVi
         final Integer spinnervalue = (Integer) spinner.getSelectedItem();
 
         if (username.isEmpty() || email.isEmpty() || name.isEmpty() || password.isEmpty()) {
-            showAlertInformation();
-        } else {
-
-            pdDialog.setTitle("Registro");
-            pdDialog.setMessage("Espere mientras comprobamos los datos introducidos");
-            pdDialog.setCanceledOnTouchOutside(false);
-            pdDialog.show();
-
+            showAlertInformation(etusername, etemail, etnombre, etpassword, "El campo esta vacío. Asegúrese de rellenarlo correctamente");
+        }else if(password.length() < 8){
+            showAlertInformationLengthPassword(etpassword, "La longuitud de la contraseña dede de ser de al menos 8 caracteres");
+        }else {
             StringRequest stringRequest = new StringRequest(Request.Method.POST, GlobalInfo.URL_REGISTER,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            rQueue.getCache().clear();
-                            //Toast.makeText(RegisterUserActivity.this, response, Toast.LENGTH_LONG).show();
+                            request.getCache().clear();
                             Log.d(TAG, response);
                             try {
                                 parseData(response);
@@ -140,8 +130,7 @@ public class RegisterUserActivity extends AppCompatActivity implements AdapterVi
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            //Toast.makeText(RegisterUserActivity.this, error.toString(), Toast.LENGTH_LONG).show();
-                            showError(etemail, error.toString());
+                            showError(error.toString());
                         }
                     }) {
 
@@ -164,8 +153,8 @@ public class RegisterUserActivity extends AppCompatActivity implements AdapterVi
                     return params;
                 }
             };
-            rQueue = Volley.newRequestQueue(RegisterUserActivity.this);
-            rQueue.add(stringRequest);
+            request = Volley.newRequestQueue(RegisterUserActivity.this);
+            request.add(stringRequest);
         }
     }
 
@@ -173,38 +162,15 @@ public class RegisterUserActivity extends AppCompatActivity implements AdapterVi
         try {
             JSONObject jsonObject = new JSONObject(response);
             if (jsonObject.optString("success").equals("true")) {
-                saveInfo(response);
-                Toast.makeText(RegisterUserActivity.this, "¡Usuario registrado correctamente!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterUserActivity.this, "¡Usuario registrado correctamente!", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(RegisterUserActivity.this, HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 this.finish();
             } else {
-                //Toast.makeText(RegisterUserActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                 showAlert();
             }
         } catch (JSONException e) {
-            pdDialog.dismiss();
-            e.printStackTrace();
-        }
-    }
-
-    private void saveInfo(String response) {
-        preferenceHelper.putIsLogin(true);
-        try {
-            JSONObject jsonObject = new JSONObject(response);
-            if (jsonObject.getString("success").equals("true")) {
-                JSONArray dataArray = jsonObject.getJSONArray("result");
-                for (int i = 0; i < dataArray.length(); i++) {
-                    JSONObject dataobj = dataArray.getJSONObject(i);
-                    preferenceHelper.putName(dataobj.getString("name"));
-                    preferenceHelper.putEmail(dataobj.getString("email"));
-                    preferenceHelper.putUserName(dataobj.getString("username"));
-                    preferenceHelper.putPassword(dataobj.getString("password"));
-                }
-            }
-        } catch (JSONException e) {
-            pdDialog.dismiss();
             e.printStackTrace();
         }
     }
@@ -221,7 +187,6 @@ public class RegisterUserActivity extends AppCompatActivity implements AdapterVi
     }
 
     private void showAlert() {
-        pdDialog.dismiss();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Error");
         builder.setMessage("Se ha producido un error registrando al usuario");
@@ -230,30 +195,36 @@ public class RegisterUserActivity extends AppCompatActivity implements AdapterVi
         builder.show();
     }
 
-    private void showError(TextInputEditText input, String s) {
-        pdDialog.dismiss();
+    private void showError(String s) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Error");
         builder.setMessage("Se ha producido un error al obtener respuesta del servidor");
         builder.setPositiveButton("Aceptar", null);
+        builder.create();
+        builder.show();
+    }
+
+    private void showAlertInformationLengthPassword(TextInputEditText input, String s) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         input.setError(s);
         input.requestFocus();
         builder.create();
-        builder.show();
     }
 
-    private void showAlertInformation() {
-        pdDialog.dismiss();
+    private void showAlertInformation(TextInputEditText input, TextInputEditText inputt, TextInputEditText inputtt, TextInputEditText inputttt,String s) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Error");
-        builder.setMessage("Alguno de los campos esta vacio");
-        builder.setPositiveButton("Aceptar", null);
+        input.setError(s);
+        input.requestFocus();
+        inputt.setError(s);
+        inputt.requestFocus();
+        inputtt.setError(s);
+        inputtt.requestFocus();
+        inputttt.setError(s);
+        inputttt.requestFocus();
         builder.create();
-        builder.show();
     }
 
     private void showInfo() {
-        pdDialog.dismiss();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Info");
         builder.setMessage("0->Virtual, 1->Técnico, 2->Comercial, 3->Directivo, 4->Administrativo, 5->Desarrollador, 6->Jefe de equipo");

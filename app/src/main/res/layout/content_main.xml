@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".HomeActivity"
+    tools:context="com.example.appmovilmc2firebase.HomeActivity"
     tools:showIn="@layout/app_bar_main">
 
     <LinearLayout

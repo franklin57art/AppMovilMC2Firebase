@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableLayout
+                android:id="@+id/tablaEstadoDeMedidores"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="2dp"
+                android:stretchColumns="1,2,3,4">
+
+                <TableRow
+                    android:id="@+id/tableRowCabecerasEstadoDeMedidores"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/table_degradate_shape">
+
+                    <TextView
+                        android:id="@+id/nombreEstadoDeMedidores"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="5dp"
+                        android:text="Nombre"
+                        android:textColor="@color/md_text_white"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/datosEstadoDeMedidores"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="5dp"
+                        android:text="Datos"
+                        android:textColor="@color/md_text_white"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/discontinuidadEstadoDeMedidores"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="5dp"
+                        android:text="Discontinuidad"
+                        android:textColor="@color/md_text_white"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ultimos7diasEstadoDeMedidores"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="4"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="5dp"
+                        android:text="Últimos 7 días"
+                        android:textColor="@color/md_text_white"
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRowDatosEstadoDeMedidores"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/md_text_white">
+
+                    <TextView
+                        android:id="@+id/nombreEstadoDeMedidoresDatos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="5dp"
+                        android:text="name"
+                        android:textColor="@color/md_text" />
+
+                    <TextView
+                        android:id="@+id/datosEstadoDeMedidoresDatos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="5dp"
+                        android:text=""
+                        android:textColor="@color/md_text" />
+
+                    <TextView
+                        android:id="@+id/discontinuidadEstadoDeMedidoresDatos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="5dp"
+                        android:text="0 (0Q)"
+                        android:textColor="@color/md_disabled_hint_text"
+                        android:textStyle="italic" />
+
+                    <TextView
+                        android:id="@+id/ultimos7diasEstadoDeMedidoresDatos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="4"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="5dp"
+                        android:text=""
+                        android:textColor="@color/md_disabled_hint_text"
+                        android:textStyle="italic" />
+                </TableRow>
+
+            </TableLayout>
+        </HorizontalScrollView>
+    </ScrollView>
+
+</LinearLayout>

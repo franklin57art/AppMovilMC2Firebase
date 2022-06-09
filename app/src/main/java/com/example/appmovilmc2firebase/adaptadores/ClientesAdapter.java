@@ -8,10 +8,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appmovilmc2firebase.R;
 import com.example.appmovilmc2firebase.models.Client;
 
 import java.util.List;
+
+import appmovilmc2firebase.R;
 
 public class ClientesAdapter extends RecyclerView.Adapter<ClientesAdapter.ClientesHolder> {
     private List<Client> mClientList;

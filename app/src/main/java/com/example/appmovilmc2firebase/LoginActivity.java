@@ -1,17 +1,14 @@
 package com.example.appmovilmc2firebase;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +28,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import appmovilmc2firebase.R;
+
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
@@ -44,9 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 
-    private RequestQueue rQueue;
-
-    private ProgressDialog pdDialog;
+    private RequestQueue request;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,21 +75,20 @@ public class LoginActivity extends AppCompatActivity {
 
         logInButton = findViewById(R.id.loginButtonAl);
 
-        pdDialog = new ProgressDialog(LoginActivity.this);
-
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                emailEditText.setText("aarestizabal@correo.com");
-                passwordEditText.setText("123456");
+
+                emailEditText.setText("farestiz@alumnos.unex.es");
+                passwordEditText.setText("TEST_APP");
 
                 final String memail = emailEditText.getText().toString().trim();
                 final String mpassword = passwordEditText.getText().toString().trim();
 
                 if (memail.isEmpty()) {
-                    showError(emailEditText, "Email de usuario vacio. Es necesario introducir un email válido");
+                    showErrorInputText(emailEditText, "Email de usuario vacio. Es necesario introducir un email válido");
                 } else if (mpassword.isEmpty()) {
-                    showError(passwordEditText, "Contraseña vacia.");
+                    showErrorInputText(passwordEditText, "Contraseña vacia. Introduzca una contraseña válida");
                 } else {
                     login(memail, mpassword);
                     saveAuthKey();
@@ -103,7 +99,8 @@ public class LoginActivity extends AppCompatActivity {
         olvidarContraseniaTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LoginActivity.this, "Aún no esta disponible esta opcion", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(LoginActivity.this,ForgetPasswordActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -116,25 +113,20 @@ public class LoginActivity extends AppCompatActivity {
 
     public void login(String email, String password) {
 
-        pdDialog.setTitle("Autenticacion");
-        pdDialog.setMessage("Espere mientras comprobamos los datos introducidos");
-        pdDialog.setCanceledOnTouchOutside(false);
-        pdDialog.show();
         // on below line we are calling a string
         // request method to post the data to our API
         // in this we are calling a post method.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, GlobalInfo.URL_LOGIN, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                //Log.e("ENTRAMOS", response);
-                rQueue.getCache().clear();
+                request.getCache().clear();
                 parseData(response);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 // method to handle errors.
-                showError(emailEditText,error.toString());
+                showError(emailEditText,passwordEditText,error.toString());
             }
         }) {
 
@@ -153,24 +145,26 @@ public class LoginActivity extends AppCompatActivity {
                 return data;
             }
         };
-        rQueue = Volley.newRequestQueue(LoginActivity.this);
-        rQueue.add(stringRequest);
+        request = Volley.newRequestQueue(LoginActivity.this);
+        request.add(stringRequest);
         }
 
     private void parseData(String response) {
+        Log.e(TAG, "LLEGUE AQUI");
         try {
             JSONObject jsonObject = new JSONObject(response);
+            Log.e(TAG, "LLEGUE AQUI");
             if (jsonObject.getString("success").equals("true")) {
                 saveInfo(response);
+                Log.e(TAG, "LLEGUE Y AQUI");
                 Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }else{
-                showAlert();
+                showErrorr(response);
             }
         } catch (JSONException e) {
-            pdDialog.dismiss();
-            e.printStackTrace();
+            showErrorr(response);
         }
     }
 
@@ -181,7 +175,6 @@ public class LoginActivity extends AppCompatActivity {
         try {
             JSONObject jsonObject = new JSONObject(response);
             if (jsonObject.getString("success").equals("true")) {
-                pdDialog.dismiss();
                 JSONArray dataArray = jsonObject.getJSONArray("result");
                 for (int i = 0; i < dataArray.length(); i++) {
                     JSONObject dataobj = dataArray.getJSONObject(i);
@@ -189,11 +182,11 @@ public class LoginActivity extends AppCompatActivity {
                     preferenceHelper.putEmail(dataobj.getString("email"));
                     preferenceHelper.putIdPtUser(dataobj.getString("id_pt_user"));
                     preferenceHelper.putType(dataobj.getString("type"));
+                    preferenceHelper.putIdPartner(dataobj.getString("id_partner"));
                 }
             }
         } catch (JSONException e) {
-            pdDialog.dismiss();
-            e.printStackTrace();
+            showErrorr(response);
         }
     }
 
@@ -204,24 +197,31 @@ public class LoginActivity extends AppCompatActivity {
         editor.commit();
     }
 
-    private void showAlert() {
-        pdDialog.dismiss();
+    private void showErrorInputText(TextInputEditText input, String s) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        input.setError(s);
+        input.requestFocus();
+        builder.create();
+    }
+
+    private void showError(TextInputEditText input, TextInputEditText inputt, String s) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Error");
-        builder.setMessage("Se ha producido un error autenticando al usuario");
+        builder.setMessage("Se ha producido un error al obtener respuesta del servidor. \n" + "Y/o el email de usuario o contraseña no es válido. \n");
         builder.setPositiveButton("Aceptar", null);
+        input.setError(s);
+        input.requestFocus();
+        inputt.setError(s);
+        inputt.requestFocus();
         builder.create();
         builder.show();
     }
 
-    private void showError(TextInputEditText input, String s) {
-        pdDialog.dismiss();
+    private void showErrorr(String s) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Error");
-        builder.setMessage("Se ha producido un error al obtener respuesta del servidor");
+        builder.setMessage("Se ha producido un error al obtener respuesta del servidor. \n");
         builder.setPositiveButton("Aceptar", null);
-        input.setError(s);
-        input.requestFocus();
         builder.create();
         builder.show();
     }

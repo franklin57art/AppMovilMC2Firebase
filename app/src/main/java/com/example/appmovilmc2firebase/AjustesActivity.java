@@ -1,16 +1,15 @@
 package com.example.appmovilmc2firebase;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-import android.widget.Toolbar;
 
-import com.google.android.material.appbar.MaterialToolbar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
+import appmovilmc2firebase.R;
 
 public class AjustesActivity extends AppCompatActivity {
 

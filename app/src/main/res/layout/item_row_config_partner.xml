@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?><!--Layout que hara la fila que mostrará la información de cada usuario.-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/item_row_partner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#e7eef1">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:text="Información de partner"
+                android:textColor="@color/md_text"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/tvRazonSocial"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/md_grey_500"
+                android:backgroundTint="@android:color/transparent"
+                android:enabled="false"
+                android:text="Razón social"
+                android:textColor="@color/md_text"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@+id/tvRazonSocial2"
+                app:layout_constraintTop_toBottomOf="@+id/tvRazonSocial2" />
+
+            <TextView
+                android:id="@+id/tvRazonSocial2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Razón social"
+                android:textColor="@color/md_text"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="@+id/tvTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+            <EditText
+                android:id="@+id/tvNamePartner"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/md_grey_500"
+                android:backgroundTint="@android:color/transparent"
+                android:enabled="false"
+                android:text="Nombre del partner"
+                android:textColor="@color/md_text"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@+id/tvNamePartner2"
+                app:layout_constraintTop_toBottomOf="@+id/tvNamePartner2" />
+
+            <TextView
+                android:id="@+id/tvNamePartner2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Nombre del partner"
+                android:textColor="@color/md_text"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="@+id/tvRazonSocial"
+                app:layout_constraintTop_toBottomOf="@+id/tvRazonSocial" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

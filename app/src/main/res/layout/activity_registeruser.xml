@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="8dp"
     android:background="#e7eef1"
-    tools:context=".ui.usuarios.RegisterUserActivity">
+    tools:context="com.example.appmovilmc2firebase.ui.usuarios.RegisterUserActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -230,23 +230,28 @@
             android:id="@+id/buttonSalirRegisterUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_marginStart="86dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bordes_redondos_rojo"
             android:text="SALIR"
             android:textColor="@color/md_text_white"
             android:textSize="14sp"
-            android:background="@color/md_red_500"
-            app:layout_constraintStart_toStartOf="@+id/spinnerRegisterUser"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinnerRegisterUser" />
 
         <Button
-            android:id="@+id/buttonAcceptarRegisterUser"
+            android:id="@+id/buttonAceptarRegisterUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="86dp"
+            android:background="@drawable/bordes_redondos"
             android:text="Acceptar"
             android:textColor="@color/md_text_white"
             android:textSize="14dp"
-            app:layout_constraintEnd_toEndOf="@+id/spinnerRegisterUser"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinnerRegisterUser" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
