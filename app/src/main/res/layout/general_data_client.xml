@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e7eef1"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context="com.example.appmovilmc2firebase.ui.clientes.GeneralDataClientActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvGeneralDataClienteRazonSocial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:text="Razón social"
+            android:textColor="@color/md_black_1000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietGeneralDataClienteRazonSocial"
+            android:layout_width="265dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/md_white_1000"
+            android:enabled="false"
+            android:textColor="@color/md_black_1000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/tvGeneralDataClienteRazonSocial"
+            app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataClienteRazonSocial"
+            tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/tvGeneralDataClienteIdFiscal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="ID fiscal"
+            android:textColor="@color/md_black_1000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/tietGeneralDataClienteRazonSocial"
+            app:layout_constraintTop_toBottomOf="@+id/tietGeneralDataClienteRazonSocial" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietGeneralDataClienteIdFiscal"
+            android:layout_width="265dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/md_white_1000"
+            android:enabled="false"
+            android:textColor="@color/md_black_1000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/tvGeneralDataClienteIdFiscal"
+            app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataClienteIdFiscal"
+            tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/tvGeneralDataClienteNombreCorto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Nombre corto"
+            android:textColor="@color/md_black_1000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/tietGeneralDataClienteIdFiscal"
+            app:layout_constraintTop_toBottomOf="@+id/tietGeneralDataClienteIdFiscal" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietGeneralDataClienteNombreCorto"
+            android:layout_width="265dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/md_white_1000"
+            android:enabled="false"
+            android:textColor="@color/md_black_1000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/tvGeneralDataClienteNombreCorto"
+            app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataClienteNombreCorto"
+            tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/tvGeneralDataClienteNombreDelCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Nombre del cliente"
+            android:textColor="@color/md_black_1000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/tietGeneralDataClienteNombreCorto"
+            app:layout_constraintTop_toBottomOf="@+id/tietGeneralDataClienteNombreCorto" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietGeneralDataClienteNombreDelCliente"
+            android:layout_width="265dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/md_white_1000"
+            android:enabled="false"
+            android:textColor="@color/md_black_1000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/tvGeneralDataClienteNombreDelCliente"
+            app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataClienteNombreDelCliente"
+            tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/tvGeneralDataClienteTecnicosAsignados"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Técnicos asignados"
+            android:textColor="@color/md_black_1000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/tietGeneralDataClienteNombreDelCliente"
+            app:layout_constraintTop_toBottomOf="@+id/tietGeneralDataClienteNombreDelCliente" />
+
+        <AutoCompleteTextView
+            android:id="@+id/actvGeneralDataClienteTecnicosAsignados"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:completionHint="Técnico"
+            android:completionThreshold="1"
+            android:enabled="false"
+            android:hint="Técnico"
+            android:textColor="@color/md_black_1000"
+            app:layout_constraintStart_toStartOf="@+id/tvGeneralDataClienteTecnicosAsignados"
+            app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataClienteTecnicosAsignados" />
+
+        <TextView
+            android:id="@+id/tvGeneralDataClientePuntosDeSuministroAsociados"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Puntos de suministro asociados al cliente:"
+            android:textColor="@color/md_black_1000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/actvGeneralDataClienteTecnicosAsignados"
+            app:layout_constraintTop_toBottomOf="@+id/actvGeneralDataClienteTecnicosAsignados" />
+
+        <TableLayout
+            android:id="@+id/tablaGeneralDataCliente"
+            android:layout_width="375dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:stretchColumns="1"
+            app:layout_constraintStart_toStartOf="@id/tvGeneralDataClientePuntosDeSuministroAsociados"
+            app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataClientePuntosDeSuministroAsociados">
+
+            <TableRow
+                android:id="@+id/tableRowCabecerasGeneralDataCliente"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/table_degradate_shape">
+
+                <TextView
+                    android:id="@+id/tvTableCabeceraGeneralDataClienteNombrePuntosDeSuministro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="left"
+                    android:padding="5dp"
+                    android:text="Nombre"
+                    android:textColor="@color/md_text_white"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRowDatosGeneralDataCliente"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/md_text_white"
+                android:clickable="false">
+
+                <TextView
+                    android:id="@+id/tvTableDatosGeneralDataClienteNombrePuntosDeSuministro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="left"
+                    android:padding="5dp"
+                    android:text="name"
+                    android:textColor="@color/md_text" />
+
+            </TableRow>
+
+        </TableLayout>
+
+        <Button
+            android:id="@+id/buttonGeneralDataClienteEliminarCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/bordes_redondos_rojo"
+            android:drawableLeft="@drawable/ic_baseline_delete_24"
+            android:text="Eliminar cliente "
+            android:textColor="@color/md_text_white"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/tablaGeneralDataCliente"
+            app:layout_constraintTop_toBottomOf="@+id/tablaGeneralDataCliente" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

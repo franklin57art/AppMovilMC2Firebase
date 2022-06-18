@@ -1,18 +1,13 @@
-package com.example.appmovilmc2firebase.ui.usuarios;
+package com.example.appmovilmc2firebase.ui.clientes;
 
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -21,8 +16,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.appmovilmc2firebase.utils.GlobalInfo;
 import com.example.appmovilmc2firebase.HomeActivity;
+import com.example.appmovilmc2firebase.utils.GlobalInfo;
 import com.example.appmovilmc2firebase.utils.PreferenceHelper;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -34,56 +29,39 @@ import java.util.Map;
 
 import appmovilmc2firebase.R;
 
-public class RegisterUserActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class RegisterClientActivity extends AppCompatActivity {
 
-    private static final String TAG = "RegisterUserActivity";
+    private static final String TAG = "RegisterClientActivity";
 
-    private ImageView info;
     private Button exit, aceptar;
-    private TextInputEditText etusername, etemail, etnombre, etpassword;
-    private Spinner spinner;
+    private TextInputEditText etname, etnombrecliente, etemail, ettelefono, etnombreempresa, etidfiscal;
+
     private PreferenceHelper preferenceHelper;
     private RequestQueue request;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    private int typeUser = 00;
 
-        setTitle("Nuevo Usuario");
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        setTitle("Nuevo Cliente");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_user);
+        setContentView(R.layout.activity_register_client);
 
         preferenceHelper = new PreferenceHelper(this);
 
-        etusername = findViewById(R.id.editTextUserName);
-        etemail = findViewById(R.id.editTextEmail);
-        etnombre = findViewById(R.id.editTextNombreRegisterUser);
-        etpassword = findViewById(R.id.editTextPassword);
+        etname = findViewById(R.id.editTextRazonSocial);
+        etnombrecliente = findViewById(R.id.editTextNombreCliente);
+        etemail = findViewById(R.id.editTextEmailCliente);
+        ettelefono = findViewById(R.id.editTextTelefonoCliente);
+        etnombreempresa = findViewById(R.id.editTextNombreEmpresa);
+        etidfiscal = findViewById(R.id.editTextIdFiscalEmpresa);
 
-        exit = findViewById(R.id.buttonSalirRegisterUser);
-        aceptar = findViewById(R.id.buttonAceptarRegisterUser);
+        exit = findViewById(R.id.buttonSalirRegisterClient);
+        aceptar = findViewById(R.id.buttonAceptarRegisterClient);
 
-        info = findViewById(R.id.ivInfo);
-        spinner = findViewById(R.id.spinnerRegisterUser);
-        // Creo un array de string con los valores del spinner
-        String[] array = getResources().getStringArray(R.array.type_array_user);
-        // Creo un array de enteros que recorrera el array definido anteriormente y va a transformar los String en enteros
-        Integer[] intArray = new Integer[array.length];
-        for (int i = 0; i < array.length; i++) {
-            intArray[i] = Integer.parseInt(array[i]);
-        }
-        // Create an ArrayAdapter using the string array and a spinner layout
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, intArray);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
-
-        info.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showInfo();
-            }
-        });
+        //Convierto la variable id_pt_user obtenida en el login y guardada con el shared preferences como String a Int.
+        typeUser = Integer.parseInt(preferenceHelper.getType());
 
         aceptar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,23 +76,23 @@ public class RegisterUserActivity extends AppCompatActivity implements AdapterVi
                 onBackPressed();
             }
         });
-
     }
 
     private void registerMe() {
 
-        final String username = etusername.getText().toString();
+        final String nameclient = etnombrecliente.getText().toString();
         final String email = etemail.getText().toString();
-        final String name = etnombre.getText().toString();
-        final String password = etpassword.getText().toString();
-        final Integer spinnervalue = (Integer) spinner.getSelectedItem();
+        final String name = etname.getText().toString();
+        final String telefono = ettelefono.getText().toString();
+        final String nameempresa = etnombreempresa.getText().toString();
+        final String idfiscal = etidfiscal.getText().toString();
 
-        if (username.isEmpty() || email.isEmpty() || name.isEmpty() || password.isEmpty()) {
-            showAlertInformation(etusername, etemail, etnombre, etpassword, "El campo esta vacío. Asegúrese de rellenarlo correctamente");
-        }else if(password.length() < 8){
-            showAlertInformationLengthPassword(etpassword, "La longuitud de la contraseña dede de ser de al menos 8 caracteres");
-        }else {
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, GlobalInfo.URL_REGISTER,
+        if (name.isEmpty() || email.isEmpty() || nameclient.isEmpty() || telefono.isEmpty() || nameempresa.isEmpty() || idfiscal.isEmpty()) {
+            showAlertInformation(etnombrecliente, etemail, etname, ettelefono, etnombreempresa, etidfiscal, "El campo esta vacío. Asegúrese de rellenarlo correctamente");
+        } else if (telefono.length() < 9) {
+            showAlertInformationLengthPassword(ettelefono, "La longuitud del número de teléfono debe ser de al menos 9 dígitos.");
+        } else {
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, GlobalInfo.URL_REGISTER_CLIENT,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -145,15 +123,16 @@ public class RegisterUserActivity extends AppCompatActivity implements AdapterVi
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("username", username);
-                    params.put("password", password);
-                    params.put("email", email);
                     params.put("name", name);
-                    params.put("type", spinnervalue.toString());
+                    params.put("nombre_cliente", nameclient);
+                    params.put("email", email);
+                    params.put("nombre_empresa", nameempresa);
+                    params.put("telef1", telefono);
+                    params.put("id_fiscal", idfiscal);
                     return params;
                 }
             };
-            request = Volley.newRequestQueue(RegisterUserActivity.this);
+            request = Volley.newRequestQueue(RegisterClientActivity.this);
             request.add(stringRequest);
         }
     }
@@ -162,8 +141,8 @@ public class RegisterUserActivity extends AppCompatActivity implements AdapterVi
         try {
             JSONObject jsonObject = new JSONObject(response);
             if (jsonObject.optString("success").equals("true")) {
-                Toast.makeText(RegisterUserActivity.this, "¡Usuario registrado correctamente!", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(RegisterUserActivity.this, HomeActivity.class);
+                Toast.makeText(RegisterClientActivity.this, "¡Cliente registrado correctamente!", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(RegisterClientActivity.this, HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 this.finish();
@@ -173,17 +152,6 @@ public class RegisterUserActivity extends AppCompatActivity implements AdapterVi
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Integer i = (Integer) spinner.getSelectedItem();
-        Log.d(TAG, i.toString());
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
     private void showAlert() {
@@ -211,7 +179,7 @@ public class RegisterUserActivity extends AppCompatActivity implements AdapterVi
         builder.create();
     }
 
-    private void showAlertInformation(TextInputEditText input, TextInputEditText inputt, TextInputEditText inputtt, TextInputEditText inputttt,String s) {
+    private void showAlertInformation(TextInputEditText input, TextInputEditText inputt, TextInputEditText inputtt, TextInputEditText inputttt, TextInputEditText inputtttt, TextInputEditText inputttttt, String s) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         input.setError(s);
         input.requestFocus();
@@ -221,16 +189,10 @@ public class RegisterUserActivity extends AppCompatActivity implements AdapterVi
         inputtt.requestFocus();
         inputttt.setError(s);
         inputttt.requestFocus();
+        inputtttt.setError(s);
+        inputtttt.requestFocus();
+        inputttttt.setError(s);
+        inputttttt.requestFocus();
         builder.create();
-    }
-
-    private void showInfo() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Info");
-        builder.setMessage("0->Virtual, 1->Técnico, 2->Comercial, 3->Directivo, 4->Administrativo, 5->Desarrollador, 6->Jefe de equipo");
-        builder.setPositiveButton("Aceptar", null);
-        builder.create();
-        builder.show();
     }
 }
-

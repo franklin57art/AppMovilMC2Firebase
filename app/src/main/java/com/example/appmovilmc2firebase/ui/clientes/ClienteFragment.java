@@ -1,5 +1,6 @@
 package com.example.appmovilmc2firebase.ui.clientes;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -22,9 +23,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.appmovilmc2firebase.GlobalInfo;
 import com.example.appmovilmc2firebase.adaptadores.ClientesAdapter;
 import com.example.appmovilmc2firebase.models.Client;
+import com.example.appmovilmc2firebase.utils.GlobalInfo;
+import com.example.appmovilmc2firebase.utils.PreferenceHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,17 +38,27 @@ import java.util.Map;
 
 import appmovilmc2firebase.R;
 
-public class ClienteFragment extends Fragment {
+public class ClienteFragment extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "ClienteFragment";
 
+    private ClientesAdapter clientesAdapter;
     private RecyclerView mRecyclerView;
+
     private ArrayList<Client> listaClients;
 
     private RequestQueue request;
     private JsonObjectRequest jsonObjectRequest;
 
+    private PreferenceHelper preferenceHelper;
     private String authValue = "";
+
+    private int typeUser = 00;
+
+    private Integer idPartner = 00;
+    private Integer idClient = 00;
+
+    private ArrayList<Integer> idClientList;
 
     public ClienteFragment() {
 
@@ -58,18 +70,21 @@ public class ClienteFragment extends Fragment {
         // Inflate the layout for this fragment
         View vista = inflater.inflate(R.layout.fragment_client, container, false);
 
-        listaClients = new ArrayList<>();
-
-        mRecyclerView = (RecyclerView) vista.findViewById(R.id.recyclerviewClient);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        mRecyclerView = vista.findViewById(R.id.recyclerviewClient);
         mRecyclerView.setHasFixedSize(true);
 
+        preferenceHelper = new PreferenceHelper(this.getActivity());
+        //Convierto la variable id_pt_user obtenida en el login y guardada con el shared preferences como String a Int.
+        typeUser = Integer.parseInt(preferenceHelper.getType());
+
+        listaClients = new ArrayList<>();
+        idClientList = new ArrayList<>();
+
+        request = Volley.newRequestQueue(getContext());
         //Leo el valor del AUTH TOKEN KEY guardado al hacer el Login
         SharedPreferences sharedPref = this.getActivity().getSharedPreferences("AUTHTOKENKEY", Context.MODE_PRIVATE);
         String authTokenValue = sharedPref.getString("AuthTokenKey", GlobalInfo.AUTH_TOKEN);
         authValue = authTokenValue;
-
-        request = Volley.newRequestQueue(getContext());
 
         cargarWebService();
 
@@ -79,31 +94,63 @@ public class ClienteFragment extends Fragment {
     //Con este metodo hago la conexion con el web service
     private void cargarWebService() {
 
-        request = Volley.newRequestQueue(getContext());
-
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, GlobalInfo.URL_CLIENT, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 Client cl = null;
 
+                preferenceHelper = new PreferenceHelper(getActivity());
+
                 JSONArray json = response.optJSONArray("result");
+
+                idPartner = Integer.parseInt(preferenceHelper.getIdPartner());
 
                 try {
                     for (int i = 0; i < json.length(); i++) {
-                        cl = new Client();
-                        JSONObject jsonObject = null;
-                        jsonObject = json.getJSONObject(i);
-                        cl.setName(jsonObject.optString("name"));
-                        cl.setId_fiscal(jsonObject.optString("id_fiscal"));
-                        //cl.setLast_access(jsonObject.optInt("last_access"));
-                        listaClients.add(cl);
+                        if (idPartner.equals(json.getJSONObject(i).getInt("id_partner"))) {
+                            cl = new Client();
+                            JSONObject jsonObject = null;
+                            jsonObject = json.getJSONObject(i);
+                            cl.setName(jsonObject.optString("name"));
+                            cl.setId_fiscal(jsonObject.optString("id_fiscal"));
+                            //cl.setLast_access(jsonObject.optInt("last_access"));
+                            idClient = cl.setId_client(jsonObject.optInt("id_client"));
+                            listaClients.add(cl);
+                            idClientList.add(idClient);
+                        } else {
+                            Log.e(TAG, "NO HAY COINCIDENCIA EN EL ATRIBUTO ID_PARTNER. " + idPartner + ", " + json.getJSONObject(i).getInt("id_partner"));
+                        }
                     }
-                    ClientesAdapter adapter = new ClientesAdapter(listaClients);
-                    mRecyclerView.setAdapter(adapter);
+
+                    for (int i = 0; i < idClientList.size(); i++) {
+                        Log.e(TAG, String.valueOf(idClientList));
+                    }
+
+                    //Paso una lista con los id_clientes que tiene el partner de Fragment a Fragment
+                    //Crear bundle, que son los datos que pasaremos
+                    Bundle datosAEnviar = new Bundle();
+                    // Aquí pon todos los datos que quieras en formato clave, valor
+                    datosAEnviar.putIntegerArrayList("id_client", idClientList);
+                    getParentFragmentManager().setFragmentResult("key", datosAEnviar);
+                    Log.e(TAG, datosAEnviar.toString());
+
+                    //Paso una lista con los id_clientes que tiene el partner de Fragment a Activity
+
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(getContext(), "No se ha podido establecer conexion con el servidor " + response.toString(), Toast.LENGTH_LONG).show();
+                    showError(e.toString());
                 }
+                mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                clientesAdapter = new ClientesAdapter(getContext(),listaClients);
+                mRecyclerView.setAdapter(clientesAdapter);
+                mRecyclerView.setClickable(true);
+                clientesAdapter.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String id = listaClients.get(mRecyclerView.getChildAdapterPosition(v)).getName();
+                        Toast.makeText(getContext(), "ID del elemento seleccionado: " + id.toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         },
                 new Response.ErrorListener() {
@@ -123,11 +170,27 @@ public class ClienteFragment extends Fragment {
                 return headers;
             }
         };
+
         request.add(jsonObjectRequest);
+    }
+
+    @Override
+    public void onClick(View v) {
+
+
     }
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mRecyclerView = view.findViewById(R.id.recyclerviewClient);
+    }
+
+    private void showError(String s) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Error");
+        builder.setMessage("Se ha producido un error al obtener respuesta del servidor. " + s);
+        builder.setPositiveButton("Aceptar", null);
+        builder.create();
+        builder.show();
     }
 }

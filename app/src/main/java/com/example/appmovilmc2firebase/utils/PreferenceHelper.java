@@ -1,4 +1,4 @@
-package com.example.appmovilmc2firebase;
+package com.example.appmovilmc2firebase.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

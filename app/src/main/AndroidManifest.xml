@@ -1,56 +1,84 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="appmovilmc2firebase">
+<?xml version="1.0" encoding="utf-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+package="appmovilmc2firebase">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.INTERNET" />
 
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:largeHeap="true"
-        android:supportsRtl="true"
+<application
+    android:allowBackup="true"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:largeHeap="true"
+    android:supportsRtl="true"
+    android:theme="@style/AppThemeMc2Light"
+    android:usesCleartextTraffic="true">
+
+    <activity
+        android:name="com.example.appmovilmc2firebase.ForgetPasswordActivity"
+        android:exported="true"
         android:theme="@style/AppThemeMc2Light"
-        android:usesCleartextTraffic="true">
+        android:parentActivityName="com.example.appmovilmc2firebase.LoginActivity" />
 
-        <activity
-            android:name="com.example.appmovilmc2firebase.ForgetPasswordActivity"
-            android:exported="true"
-            android:theme="@style/AppThemeMc2Light"
-            android:parentActivityName="com.example.appmovilmc2firebase.LoginActivity" />
+    <activity
+        android:name="com.example.appmovilmc2firebase.LoginActivity"
+        android:exported="true"
+        android:theme="@style/AppThemeMc2.SplashTheme">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
 
-        <activity
-            android:name="com.example.appmovilmc2firebase.LoginActivity"
-            android:exported="true"
-            android:theme="@style/AppThemeMc2.SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+    <activity
+        android:name="com.example.appmovilmc2firebase.HomeActivity"
+        android:exported="true"
+        android:theme="@style/AppThemeMc2Light.NoActionBar" />
 
-        <activity
-            android:name="com.example.appmovilmc2firebase.HomeActivity"
-            android:exported="true"
-            android:theme="@style/AppThemeMc2Light.NoActionBar" />
+    <activity
+        android:name="com.example.appmovilmc2firebase.AjustesActivity"
+        android:exported="true"
+        android:parentActivityName="com.example.appmovilmc2firebase.HomeActivity"
+        android:theme="@style/AppThemeMc2Light" />
 
-        <activity
-            android:name="com.example.appmovilmc2firebase.AjustesActivity"
-            android:exported="true"
-            android:parentActivityName="com.example.appmovilmc2firebase.HomeActivity"
-            android:theme="@style/AppThemeMc2Light" />
+    <activity
+        android:name="com.example.appmovilmc2firebase.ui.clientes.RegisterClientActivity"
+        android:exported="false"
+        android:theme="@style/AppThemeMc2Light.NoActionBar" />
 
-        <activity
-            android:name="com.example.appmovilmc2firebase.ui.usuarios.RegisterUserActivity"
-            android:exported="true"
-            android:theme="@style/AppThemeMc2Light.NoActionBar" />
+    <activity
+        android:name="com.example.appmovilmc2firebase.ui.clientes.GeneralDataClientActivity"
+        android:exported="false"
+        android:theme="@style/AppThemeMc2Light" />
 
-        <activity
-            android:name="com.example.appmovilmc2firebase.ui.configuracion.ChangePasswordConfigActivity"
-            android:exported="false"
-            android:theme="@style/AppThemeMc2Light.NoActionBar"/>
-    </application>
+    <activity
+        android:name="com.example.appmovilmc2firebase.ui.puntosDeMedida.RegisterPuntosmedidaActivity"
+        android:exported="false"
+        android:theme="@style/AppThemeMc2Light.NoActionBar" />
+
+    <activity
+        android:name="com.example.appmovilmc2firebase.ui.puntosDeMedida.GeneralDataPuntosmedidaActivity"
+        android:exported="false"
+        android:theme="@style/AppThemeMc2Light" />
+
+    <activity
+        android:name="com.example.appmovilmc2firebase.ui.estadoMedidores.GeneralDataEstadomedidoresActivity"
+        android:exported="false"
+        android:theme="@style/AppThemeMc2Light"
+        tools:ignore="Instantiatable"
+        />
+
+    <activity
+        android:name="com.example.appmovilmc2firebase.ui.usuarios.RegisterUserActivity"
+        android:exported="true"
+        android:theme="@style/AppThemeMc2Light.NoActionBar" />
+
+    <activity
+        android:name="com.example.appmovilmc2firebase.ui.configuracion.ChangePasswordConfigActivity"
+        android:exported="false"
+        android:theme="@style/AppThemeMc2Light.NoActionBar" />
+</application>
 </manifest>
+
 
 
 

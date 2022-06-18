@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e7eef1"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context="com.example.appmovilmc2firebase.ui.puntosDeMedida.RegisterPuntosmedidaActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvNuevoPuntoDeMedida"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="#4f6e7b"
+            android:gravity="center"
+            android:text="Nuevo Punto de Medida"
+            android:textColor="@color/md_text_white"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tvNombrePuntoDeMedida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="40dp"
+            android:text="Nombre punto de medida"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNuevoPuntoDeMedida" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextNombrePuntoDeMedida"
+            android:layout_width="265dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/md_white_1000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/tvNombrePuntoDeMedida"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombrePuntoDeMedida"
+            tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/tvExplainPuntoDeMedida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Introduzca un nombre para el punto de medida"
+            android:textColor="@color/md_disabled_hint_text"
+            android:textSize="10dp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="@+id/editTextNombrePuntoDeMedida"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNombrePuntoDeMedida"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tvTipoPuntoDeMedida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Tipo de punto de medida"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/tvExplainPuntoDeMedida"
+            app:layout_constraintTop_toBottomOf="@+id/tvExplainPuntoDeMedida" />
+
+        <ImageView
+            android:id="@+id/ivInfoTipoPuntoDeMedida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintEnd_toEndOf="@+id/spinnerTipoPuntoDeMedida"
+            app:layout_constraintTop_toTopOf="@+id/tvTipoPuntoDeMedida"
+            app:srcCompat="@drawable/ic_baseline_info_24" />
+
+        <Spinner
+            android:id="@+id/spinnerTipoPuntoDeMedida"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            app:layout_constraintStart_toStartOf="@+id/tvTipoPuntoDeMedida"
+            app:layout_constraintTop_toBottomOf="@+id/tvTipoPuntoDeMedida" />
+
+
+        <TextView
+            android:id="@+id/tvCupsPuntoDeMedida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="CUPS"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/spinnerTipoPuntoDeMedida"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerTipoPuntoDeMedida" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextCupsPuntoDeMedida"
+            android:layout_width="265dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/md_white_1000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/tvCupsPuntoDeMedida"
+            app:layout_constraintTop_toBottomOf="@+id/tvCupsPuntoDeMedida"
+            tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/tvClientePuntoDeMedida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Cliente"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/editTextCupsPuntoDeMedida"
+            app:layout_constraintTop_toBottomOf="@+id/editTextCupsPuntoDeMedida" />
+
+        <Spinner
+            android:id="@+id/spinnerClientePuntoDeMedida"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            app:layout_constraintStart_toStartOf="@+id/tvClientePuntoDeMedida"
+            app:layout_constraintTop_toBottomOf="@+id/tvClientePuntoDeMedida" />
+
+        <TextView
+            android:id="@+id/tvExplainClientePuntoDeMedida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Elija el cliente para el punto de medida"
+            android:textColor="@color/md_disabled_hint_text"
+            android:textSize="10dp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="@+id/spinnerClientePuntoDeMedida"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerClientePuntoDeMedida"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/buttonSalirRegisterPuntoDeMedida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="84dp"
+            android:layout_marginBottom="54dp"
+            android:background="@drawable/bordes_redondos_rojo"
+            android:text="SALIR"
+            android:textColor="@color/md_text_white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/buttonAceptarRegisterPuntoDeMedida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="84dp"
+            android:layout_marginBottom="54dp"
+            android:background="@drawable/bordes_redondos"
+            android:text="Acceptar"
+            android:textColor="@color/md_text_white"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

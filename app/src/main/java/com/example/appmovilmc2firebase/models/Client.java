@@ -4,10 +4,11 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.google.type.DateTime;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-public class Client {
+public class Client implements Serializable {
 
     @SerializedName("id_client")
     @Expose
@@ -310,8 +311,9 @@ public class Client {
         return id_client;
     }
 
-    public void setId_client(Integer id_client) {
+    public Integer setId_client(Integer id_client) {
         this.id_client = id_client;
+        return id_client;
     }
 
     public Integer getId_creator() {
@@ -326,8 +328,9 @@ public class Client {
         return name;
     }
 
-    public void setName(String name) {
+    public String setName(String name) {
         this.name = name;
+        return name;
     }
 
     public String getEmail() {
@@ -438,8 +441,9 @@ public class Client {
         return id_fiscal;
     }
 
-    public void setId_fiscal(String id_fiscal) {
+    public String setId_fiscal(String id_fiscal) {
         this.id_fiscal = id_fiscal;
+        return id_fiscal;
     }
 
     public String getTelef1() {

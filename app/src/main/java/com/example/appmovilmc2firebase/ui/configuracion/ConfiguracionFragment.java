@@ -23,25 +23,20 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.appmovilmc2firebase.GlobalInfo;
-import com.example.appmovilmc2firebase.PreferenceHelper;
 import com.example.appmovilmc2firebase.adaptadores.ConfigUserAdapter;
 import com.example.appmovilmc2firebase.adaptadores.ConfigUserAdapterPartner;
 import com.example.appmovilmc2firebase.models.Partner;
 import com.example.appmovilmc2firebase.models.User;
+import com.example.appmovilmc2firebase.utils.GlobalInfo;
+import com.example.appmovilmc2firebase.utils.PreferenceHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.crypto.Cipher;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
 
 import appmovilmc2firebase.R;
 
@@ -62,8 +57,8 @@ public class ConfiguracionFragment extends Fragment {
 
     private String authValue = "";
 
-    private int idPtUser = 00;
-    private int idPartner = 00;
+    private Integer idPtUser = 00;
+    private Integer idPartner = 00;
 
     public ConfiguracionFragment() {
     }
@@ -115,7 +110,7 @@ public class ConfiguracionFragment extends Fragment {
                 try {
                     for (int i = 0; i < json.length(); i++) {
                         //Compruebo si hay algun valor id_partner dentro del json igual al valor del usuario logeado que hemos guardado con el shared preferences
-                        if (json.getJSONObject(i).getInt("id_partner") == idPartner) {
+                        if (idPartner.equals(json.getJSONObject(i).getInt("id_partner"))) {
                             partner = new Partner();
                             JSONObject jsonObject = null;
                             jsonObject = json.getJSONObject(i);
@@ -127,13 +122,14 @@ public class ConfiguracionFragment extends Fragment {
                         }
                     }
 
-                    ConfigUserAdapterPartner adapter = new ConfigUserAdapterPartner(listaPartners);
-                    mRecyclerViewPartner.setAdapter(adapter);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                     showError(e.toString());
                 }
+
+                ConfigUserAdapterPartner adapter = new ConfigUserAdapterPartner(listaPartners);
+                mRecyclerViewPartner.setAdapter(adapter);
             }
         },
 
@@ -183,8 +179,14 @@ public class ConfiguracionFragment extends Fragment {
                             user.setName(jsonObject.optString("name"));
                             user.setUsername(jsonObject.optString("username"));
                             user.setEmail(jsonObject.optString("email"));
-                            String decrypt = decrypt(jsonObject.optString("password"), "oW%c76+jb2");
-                            user.setPassword(decrypt);
+                            //Guardo en una variable la contraseña del usuario logeado que viene en la respuesta.
+                            //String contrasenia = json.getJSONObject(i).getString("password");
+                            //System.out.println("CONTRASEÑA: "+contrasenia);
+                            //Desencripto la contraseña guardada en la variable con el mismo metodo usado para encriptar en php
+                            //String decrypt = Java_AES_Cipher.decrypt(Java_AES_Cipher.CIPHER_KEY,contrasenia);
+                            //System.out.println("DESENCRIPTAR CONTRASEÑA: "+decrypt);
+                            //Guardo en la contraseña desencriptada en el nuevo usuario vacio.
+                            user.setPassword(jsonObject.optString("password"));
                             user.setType(jsonObject.optInt("type"));
                             listaUsuers.add(user);
                         } else {
@@ -225,94 +227,6 @@ public class ConfiguracionFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mRecyclerViewUser = view.findViewById(R.id.recyclerviewConfiguracionUser);
         mRecyclerViewPartner = view.findViewById(R.id.recyclerviewConfiguracionPartner);
-    }
-
-    private static String CIPHER_NAME = "AES/CBC/PKCS5PADDING";
-    private static int CIPHER_KEY_LEN = 16; //128 bits
-
-    /**
-     * Encrypt data using AES Cipher (CBC) with 128 bit key
-     *
-     *
-     * @param key  - key to use should be 16 bytes long (128 bits)
-     * @param iv - initialization vector
-     * @param data - data to encrypt
-     * @return encryptedData data in base64 encoding with iv attached at end after a :
-     */
-    public static String encrypt(String key, String iv, String data) {
-        try {
-            if (key.length() < ConfiguracionFragment.CIPHER_KEY_LEN) {
-                int numPad = ConfiguracionFragment.CIPHER_KEY_LEN - key.length();
-
-                for(int i = 0; i < numPad; i++){
-                    key += "0"; //0 pad to len 16 bytes
-                }
-
-            } else if (key.length() > ConfiguracionFragment.CIPHER_KEY_LEN) {
-                key = key.substring(0, CIPHER_KEY_LEN); //truncate to 16 bytes
-            }
-
-
-            IvParameterSpec initVector = new IvParameterSpec(iv.getBytes("ISO-8859-1"));
-            SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("ISO-8859-1"), "AES");
-
-            Cipher cipher = Cipher.getInstance(ConfiguracionFragment.CIPHER_NAME);
-            cipher.init(Cipher.ENCRYPT_MODE, skeySpec, initVector);
-
-            byte[] encryptedData = cipher.doFinal((data.getBytes()));
-
-            String base64_EncryptedData = new String(Base64.getEncoder().encodeToString(encryptedData));
-            String base64_IV = new String(Base64.getEncoder().encodeToString(iv.getBytes("ISO-8859-1")));
-
-            return base64_EncryptedData + ":" + base64_IV;
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        return null;
-    }
-
-    /**
-     * Decrypt data using AES Cipher (CBC) with 128 bit key
-     *
-     * @param key - key to use should be 16 bytes long (128 bits)
-     * @param data - encrypted data with iv at the end separate by :
-     * @return decrypted data string
-     */
-
-    public static String decrypt(String key, String data) {
-        try {
-
-            if (key.length() < ConfiguracionFragment.CIPHER_KEY_LEN) {
-                int numPad = ConfiguracionFragment.CIPHER_KEY_LEN - key.length();
-
-                for(int i = 0; i < numPad; i++){
-                    key += "0"; //0 pad to len 16 bytes
-                }
-
-            } else if (key.length() > ConfiguracionFragment.CIPHER_KEY_LEN) {
-                key = key.substring(0, CIPHER_KEY_LEN); //truncate to 16 bytes
-            }
-
-            String[] parts = data.split(":");
-
-            IvParameterSpec iv = new IvParameterSpec(Base64.getDecoder().decode(parts[1]));
-            SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("ISO-8859-1"), "AES");
-
-            Cipher cipher = Cipher.getInstance(ConfiguracionFragment.CIPHER_NAME);
-            cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
-
-            byte[] decodedEncryptedData = Base64.getDecoder().decode(parts[0]);
-
-            byte[] original = cipher.doFinal(decodedEncryptedData);
-
-            return new String(original);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        return null;
     }
 
 

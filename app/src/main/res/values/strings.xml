@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">EmeceCuadrado</string>
     <string name="prefs_file">com.example.appmovilmc2firebase.PREFERENCE_FILE_KEY</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">EmeceCuadrado</string>
     <string name="nav_header_subtitle">emececuadrado@emececuadrado.com</string>
     <string name="nav_header_desc">Navigation header</string>
@@ -12,15 +10,10 @@
     <string name="menu_clientes">Clientes</string>
     <string name="menu_puntosdemedida">Puntos de medida</string>
     <string name="menu_estadomedidores">Estado medidores</string>
-    <string name="menu_alarmas">Alarmas</string>
     <string name="menu_visualizador">Visualizador de gráficas</string>
-    <string name="menu_informes">Informes</string>
     <string name="menu_usuarios">Usuarios</string>
     <string name="menu_configuracion">Configuración</string>
-    <string name="title_activity_item_detail_host">ItemDetailHostActivity</string>
-    <string name="title_item_list">Items</string>
-    <string name="title_item_detail">Item Detail</string>
-    <string-array name="type_array">
+    <string-array name="type_array_user">
         <item>0</item>
         <item>1</item>
         <item>2</item>
@@ -28,5 +21,16 @@
         <item>4</item>
         <item>5</item>
         <item>6</item>
+    </string-array>
+    <string-array name="type_array_punto_de_medida">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="type_array_punto_de_medida_pais">
+        <item>1. Spain</item>
+        <item>2. Portugal</item>
     </string-array>
 </resources>

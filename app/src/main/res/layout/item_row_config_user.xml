@@ -152,6 +152,8 @@
                     android:inputType="textPassword"
                     android:text="Contraseña"
                     android:textSize="16dp"
+                    android:enabled="false"
+                    android:textColor="@color/md_black_1000"
                     app:layout_constraintTop_toBottomOf="@+id/tvTypeUser"
                     tools:layout_editor_absoluteX="0dp" />
 

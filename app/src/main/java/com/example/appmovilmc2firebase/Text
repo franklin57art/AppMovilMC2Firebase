@@ -1,9 +1,9 @@
-
-3. Hacer todos los fragments de consultas correspondientes de cada tipo. Y luego continuar para modficarlos mediantes click mostrando otras pantallas con otros datos del mismo modo que en el pagina web.
+3. Hacer fragment Graficas. Y luego continuar para modficarlos mediantes click mostrando otras pantallas con otros datos del mismo modo que en el pagina web.
 en estado de medidiores hacer un inner join para la url de consulta. Entre sys_clients y Sys_connections.
-4. Relacion clientes-usuarios?. Los puntos de medida estan relacionados con el cliente que los crea/posee.
-
+4. Terminar los ultimos fragments de datos y eliminar. Cliente, puntos de medida y estado de medidores (Incidencia)
 ARREGLAR
+- Metodo en php para borrar clientes y puntos de medida.
+- SerachView para que funcionen.
 - Fragment Configuración. En la parte de contraseñas que al pulsar el boton para ver la contraseña, mostrar esta desencriptada.
 - Modificar las tablas para que la fila de cabecera solo aprezca una vez. (sacando el add del bucle solo sale la ultima fila dibujada)
 

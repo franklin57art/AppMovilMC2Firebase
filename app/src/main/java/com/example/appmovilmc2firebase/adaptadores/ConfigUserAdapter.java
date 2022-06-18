@@ -15,19 +15,19 @@ import com.example.appmovilmc2firebase.HomeActivity;
 import com.example.appmovilmc2firebase.models.User;
 import com.example.appmovilmc2firebase.ui.configuracion.ChangePasswordConfigActivity;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import appmovilmc2firebase.R;
 
 public class ConfigUserAdapter extends RecyclerView.Adapter<ConfigUserAdapter.ConfigUsuariosHolder> {
 
-    private List<User> mUserList;
+    private ArrayList<User> mUserList;
 
     private Context contextUser;
 
     public Button mSalir, mAceptar;
 
-    public ConfigUserAdapter(List<User> userList) {
+    public ConfigUserAdapter(ArrayList<User> userList) {
         this.mUserList = userList;
     }
 

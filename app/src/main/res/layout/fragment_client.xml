@@ -3,16 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.appmovilmc2firebase.ui.clientes.ClienteFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewClient"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:itemCount="5"
-        tools:layoutManager="android.support.v7.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_row_client"
-        tools:spanCount="2" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

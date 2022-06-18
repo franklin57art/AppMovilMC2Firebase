@@ -20,6 +20,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.appmovilmc2firebase.utils.PreferenceHelper;
 import com.google.android.material.navigation.NavigationView;
 
 import appmovilmc2firebase.R;
@@ -67,7 +68,7 @@ public class HomeActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_clientes, R.id.nav_puntosdemedida, R.id.nav_estadomedidores, R.id.nav_alarmas, R.id.nav_visualizadorgráficas, R.id.nav_informes, R.id.nav_usuarios, R.id.nav_configuracion)
+                R.id.nav_clientes, R.id.nav_puntosdemedida, R.id.nav_estadomedidores, R.id.nav_visualizadorgráficas, R.id.nav_usuarios, R.id.nav_configuracion)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -110,9 +111,9 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-            case R.id.visual_edit:
+            /*case R.id.visual_edit:
                 ajustes();
-                return true;
+                return true;*/
             case R.id.disconnect:
                 desconectar();
                 return true;

@@ -19,9 +19,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.appmovilmc2firebase.GlobalInfo;
+import com.example.appmovilmc2firebase.utils.GlobalInfo;
 import com.example.appmovilmc2firebase.HomeActivity;
-import com.example.appmovilmc2firebase.PreferenceHelper;
+import com.example.appmovilmc2firebase.utils.PreferenceHelper;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;

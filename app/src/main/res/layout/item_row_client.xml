@@ -1,9 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/md_green_500">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchViewClient"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@color/md_disabled_hint_text"
+            android:backgroundTint="@color/md_grey_300"
+            android:iconifiedByDefault="false"
+            android:queryHint="Buscar aqui"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/buttonAddClient"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:background="@color/md_disabled_hint_text"
+            android:backgroundTint="@color/md_grey_300"
+            android:text="Añadir cliente"
+            android:textColor="@color/md_black_1000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/searchViewClient"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -67,7 +104,8 @@
                     android:id="@+id/tableRowDatosClientes"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/md_text_white">
+                    android:background="@color/md_text_white"
+                    android:clickable="true">
 
                     <TextView
                         android:id="@+id/nombrerazonsocialindice2"

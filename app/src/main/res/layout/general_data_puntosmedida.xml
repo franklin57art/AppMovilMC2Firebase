@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#e7eef1"
+        android:orientation="vertical"
+        android:padding="8dp"
+        tools:context="com.example.appmovilmc2firebase.ui.puntosDeMedida.GeneralDataPuntosmedidaActivity">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvGeneralDataPuntosDeMedidaNombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Nombre"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietGeneralDataPuntosDeMedidaNombre"
+                    android:layout_width="175dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/md_white_1000"
+                    android:enabled="true"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/tvGeneralDataPuntosDeMedidaNombre"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataPuntosDeMedidaNombre"
+                    tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tvGeneralDataPuntosDeMedidaCliente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="148dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Cliente"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@+id/tvGeneralDataPuntosDeMedidaNombre"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/actvGeneralDataPuntosDeMedidaCliente"
+                    android:layout_width="175dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="8dp"
+                    android:completionHint="Cliente"
+                    android:completionThreshold="1"
+                    android:enabled="true"
+                    android:hint="Cliente"
+                    android:textColor="@color/md_black_1000"
+                    app:layout_constraintStart_toEndOf="@+id/tietGeneralDataPuntosDeMedidaNombre"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataPuntosDeMedidaCliente"
+                    tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tvGeneralDataPuntosDeMedidaIdCliente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="ID para el cliente"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/tietGeneralDataPuntosDeMedidaNombre"
+                    app:layout_constraintTop_toBottomOf="@id/tietGeneralDataPuntosDeMedidaNombre" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietGeneralDataPuntosDeMedidaIdCliente"
+                    android:layout_width="175dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/md_white_1000"
+                    android:enabled="true"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/tvGeneralDataPuntosDeMedidaIdCliente"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataPuntosDeMedidaIdCliente"
+                    tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tvGeneralDataPuntosDeMedidaPais"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="País"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/actvGeneralDataPuntosDeMedidaCliente"
+                    app:layout_constraintTop_toBottomOf="@id/actvGeneralDataPuntosDeMedidaCliente" />
+
+                <Spinner
+                    android:id="@+id/spinnerGeneralDataPuntosDeMedidaPais"
+                    android:layout_width="175dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@android:drawable/btn_dropdown"
+                    android:spinnerMode="dropdown"
+                    app:layout_constraintStart_toStartOf="@+id/tvGeneralDataPuntosDeMedidaPais"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataPuntosDeMedidaPais"
+                    tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tvGeneralDataPuntosDeMedidaDireccion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Dirección"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/tietGeneralDataPuntosDeMedidaIdCliente"
+                    app:layout_constraintTop_toBottomOf="@id/tietGeneralDataPuntosDeMedidaIdCliente" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietGeneralDataPuntosDeMedidaDireccion"
+                    android:layout_width="115dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/md_white_1000"
+                    android:enabled="true"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/tvGeneralDataPuntosDeMedidaDireccion"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataPuntosDeMedidaDireccion"
+                    tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tvGeneralDataPuntosDeMedidaPoblacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Poblacion"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/actvGeneralDataPuntosDeMedidaPoblacion"
+                    app:layout_constraintTop_toBottomOf="@id/spinnerGeneralDataPuntosDeMedidaPais" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/actvGeneralDataPuntosDeMedidaPoblacion"
+                    android:layout_width="115dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:completionHint="Población"
+                    android:completionThreshold="2"
+                    android:enabled="true"
+                    android:hint="Población"
+                    android:textColor="@color/md_black_1000"
+                    app:layout_constraintStart_toEndOf="@+id/tietGeneralDataPuntosDeMedidaDireccion"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataPuntosDeMedidaPoblacion"
+                    tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tvGeneralDataPuntosDeMedidaCp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Cod. postal"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/tietGeneralDataPuntosDeMedidaCp"
+                    app:layout_constraintTop_toBottomOf="@id/spinnerGeneralDataPuntosDeMedidaPais" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietGeneralDataPuntosDeMedidaCp"
+                    android:layout_width="115dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/md_white_1000"
+                    android:enabled="true"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@+id/actvGeneralDataPuntosDeMedidaPoblacion"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataPuntosDeMedidaCp"
+                    tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+                <LinearLayout
+                    android:id="@+id/lineaseparacion1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/md_disabled_hint_text"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/tietGeneralDataPuntosDeMedidaCp"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/tvGeneralDataPuntosDeMedidaTipoDePunto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Tipo de punto"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/tietGeneralDataPuntosDeMedidaDireccion"
+                    app:layout_constraintTop_toBottomOf="@id/lineaseparacion1" />
+
+                <Spinner
+                    android:id="@+id/spinnerGeneralDataPuntosDeMedidaTipoDePunto"
+                    android:layout_width="175dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@android:drawable/btn_dropdown"
+                    android:spinnerMode="dropdown"
+                    app:layout_constraintStart_toStartOf="@+id/tvGeneralDataPuntosDeMedidaTipoDePunto"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataPuntosDeMedidaTipoDePunto"
+                    tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tvGeneralDataPuntosDeMedidaTipoDePlanta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Tipo de planta"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/spinnerGeneralDataPuntosDeMedidaPais"
+                    app:layout_constraintTop_toBottomOf="@id/lineaseparacion1" />
+
+                <Spinner
+                    android:id="@+id/spinnerGeneralDataPuntosDeMedidaTipoDePlanta"
+                    android:layout_width="175dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@android:drawable/btn_dropdown"
+                    android:spinnerMode="dropdown"
+                    app:layout_constraintStart_toStartOf="@+id/tvGeneralDataPuntosDeMedidaTipoDePlanta"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataPuntosDeMedidaTipoDePlanta"
+                    tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tvGeneralDataPuntosDeMedidaCups"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="CUPS"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/spinnerGeneralDataPuntosDeMedidaTipoDePunto"
+                    app:layout_constraintTop_toBottomOf="@id/spinnerGeneralDataPuntosDeMedidaTipoDePunto" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietGeneralDataPuntosDeMedidaCups"
+                    android:layout_width="115dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/md_white_1000"
+                    android:enabled="true"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/tvGeneralDataPuntosDeMedidaCups"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataPuntosDeMedidaCups"
+                    tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tvGeneralDataPuntosDeMedidaCupsDeObras"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="CUPS de obras"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/tietGeneralDataPuntosDeMedidaCupsDeObras"
+                    app:layout_constraintTop_toBottomOf="@id/spinnerGeneralDataPuntosDeMedidaTipoDePlanta" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietGeneralDataPuntosDeMedidaCupsDeObras"
+                    android:layout_width="115dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/md_white_1000"
+                    android:enabled="true"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@+id/tietGeneralDataPuntosDeMedidaCups"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataPuntosDeMedidaCupsDeObras"
+                    tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tvGeneralDataPuntosDeMedidaComercializadora"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Comercializadora"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/actvGeneralDataPuntosDeMedidaComercializadora"
+                    app:layout_constraintTop_toBottomOf="@id/spinnerGeneralDataPuntosDeMedidaTipoDePlanta" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/actvGeneralDataPuntosDeMedidaComercializadora"
+                    android:layout_width="115dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:completionHint="Comercializadora"
+                    android:completionThreshold="2"
+                    android:enabled="true"
+                    android:hint="Desconocido"
+                    android:textColor="@color/md_black_1000"
+                    app:layout_constraintStart_toEndOf="@+id/tietGeneralDataPuntosDeMedidaCupsDeObras"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataPuntosDeMedidaComercializadora"
+                    tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+                <LinearLayout
+                    android:id="@+id/lineaseparacion2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/md_disabled_hint_text"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/actvGeneralDataPuntosDeMedidaComercializadora"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/tvGeneralDataPuntosDeMedidaAlquilerEquipos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Alquiler equipos"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/tietGeneralDataPuntosDeMedidaCups"
+                    app:layout_constraintTop_toBottomOf="@id/lineaseparacion2" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietGeneralDataPuntosDeMedidaAlquilerEquipos"
+                    android:layout_width="60dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/md_white_1000"
+                    android:enabled="true"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/tvGeneralDataPuntosDeMedidaAlquilerEquipos"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataPuntosDeMedidaAlquilerEquipos"
+                    tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+                <Spinner
+                    android:id="@+id/spinnerGeneralDataPuntosDeMedidaModoAlq"
+                    android:layout_width="90dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@android:drawable/btn_dropdown"
+                    android:spinnerMode="dropdown"
+                    app:layout_constraintStart_toEndOf="@+id/tietGeneralDataPuntosDeMedidaAlquilerEquipos"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataPuntosDeMedidaAlquilerEquipos"
+                    tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tvGeneralDataPuntosDeMedidaAlquilerModoATRPotencia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="M. ATR potencia"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/spinnerGeneralDataPuntosDeMedidaModoATRPotencia"
+                    app:layout_constraintTop_toBottomOf="@id/lineaseparacion2" />
+
+                <Spinner
+                    android:id="@+id/spinnerGeneralDataPuntosDeMedidaModoATRPotencia"
+                    android:layout_width="105dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@android:drawable/btn_dropdown"
+                    android:spinnerMode="dropdown"
+                    app:layout_constraintStart_toEndOf="@+id/spinnerGeneralDataPuntosDeMedidaModoAlq"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataPuntosDeMedidaAlquilerModoATRPotencia"
+                    tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+
+                <TextView
+                    android:id="@+id/tvGeneralDataPuntosDeMedidaAlquilerZonaTarifaria"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Zona tarifaria"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/spinnerGeneralDataPuntosDeMedidaZonaTarifaria"
+                    app:layout_constraintTop_toBottomOf="@id/lineaseparacion2" />
+
+                <Spinner
+                    android:id="@+id/spinnerGeneralDataPuntosDeMedidaZonaTarifaria"
+                    android:layout_width="100dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@android:drawable/btn_dropdown"
+                    android:spinnerMode="dropdown"
+                    app:layout_constraintStart_toEndOf="@+id/spinnerGeneralDataPuntosDeMedidaModoATRPotencia"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataPuntosDeMedidaAlquilerModoATRPotencia"
+                    tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tvGeneralDataPuntosDeMedidaConsumoAnual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Consumo anual (kWh)"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/tietGeneralDataPuntosDeMedidaAlquilerEquipos"
+                    app:layout_constraintTop_toBottomOf="@id/tietGeneralDataPuntosDeMedidaAlquilerEquipos" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietGeneralDataPuntosDeMedidaConsumoAnual"
+                    android:layout_width="175dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/md_white_1000"
+                    android:enabled="true"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/tvGeneralDataPuntosDeMedidaConsumoAnual"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataPuntosDeMedidaConsumoAnual"
+                    tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tvGeneralDataPuntosDeMedidaRecargo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="¿Recargo por temporada?"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/spinnerGeneralDataPuntosDeMedidaRecargo"
+                    app:layout_constraintTop_toBottomOf="@id/spinnerGeneralDataPuntosDeMedidaZonaTarifaria" />
+
+                <Spinner
+                    android:id="@+id/spinnerGeneralDataPuntosDeMedidaRecargo"
+                    android:layout_width="180dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@android:drawable/btn_dropdown"
+                    android:spinnerMode="dropdown"
+                    app:layout_constraintStart_toEndOf="@+id/tietGeneralDataPuntosDeMedidaConsumoAnual"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGeneralDataPuntosDeMedidaRecargo"
+                    tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tvGeneralDataPuntosDeMedidaTitleObservaciones"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="OBSERVACIONES DEL SUMINISTRO"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@id/tietGeneralDataPuntosDeMedidaConsumoAnual"
+                    app:layout_constraintTop_toBottomOf="@id/tietGeneralDataPuntosDeMedidaConsumoAnual" />
+
+                <TextView
+                    android:id="@+id/tvGeneralDataPuntosDeMedidaDescripcionPuntoMedida"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Descripción del punto de medida:"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@id/tvGeneralDataPuntosDeMedidaTitleObservaciones"
+                    app:layout_constraintTop_toBottomOf="@id/tvGeneralDataPuntosDeMedidaTitleObservaciones" />
+
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="380dp"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/md_white_1000"
+                    android:textColor="@color/md_black_1000"
+                    app:layout_constraintStart_toStartOf="@id/tvGeneralDataPuntosDeMedidaDescripcionPuntoMedida"
+                    app:layout_constraintTop_toBottomOf="@id/tvGeneralDataPuntosDeMedidaDescripcionPuntoMedida" />
+
+                <Button
+                    android:id="@+id/buttonGeneralDataClienteEliminarPuntoDeMedida"
+                    android:layout_width="101dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/bordes_redondos_rojo"
+                    android:drawableLeft="@drawable/ic_baseline_delete_24"
+                    android:text="Eliminar este punto"
+                    android:textColor="@color/md_text_white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/editText"
+                    app:layout_constraintStart_toEndOf="@+id/tvGeneralDataPuntosDeMedidaTitleObservaciones" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </HorizontalScrollView>
+
+    </LinearLayout>
+</ScrollView>

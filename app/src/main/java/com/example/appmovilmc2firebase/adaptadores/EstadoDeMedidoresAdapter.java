@@ -1,38 +1,71 @@
 package com.example.appmovilmc2firebase.adaptadores;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appmovilmc2firebase.interfaces.iComunicaFragments;
 import com.example.appmovilmc2firebase.models.PuntosDeMedida;
+import com.example.appmovilmc2firebase.ui.estadoMedidores.GeneralDataEstadomedidoresActivity;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import appmovilmc2firebase.R;
 
-public class EstadoDeMedidoresAdapter extends RecyclerView.Adapter<EstadoDeMedidoresAdapter.EstadoDeMedidoresHolder>{
+public class EstadoDeMedidoresAdapter extends RecyclerView.Adapter<EstadoDeMedidoresAdapter.EstadoDeMedidoresHolder> implements View.OnClickListener{
 
-    private List<PuntosDeMedida> mEstadoMedidoresList;
+    private LayoutInflater inflater;
+    private ArrayList<PuntosDeMedida> mEstadoMedidoresList;
 
     private Context context;
 
-    public EstadoDeMedidoresAdapter(List<PuntosDeMedida> estadoMedidoresList){
+    public TableRow mDataEstadoMedidoresTable;
+
+    //listener
+    private View.OnClickListener listener;
+
+    //referencias para comunicar con fragment
+    Activity activity;
+    iComunicaFragments interfaceComunicaFragments;
+
+    public EstadoDeMedidoresAdapter(Context context, ArrayList<PuntosDeMedida> estadoMedidoresList){
+        this.inflater = LayoutInflater.from(context);
         this.mEstadoMedidoresList = estadoMedidoresList;
     }
 
     @NonNull
     @Override
     public EstadoDeMedidoresHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_row_estadodemedidores, parent, false);
+        View itemView = inflater.inflate(R.layout.item_row_estadodemedidores, parent, false);
         RecyclerView.LayoutParams layoutParams = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         itemView.setLayoutParams(layoutParams);
+
+        itemView.setOnClickListener(this);
+
+        context = parent.getContext();
+
+        mDataEstadoMedidoresTable = itemView.findViewById(R.id.tableRowDatosEstadoDeMedidores);
+        mDataEstadoMedidoresTable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, GeneralDataEstadomedidoresActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
         return new EstadoDeMedidoresHolder(itemView);
+    }
+
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener = listener;
     }
 
     @Override
@@ -42,6 +75,13 @@ public class EstadoDeMedidoresAdapter extends RecyclerView.Adapter<EstadoDeMedid
 
     public int getItemCount(){
         return mEstadoMedidoresList.size();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (listener != null){
+            listener.onClick(v);
+        }
     }
 
     public class EstadoDeMedidoresHolder extends RecyclerView.ViewHolder{

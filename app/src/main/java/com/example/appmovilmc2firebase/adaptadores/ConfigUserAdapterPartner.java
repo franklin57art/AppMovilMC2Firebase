@@ -11,17 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appmovilmc2firebase.models.Partner;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import appmovilmc2firebase.R;
 
 public class ConfigUserAdapterPartner extends RecyclerView.Adapter<ConfigUserAdapterPartner.ConfigUsuariosHolderPartner> {
 
-    private List<Partner> mPartnerList;
+    private ArrayList<Partner> mPartnerList;
 
     private Context contextPartner;
 
-    public ConfigUserAdapterPartner(List<Partner> partnerList) {
+    public ConfigUserAdapterPartner(ArrayList<Partner> partnerList) {
         this.mPartnerList = partnerList;
     }
 

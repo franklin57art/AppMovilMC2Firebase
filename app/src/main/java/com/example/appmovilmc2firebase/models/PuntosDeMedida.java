@@ -136,7 +136,7 @@ public class PuntosDeMedida {
 
     @SerializedName("alquiler_equipo")
     @Expose
-    private Float alquiler_equipo;
+    private Integer alquiler_equipo;
 
     @SerializedName("lat")
     @Expose
@@ -374,7 +374,7 @@ public class PuntosDeMedida {
 
     }
 
-    public PuntosDeMedida(Integer id_conn, Integer id_creator, Integer id_client, Integer id_client2, String id_psum_for_client, Integer id_psum_ref, String cp, Integer id_country, Integer idpto, Integer protocol, String phone, String ip, String uid, String mt_uid, Integer link, Integer device, Integer key_, String name, String description, String status, String cups, String cups_obras, String address, String cod_postal, Integer type_plant, Integer id_poblacion, String provincia, String contact_phone, String email, Integer reactive_alarms, Date last_alarm_dt, Float alquiler_equipo, Double lat, Float area, Double lon, Integer id_inst, Integer type_inst, Integer planta, Integer type_monit, Integer has_monit, BigDecimal _left, BigDecimal _top, Integer font_size_img, String font_color_btn, String bg_color_btn, Integer hidden, String formula, Integer data_alias, Integer data_origin, DateTime last_download_dt, Integer download_freq, String mags_to_import, Integer priority, String notes, Integer scope, Integer id_pt_agemex, Integer mod_alq_eq, Integer modo_atr_potencia, Integer iec_download, Integer instant_download, Integer weather_download, Timestamp date_creation, Integer err_code, Integer in_use, Integer id_comerc, Integer scope_mc2, Integer scope_a21, Integer scope_t21, String prices_pot, String exenciones, String transf_losses, Integer recharge_temp, Integer contrat_duration, Integer contract_duration_TD, Integer dl_diff_days, Integer tar_zone, Integer type, Integer type_photovoltaic, Integer id_psum_photovoltaic_ref, Integer id_weather_station, String model, String serial_number, Integer type_photovoltaic_psum, Integer estimated_annual_consumption, Date inicio_compras_omie, Integer datalogger_id, String datalogger_bus, Float rt_correction_factor, String type_measuring_equip, Integer presion) {
+    public PuntosDeMedida(Integer id_conn, Integer id_creator, Integer id_client, Integer id_client2, String id_psum_for_client, Integer id_psum_ref, String cp, Integer id_country, Integer idpto, Integer protocol, String phone, String ip, String uid, String mt_uid, Integer link, Integer device, Integer key_, String name, String description, String status, String cups, String cups_obras, String address, String cod_postal, Integer type_plant, Integer id_poblacion, String provincia, String contact_phone, String email, Integer reactive_alarms, Date last_alarm_dt, Integer alquiler_equipo, Double lat, Float area, Double lon, Integer id_inst, Integer type_inst, Integer planta, Integer type_monit, Integer has_monit, BigDecimal _left, BigDecimal _top, Integer font_size_img, String font_color_btn, String bg_color_btn, Integer hidden, String formula, Integer data_alias, Integer data_origin, DateTime last_download_dt, Integer download_freq, String mags_to_import, Integer priority, String notes, Integer scope, Integer id_pt_agemex, Integer mod_alq_eq, Integer modo_atr_potencia, Integer iec_download, Integer instant_download, Integer weather_download, Timestamp date_creation, Integer err_code, Integer in_use, Integer id_comerc, Integer scope_mc2, Integer scope_a21, Integer scope_t21, String prices_pot, String exenciones, String transf_losses, Integer recharge_temp, Integer contrat_duration, Integer contract_duration_TD, Integer dl_diff_days, Integer tar_zone, Integer type, Integer type_photovoltaic, Integer id_psum_photovoltaic_ref, Integer id_weather_station, String model, String serial_number, Integer type_photovoltaic_psum, Integer estimated_annual_consumption, Date inicio_compras_omie, Integer datalogger_id, String datalogger_bus, Float rt_correction_factor, String type_measuring_equip, Integer presion) {
         this.id_conn = id_conn;
         this.id_creator = id_creator;
         this.id_client = id_client;
@@ -715,11 +715,11 @@ public class PuntosDeMedida {
         this.last_alarm_dt = last_alarm_dt;
     }
 
-    public Float getAlquiler_equipo() {
+    public Integer getAlquiler_equipo() {
         return alquiler_equipo;
     }
 
-    public void setAlquiler_equipo(Float alquiler_equipo) {
+    public void setAlquiler_equipo(Integer alquiler_equipo) {
         this.alquiler_equipo = alquiler_equipo;
     }
 

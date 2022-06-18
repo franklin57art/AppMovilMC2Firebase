@@ -24,22 +24,10 @@
         tools:layout="@layout/fragment_estadomedidores" />
 
     <fragment
-        android:id="@+id/nav_alarmas"
-        android:name="com.example.appmovilmc2firebase.ui.alarmas.AlarmaFragment"
-        android:label="@string/menu_alarmas"
-        tools:layout="@layout/fragment_alarmas" />
-
-    <fragment
         android:id="@+id/nav_visualizadorgráficas"
         android:name="com.example.appmovilmc2firebase.ui.graficas.GraficasFragment"
         android:label="@string/menu_visualizador"
         tools:layout="@layout/fragment_graficas" />
-
-    <fragment
-        android:id="@+id/nav_informes"
-        android:name="com.example.appmovilmc2firebase.ui.informes.InformesFragment"
-        android:label="@string/menu_informes"
-        tools:layout="@layout/fragment_informes" />
 
     <fragment
         android:id="@+id/nav_usuarios"

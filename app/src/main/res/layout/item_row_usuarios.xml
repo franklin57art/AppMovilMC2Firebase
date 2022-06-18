@@ -9,17 +9,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/md_green_500">
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchViewUser"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:background="@color/md_disabled_hint_text_white"
-            android:backgroundTint="@color/md_black_1000"
+            android:background="@color/md_disabled_hint_text"
+            android:backgroundTint="@color/md_grey_300"
             android:iconifiedByDefault="false"
-            android:queryHint="Buscar aquí"
+            android:queryHint="Buscar aqui"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -33,8 +34,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="8dp"
-            android:background="@color/md_disabled_hint_text_white"
-            android:backgroundTint="@color/md_black_1000"
+            android:background="@color/md_disabled_hint_text"
+            android:backgroundTint="@color/md_grey_300"
             android:text="Añadir usuario"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/searchViewUser"

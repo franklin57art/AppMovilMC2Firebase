@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e7eef1"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context="com.example.appmovilmc2firebase.ui.clientes.RegisterClientActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvNuevoCliente"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="#4f6e7b"
+            android:gravity="center"
+            android:text="Nuevo Cliente"
+            android:textColor="@color/md_text_white"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvRazonSocialNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="20dp"
+            android:text="Razón social"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNuevoCliente" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextRazonSocial"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/md_white_1000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvRazonSocialNombre"
+            tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/tvExplainRazonSocial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="4dp"
+            android:text="Nombre o razón social del cliente"
+            android:textColor="@color/md_disabled_hint_text"
+            android:textSize="10dp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextRazonSocial"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tvNombreCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="20dp"
+            android:text="Nombre cliente"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvExplainRazonSocial" />
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextNombreCliente"
+            android:layout_width="265dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/md_white_1000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/ivUsuario"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombreCliente"
+            tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+        <ImageView
+            android:id="@+id/ivUsuario"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombreCliente"
+            app:srcCompat="@drawable/ic_baseline_person_24" />
+
+        <TextView
+            android:id="@+id/tvExplainNombreCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="4dp"
+            android:text="Nombre 'real' del cliente"
+            android:textColor="@color/md_disabled_hint_text"
+            android:textSize="10dp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNombreCliente"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tvEmailCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="20dp"
+            android:text="Email cliente"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvExplainNombreCliente" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextEmailCliente"
+            android:layout_width="265dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/md_white_1000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/ivEmail"
+            app:layout_constraintTop_toBottomOf="@+id/tvEmailCliente"
+            tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+        <ImageView
+            android:id="@+id/ivEmail"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvEmailCliente"
+            app:srcCompat="@drawable/ic_baseline_alternate_email_24" />
+
+        <TextView
+            android:id="@+id/tvExplainEmailCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="4dp"
+            android:text="Email de contacto del cliente"
+            android:textColor="@color/md_disabled_hint_text"
+            android:textSize="10dp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextEmailCliente"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tvTelefonoCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="20dp"
+            android:text="Teléfono cliente"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvExplainEmailCliente" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextTelefonoCliente"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/md_white_1000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTelefonoCliente"
+            tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/tvExplainTelefonoCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="4dp"
+            android:text="Teléfono de contacto del cliente"
+            android:textColor="@color/md_disabled_hint_text"
+            android:textSize="10dp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTelefonoCliente"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tvNombreEmpresa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="20dp"
+            android:text="Nombre empresa"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvExplainTelefonoCliente" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextNombreEmpresa"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/md_white_1000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombreEmpresa"
+            tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/tvExplainNombreEmpresa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="4dp"
+            android:text="Nombre de la empresa a la que pertenece el cliente"
+            android:textColor="@color/md_disabled_hint_text"
+            android:textSize="10dp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNombreEmpresa"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tvIdFiscalEmpresa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="20dp"
+            android:text="Id fiscal"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvExplainNombreEmpresa" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextIdFiscalEmpresa"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/md_white_1000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvIdFiscalEmpresa"
+            tools:ignore="MissingConstraints,TextContrastCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/tvExplainIdFiscalEmpresa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="4dp"
+            android:text="Identificador fiscal de la empresa a la que pertenece el cliente"
+            android:textColor="@color/md_disabled_hint_text"
+            android:textSize="10dp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextIdFiscalEmpresa"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/buttonSalirRegisterClient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="84dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bordes_redondos_rojo"
+            android:text="SALIR"
+            android:textColor="@color/md_text_white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/buttonAceptarRegisterClient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="84dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bordes_redondos"
+            android:text="Acceptar"
+            android:textColor="@color/md_text_white"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

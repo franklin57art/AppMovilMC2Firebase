@@ -1,6 +1,5 @@
-package com.example.appmovilmc2firebase.ui.usuarios;
+package com.example.appmovilmc2firebase.ui.estadoMedidores;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,8 +22,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.appmovilmc2firebase.adaptadores.UserAdapter;
-import com.example.appmovilmc2firebase.models.User;
+import com.example.appmovilmc2firebase.adaptadores.GeneralDataEstadoDeMedidoresAdapter;
+import com.example.appmovilmc2firebase.models.PuntosDeMedida;
 import com.example.appmovilmc2firebase.utils.GlobalInfo;
 import com.example.appmovilmc2firebase.utils.PreferenceHelper;
 
@@ -38,12 +37,12 @@ import java.util.Map;
 
 import appmovilmc2firebase.R;
 
-public class UsuariosFragment extends Fragment {
+public class GeneralDataEstadomedidoresFragment extends Fragment {
 
-    private static final String TAG = "UsuariosFragment";
+    private static final String TAG = "EstadoDeMedidoresGeneralDataFragment";
 
     private RecyclerView mRecyclerView;
-    private ArrayList<User> listaUsers;
+    private ArrayList<PuntosDeMedida> listaPuntosDeMedidas;
 
     private RequestQueue request;
     private JsonObjectRequest jsonObjectRequest;
@@ -54,20 +53,22 @@ public class UsuariosFragment extends Fragment {
 
     private int typeUser = 00;
 
-    public UsuariosFragment() {
+    public GeneralDataEstadomedidoresFragment(){
 
     }
 
-    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container,
                              @NonNull Bundle savedInstanceState) {
+
+        getActivity().setTitle("Datos contadores");
+
         // Inflate the layout for this fragment
-        View vista = inflater.inflate(R.layout.fragment_usuarios, container, false);
+        View vista = inflater.inflate(R.layout.fragment_general_data_estadomedidores, container, false);
 
-        listaUsers = new ArrayList<>();
+        listaPuntosDeMedidas = new ArrayList<>();
 
-        mRecyclerView = (RecyclerView) vista.findViewById(R.id.recyclerviewUsuarios);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        mRecyclerView = (RecyclerView) vista.findViewById(R.id.recyclerviewCallGeneralDataEstadoDeMedidores);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setHasFixedSize(true);
 
         //Leo el valor del AUTH TOKEN KEY guardado al hacer el Login
@@ -77,49 +78,41 @@ public class UsuariosFragment extends Fragment {
 
         request = Volley.newRequestQueue(getContext());
 
-        cargarWebService();
+        cargarDatos();
 
         return vista;
     }
 
-    //Con este metodo hago la conexion con el web service
-    private void cargarWebService() {
+    private void cargarDatos() {
 
-        jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, GlobalInfo.URL_USER, null, new Response.Listener<JSONObject>() {
+        request = Volley.newRequestQueue(getContext());
 
+        jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, GlobalInfo.URL_PUNTOS_DE_MEDIDA, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                User user = null;
+                PuntosDeMedida pdm = null;
 
                 preferenceHelper = new PreferenceHelper(getActivity());
 
                 JSONArray json = response.optJSONArray("result");
 
-                //Guardo en una variable de tipo entero el valor de la variable type de usuario obtenida al hacer login con este y guardada con el shared preferences. Como es un String la convierto a Int.
-                typeUser = Integer.parseInt(preferenceHelper.getType());
-
                 try {
-                    if (typeUser == 7) {
-                        for (int i = 0; i < json.length(); i++) {
-                            //Compruebo si hay algun valor type dentro del json igual al valor de un usuario de tipo Administrador. En este caso ese calor es 7
-                            user = new User();
-                            JSONObject jsonObject = null;
-                            jsonObject = json.getJSONObject(i);
-                            user.setName(jsonObject.optString("name"));
-                            user.setUsername(jsonObject.optString("username"));
-                            user.setType(jsonObject.optInt("type"));
-                            listaUsers.add(user);
-                        }
-                        UserAdapter adapter = new UserAdapter(listaUsers);
-                        mRecyclerView.setAdapter(adapter);
-                    } else {
-                        Log.e(TAG, "EL TYPE DEL USUARIO NO ES DE TIPO PARTNER ADMINISTRADOR. Es un type tipo: " + typeUser);
-                        showAlert();
+                    for (int i = 0; i < json.length(); i++) {
+                        pdm = new PuntosDeMedida();
+                        JSONObject jsonObject = null;
+                        jsonObject = json.getJSONObject(i);
+                        pdm.setName(jsonObject.optString("name"));
+                        pdm.setCups(jsonObject.optString("cups"));
+                        listaPuntosDeMedidas.add(pdm);
                     }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Toast.makeText(getContext(), "No se ha podido establecer conexion con el servidor " + response.toString(), Toast.LENGTH_LONG).show();
+
                 }
+                GeneralDataEstadoDeMedidoresAdapter adapter = new GeneralDataEstadoDeMedidoresAdapter(listaPuntosDeMedidas);
+                mRecyclerView.setAdapter(adapter);
             }
         },
                 new Response.ErrorListener() {
@@ -128,6 +121,7 @@ public class UsuariosFragment extends Fragment {
                         Toast.makeText(getContext(), "No se puede conectar " + error.toString(), Toast.LENGTH_LONG).show();
                         System.out.println();
                         Log.d(TAG, "ERROR: " + error.toString());
+
                     }
                 }
         ) {
@@ -139,22 +133,12 @@ public class UsuariosFragment extends Fragment {
                 return headers;
             }
         };
-
         request.add(jsonObjectRequest);
     }
 
-
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mRecyclerView = view.findViewById(R.id.recyclerviewUsuarios);
+        mRecyclerView = view.findViewById(R.id.recyclerviewCallGeneralDataEstadoDeMedidores);
     }
 
-    private void showAlert() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
-        builder.setTitle("Error");
-        builder.setMessage("No es usted un usuario ADMMINISTRADOR. No tiene permiso de escritura");
-        builder.setPositiveButton("Aceptar", null);
-        builder.create();
-        builder.show();
-    }
 }

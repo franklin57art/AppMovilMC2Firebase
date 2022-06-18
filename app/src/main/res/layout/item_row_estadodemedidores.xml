@@ -79,7 +79,8 @@
                     android:id="@+id/tableRowDatosEstadoDeMedidores"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/md_text_white">
+                    android:background="@color/md_text_white"
+                    android:clickable="true">
 
                     <TextView
                         android:id="@+id/nombreEstadoDeMedidoresDatos"

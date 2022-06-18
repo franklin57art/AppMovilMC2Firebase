@@ -1,9 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?><!--Layout que hara la fila que mostrará la información de cada usuario.-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/md_green_500">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchViewPuntoDeMedida"
+            android:layout_width="265dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@color/md_disabled_hint_text"
+            android:backgroundTint="@color/md_grey_300"
+            android:iconifiedByDefault="false"
+            android:queryHint="Buscar aqui"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/buttonAddPuntoDeMedida"
+            android:layout_width="85dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:background="@color/md_disabled_hint_text"
+            android:backgroundTint="@color/md_grey_300"
+            android:text="Añadir punto de medida"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/searchViewPuntoDeMedida"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -21,7 +57,7 @@
                 android:stretchColumns="1,2,3,4">
 
                 <TableRow
-                    android:id="@+id/tableRowCabeceras"
+                    android:id="@+id/tableRowCabecerasPuntosDeMedida"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/table_degradate_shape">
@@ -85,7 +121,7 @@
                 </TableRow>
 
                 <TableRow
-                    android:id="@+id/tableRowDatos"
+                    android:id="@+id/tableRowDatosPuntosDeMedida"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/md_text_white">
