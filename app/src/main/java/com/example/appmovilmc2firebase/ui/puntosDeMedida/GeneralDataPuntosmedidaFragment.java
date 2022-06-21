@@ -45,7 +45,7 @@ import java.util.Map;
 
 import appmovilmc2firebase.R;
 
-public class GeneralDataPuntosmedidaFragment extends Fragment {
+public class GeneralDataPuntosmedidaFragment extends Fragment implements AdapterView.OnItemSelectedListener{
 
     private static final String TAG = "PuntosDeMedidaGeneralDataFragment";
 
@@ -391,13 +391,13 @@ public class GeneralDataPuntosmedidaFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 PuntosDeMedida pdm = null;
-                Integer idPais = null;
-                Integer type = null;
-                Integer typePlant = null;
-                Integer modAlqEq = null;
-                Integer modAtrPot = null;
-                Integer tarZone = null;
-                Integer rechargeTemp = null;
+                Integer idPais = 00;
+                Integer type = 00;
+                Integer typePlant = 00;
+                Integer modAlqEq = 00;
+                Integer modAtrPot = 00;
+                Integer tarZone = 00;
+                Integer rechargeTemp = 00;
 
                 JSONArray json = response.optJSONArray("result");
                 System.out.println(json);
@@ -446,11 +446,14 @@ public class GeneralDataPuntosmedidaFragment extends Fragment {
                         mConsumo.setText(String.valueOf(consumoAnual));
                         mDireccion.setText(description);
 
+
                         Integer[] intArrayPais = new Integer[idPais];
-                        intArrayPais[0] = idPais;
-                        ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(getActivity(), android.R.layout.simple_spinner_item, intArrayPais);
-                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinnerPais.setAdapter(adapter);
+                        if (intArrayPais.length > 0) {
+                            intArrayPais[0] = idPais;
+                            ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(getActivity(), android.R.layout.simple_spinner_item, intArrayPais);
+                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            spinnerPais.setAdapter(adapter);
+                        }
 
                         Integer[] intArrayTipo = new Integer[type];
                         if (intArrayTipo.length > 0) {
@@ -469,28 +472,36 @@ public class GeneralDataPuntosmedidaFragment extends Fragment {
                         }
 
                         Integer[] intArrayModAlqEq = new Integer[modAlqEq];
-                        intArrayModAlqEq [0] = modAlqEq;
-                        ArrayAdapter<Integer> adapter4 = new ArrayAdapter<Integer>(getActivity(), android.R.layout.simple_spinner_item, intArrayModAlqEq);
-                        adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinnerModAlq.setAdapter(adapter4);
+                        if (intArrayModAlqEq.length > 0) {
+                            intArrayModAlqEq[0] = modAlqEq;
+                            ArrayAdapter<Integer> adapter4 = new ArrayAdapter<Integer>(getActivity(), android.R.layout.simple_spinner_item, intArrayModAlqEq);
+                            adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            spinnerModAlq.setAdapter(adapter4);
+                        }
 
                         Integer[] intArrayAtrPot = new Integer[modAtrPot];
-                        intArrayAtrPot [0] = modAtrPot;
-                        ArrayAdapter<Integer> adapter5= new ArrayAdapter<Integer>(getActivity(), android.R.layout.simple_spinner_item, intArrayAtrPot);
-                        adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinnerAtrPotencia.setAdapter(adapter5);
+                        if (intArrayAtrPot.length > 0) {
+                            intArrayAtrPot[0] = modAtrPot;
+                            ArrayAdapter<Integer> adapter5 = new ArrayAdapter<Integer>(getActivity(), android.R.layout.simple_spinner_item, intArrayAtrPot);
+                            adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            spinnerAtrPotencia.setAdapter(adapter5);
+                        }
 
                         Integer[] intArrayTarZone = new Integer[tarZone];
-                        intArrayTarZone [0] = tarZone;
-                        ArrayAdapter<Integer> adapter6 = new ArrayAdapter<Integer>(getActivity(), android.R.layout.simple_spinner_item, intArrayTarZone);
-                        adapter6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinnerZonaTari.setAdapter(adapter6);
+                        if (intArrayTarZone.length > 0) {
+                            intArrayTarZone[0] = tarZone;
+                            ArrayAdapter<Integer> adapter6 = new ArrayAdapter<Integer>(getActivity(), android.R.layout.simple_spinner_item, intArrayTarZone);
+                            adapter6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            spinnerZonaTari.setAdapter(adapter6);
+                        }
 
                         Integer[] intArrayReTemp = new Integer[rechargeTemp];
-                        intArrayReTemp [0] = rechargeTemp;
-                        ArrayAdapter<Integer> adapter7 = new ArrayAdapter<Integer>(getActivity(), android.R.layout.simple_spinner_item, intArrayReTemp);
-                        adapter7.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinnerRecargo.setAdapter(adapter7);
+                        if (intArrayReTemp.length > 0) {
+                            intArrayReTemp[0] = rechargeTemp;
+                            ArrayAdapter<Integer> adapter7 = new ArrayAdapter<Integer>(getActivity(), android.R.layout.simple_spinner_item, intArrayReTemp);
+                            adapter7.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            spinnerRecargo.setAdapter(adapter7);
+                        }
                     }
 
                     cargarDatosSpinners();
@@ -526,15 +537,115 @@ public class GeneralDataPuntosmedidaFragment extends Fragment {
 
     private void updateData() {
         final Integer spinnerPaisValue = (Integer) spinnerPais.getSelectedItem();
+        final Integer spinnerTipoPuntoValue = (Integer) spinnerTipoPunto.getSelectedItem();
+        final Integer spinnerTipoPlantaValue = (Integer) spinnerTipoPlanta.getSelectedItem();
+        final Integer spinnerModAlqValue = (Integer) spinnerModAlq.getSelectedItem();
+        final Integer spinnerModAtrPotenciaValue = (Integer) spinnerAtrPotencia.getSelectedItem();
+        final Integer spinnerTarifarioValue = (Integer) spinnerZonaTari.getSelectedItem();
+        final Integer spinnerRecargoValue = (Integer) spinnerRecargo.getSelectedItem();
+
+        final String descripcion = mEditText.getText().toString();
+
+        final String nombre = mNombre.getText().toString();
+        final String idcliente = mIdCliente.getText().toString();
+        final String direccion = mDireccion.getText().toString();
+        final String codPostal = mCp.getText().toString();
+        final String cups = mCups.getText().toString();
+        final String cupsObras = mCupsObras.getText().toString();
+        final String modAlq = mAlquiler.getText().toString();
+        final String consumoanual = mConsumo.getText().toString();
+
+        final String cliente = String.valueOf(mCliente.getText());
+
+        StringRequest stringRequest = new StringRequest(Request.Method.PUT, GlobalInfo.URL_UPDATE_PUNTO_DE_MEDIDA + String.valueOf(idConn),
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        request.getCache().clear();
+                        Log.d(TAG, response);
+                        try {
+                            parseDataUpdate(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        showError(error.toString());
+                    }
+                }) {
+
+            @Override
+            public Map<String, String> getHeaders() {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Accept", "*/*");
+                headers.put("Authorization", GlobalInfo.AUTH_TOKEN);
+                return headers;
+            }
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("name", nombre);
+                params.put("id_psum_for_client", idcliente);
+                params.put("address", direccion);
+                params.put("cod_postal", codPostal);
+                params.put("cups", cups);
+                params.put("cups_obras", cupsObras);
+                params.put("alquiler_equipo", modAlq);
+                params.put("estimated_annual_consumption", consumoanual);
+                params.put("description", descripcion);
+                params.put("id_client", cliente);
+                params.put("id_country", spinnerPaisValue.toString());
+                params.put("type", spinnerTipoPuntoValue.toString());
+                params.put("type_plant", spinnerTipoPlantaValue.toString());
+                params.put("modo_alq_eq", spinnerModAlqValue.toString());
+                params.put("modo_atr_potencia", spinnerModAtrPotenciaValue.toString());
+                params.put("tar_zone", spinnerTarifarioValue.toString());
+                params.put("recharge_temp", spinnerRecargoValue.toString());
+                return params;
+            }
+        };
+        request = Volley.newRequestQueue(getActivity());
+        request.add(stringRequest);
+    }
+
+    private void parseDataUpdate(String response) throws JSONException {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            if (jsonObject.optString("success").equals("true")) {
+                Toast.makeText(getActivity(), "¡Punto de medida actualizado con éxito!", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getActivity(), HomeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                getActivity().finish();
+            } else {
+                showError(response);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            showAlertt();
+        }
     }
 
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Integer i = (Integer) spinnerPais.getSelectedItem();
         Log.d(TAG, i.toString());
-        /*Integer ii = (Integer) spinnerCliente.getSelectedItem();
-        Log.d(TAG, ii.toString());*/
+        Integer ii = (Integer) spinnerTipoPunto.getSelectedItem();
+        Log.d(TAG, ii.toString());
+        Integer iii = (Integer) spinnerTipoPlanta.getSelectedItem();
+        Log.d(TAG, i.toString());
+        Integer iiii = (Integer) spinnerModAlq.getSelectedItem();
+        Log.d(TAG, ii.toString());
+        Integer iiiii = (Integer) spinnerAtrPotencia.getSelectedItem();
+        Log.d(TAG, i.toString());
+        Integer iiiiii = (Integer) spinnerZonaTari.getSelectedItem();
+        Log.d(TAG, ii.toString());
+        Integer iiiiiii = (Integer) spinnerRecargo.getSelectedItem();
+        Log.d(TAG, i.toString());
     }
-
 
     public void onNothingSelected(AdapterView<?> parent) {
 

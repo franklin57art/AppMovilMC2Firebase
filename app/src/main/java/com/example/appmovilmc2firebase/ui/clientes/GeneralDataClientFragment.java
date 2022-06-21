@@ -171,9 +171,71 @@ public class GeneralDataClientFragment extends Fragment {
     }
 
     private void updateData() {
+        final String rsCliente = mRazonSocial.getText().toString();
+        final String idFiscal = mIdFiscal.getText().toString();
+        final String nombreCorto = mNombreCorto.getText().toString();
+        final String nombreCliente = mNombreCliente.getText().toString();
+        final String tecnico = mTecnico.getText().toString();
 
+        StringRequest stringRequest = new StringRequest(Request.Method.PUT, GlobalInfo.URL_UPDATE_CLIENT + String.valueOf(idclient),
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        request.getCache().clear();
+                        Log.d(TAG, response);
+                        try {
+                            parseDataUpdate(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        showError(error.toString());
+                    }
+                }) {
 
+            @Override
+            public Map<String, String> getHeaders() {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Accept", "*/*");
+                headers.put("Authorization", GlobalInfo.AUTH_TOKEN);
+                return headers;
+            }
 
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("name", rsCliente);
+                params.put("nombre_cliente", nombreCliente);
+                params.put("nombre_empresa", nombreCorto);
+                params.put("id_tecnico", tecnico);
+                params.put("id_fiscal", idFiscal);
+                return params;
+            }
+        };
+        request = Volley.newRequestQueue(getActivity());
+        request.add(stringRequest);
+    }
+
+    private void parseDataUpdate(String response) throws JSONException {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            if (jsonObject.optString("success").equals("true")) {
+                Toast.makeText(getActivity(), "¡Cliente actualizado con éxito!", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getActivity(), HomeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                getActivity().finish();
+            } else {
+                showError(response);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            showAlertt();
+        }
     }
 
     private void deleteClient() {
