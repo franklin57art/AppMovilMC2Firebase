@@ -6,7 +6,7 @@
 
     <fragment android:name="com.example.appmovilmc2firebase.ui.puntosDeMedida.GeneralDataPuntosmedidaFragment"
         android:id="@+id/generaldata_puntosdemedida"
-        tools:layout="@layout/fragment_general_data_puntosdemedida"
+        tools:layout="@layout/fragment_general_data_puntosmedida"
         android:layout_height="match_parent"
         android:layout_width="match_parent"/>
 

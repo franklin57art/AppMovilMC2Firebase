@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e7eef1"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:clickable="false"
+    tools:context="com.example.appmovilmc2firebase.ui.estadoMedidores.IncidenciaEstadoMedidoresFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:clickable="false">
+
+      <TextView
+          android:id="@+id/tvNuevaIncidencia"
+          android:layout_width="match_parent"
+          android:layout_height="45dp"
+          android:background="#4f6e7b"
+          android:gravity="center"
+          android:text="Nuevo Incidencia"
+          android:textColor="@color/md_text_white"
+          android:textSize="24sp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+          android:id="@+id/tvIncidenciaEstadoMedidoresPuntoDeMedida"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="18dp"
+          android:layout_marginTop="32dp"
+          android:text="Punto de medida: "
+          android:textSize="18sp"
+          android:textStyle="bold"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/tvNuevaIncidencia" />
+
+      <TextView
+          android:id="@+id/tvIncidenciaEstadoMedidoresNombrePuntoDeMedida"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="32dp"
+          android:layout_marginStart="4dp"
+          android:text="Nombre"
+          android:textSize="18sp"
+          app:layout_constraintStart_toEndOf="@+id/tvIncidenciaEstadoMedidoresPuntoDeMedida"
+          app:layout_constraintTop_toBottomOf="@+id/tvNuevaIncidencia" />
+
+      <TextView
+          android:id="@+id/tvIncidenciaEstadoMedidoresTipoIncidencia"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="24dp"
+          android:text="Tipo: "
+          android:textSize="18sp"
+          app:layout_constraintStart_toStartOf="@+id/tvIncidenciaEstadoMedidoresPuntoDeMedida"
+          app:layout_constraintTop_toBottomOf="@+id/tvIncidenciaEstadoMedidoresPuntoDeMedida" />
+
+      <Spinner
+          android:id="@+id/spinnerIncidenciaEstadoMedidoresTipoIncidencia"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="4dp"
+          android:layout_marginTop="24dp"
+          android:text="Tipo: "
+          android:textSize="18sp"
+          app:layout_constraintStart_toEndOf="@+id/tvIncidenciaEstadoMedidoresTipoIncidencia"
+          app:layout_constraintTop_toBottomOf="@+id/tvIncidenciaEstadoMedidoresNombrePuntoDeMedida" />
+
+      <ImageView
+          android:id="@+id/ivInfoIncidenciaEstadoMedidores"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="24dp"
+          android:clickable="true"
+          android:focusable="true"
+          app:layout_constraintStart_toEndOf="@+id/spinnerIncidenciaEstadoMedidoresTipoIncidencia"
+          app:layout_constraintTop_toBottomOf="@+id/tvIncidenciaEstadoMedidoresNombrePuntoDeMedida"
+          app:srcCompat="@drawable/ic_baseline_info_24" />
+
+      <TextView
+          android:id="@+id/tvIncidenciaEstadoMedidoresDetallesIncidencia"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="24dp"
+          android:text="Detalles de la incidencia"
+          android:textSize="18sp"
+          app:layout_constraintStart_toStartOf="@+id/tvIncidenciaEstadoMedidoresPuntoDeMedida"
+          app:layout_constraintTop_toBottomOf="@+id/spinnerIncidenciaEstadoMedidoresTipoIncidencia" />
+
+      <EditText
+          android:id="@+id/etIncidenciaEstadoMedidores"
+          android:layout_width="match_parent"
+          android:layout_height="150dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginRight="4dp"
+          android:layout_marginLeft="4dp"
+          android:inputType="text|textMultiLine"
+          android:background="@color/md_white_1000"
+          android:textColor="@color/md_text"
+          android:text="Describa aqui su incidencia..."
+          app:layout_constraintTop_toBottomOf="@+id/tvIncidenciaEstadoMedidoresDetallesIncidencia"
+          tools:layout_editor_absoluteX="0dp" />
+
+
+      <Button
+          android:id="@+id/buttonSalirIncidenciaEstadoMedidores"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="16dp"
+          android:background="@drawable/bordes_redondos_rojo"
+          android:text="SALIR"
+          android:textColor="@color/md_text_white"
+          android:textSize="14sp"
+          android:textStyle="bold"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/etIncidenciaEstadoMedidores" />
+
+      <Button
+          android:id="@+id/buttonEnviarIncidenciaEstadoMedidores"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          android:layout_marginEnd="16dp"
+          android:background="@drawable/bordes_redondos"
+          android:text="Enviar"
+          android:textColor="@color/md_text_white"
+          android:textSize="14dp"
+          android:textStyle="bold"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/etIncidenciaEstadoMedidores" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

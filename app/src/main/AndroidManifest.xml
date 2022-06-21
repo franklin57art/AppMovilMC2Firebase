@@ -64,8 +64,13 @@ package="appmovilmc2firebase">
         android:name="com.example.appmovilmc2firebase.ui.estadoMedidores.GeneralDataEstadomedidoresActivity"
         android:exported="false"
         android:theme="@style/AppThemeMc2Light"
-        tools:ignore="Instantiatable"
-        />
+        tools:ignore="Instantiatable" />
+
+    <activity
+        android:name="com.example.appmovilmc2firebase.ui.estadoMedidores.IncidenciaEstadoMedidoresFragment"
+        android:exported="false"
+        android:theme="@style/AppThemeMc2Light.NoActionBar" />
+
 
     <activity
         android:name="com.example.appmovilmc2firebase.ui.usuarios.RegisterUserActivity"
@@ -78,7 +83,4 @@ package="appmovilmc2firebase">
         android:theme="@style/AppThemeMc2Light.NoActionBar" />
 </application>
 </manifest>
-
-
-
 

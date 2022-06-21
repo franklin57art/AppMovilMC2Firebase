@@ -12,6 +12,9 @@ public class GeneralDataEstadomedidoresActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        setTitle("Datos Punto de medida");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_general_data_estadomedidores);
         //Icono para volver atras.
@@ -26,4 +29,7 @@ public class GeneralDataEstadomedidoresActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+
 }

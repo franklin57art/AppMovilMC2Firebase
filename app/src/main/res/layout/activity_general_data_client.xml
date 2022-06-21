@@ -6,7 +6,7 @@
 
     <fragment android:name="com.example.appmovilmc2firebase.ui.clientes.GeneralDataClientFragment"
         android:id="@+id/generaldata_clientes"
-        tools:layout="@layout/fragment_general_data_clientes"
+        tools:layout="@layout/fragment_general_data_client"
         android:layout_height="match_parent"
         android:layout_width="match_parent"/>
 </FrameLayout>

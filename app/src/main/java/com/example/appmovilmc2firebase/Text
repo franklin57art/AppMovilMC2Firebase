@@ -1,17 +1,8 @@
-3. Hacer fragment Graficas. Y luego continuar para modficarlos mediantes click mostrando otras pantallas con otros datos del mismo modo que en el pagina web.
-en estado de medidiores hacer un inner join para la url de consulta. Entre sys_clients y Sys_connections.
-4. Terminar los ultimos fragments de datos y eliminar. Cliente, puntos de medida y estado de medidores (Incidencia)
+
 ARREGLAR
-- Metodo en php para borrar clientes y puntos de medida.
-- SerachView para que funcionen.
+- Metodo Update solo para ususarios type = 7. en general data client fragment y general data puntos de medida fragment.
+- SearchView para que funcionen, Usuarios.
 - Fragment Configuración. En la parte de contraseñas que al pulsar el boton para ver la contraseña, mostrar esta desencriptada.
-- Modificar las tablas para que la fila de cabecera solo aprezca una vez. (sacando el add del bucle solo sale la ultima fila dibujada)
-
-EXTRA
-*. Si se cierra la app sin desconectar el usuario al volver a entrar en ella mantiene la sesion iniciada. Usar Shared preferences. PREGUNTAR SI HACER ESTO.
-*. Dar funcionalidad a la clase AjustesActivity. Modificacion de temas, tamaño de letra y colores de la app.
-
-
 
 
 

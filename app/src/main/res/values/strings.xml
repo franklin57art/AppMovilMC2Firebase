@@ -22,6 +22,14 @@
         <item>5</item>
         <item>6</item>
     </string-array>
+    <string-array name="type_array_tipo_incidencia_punto_de_medida">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
     <string-array name="type_array_punto_de_medida">
         <item>1</item>
         <item>2</item>
@@ -30,7 +38,39 @@
         <item>5</item>
     </string-array>
     <string-array name="type_array_punto_de_medida_pais">
-        <item>1. Spain</item>
-        <item>2. Portugal</item>
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="type_array_punto_de_medida_tipo_punto">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="type_array_punto_de_medida_tipo_planta">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="type_array_punto_de_medida_mod_alq">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="type_array_punto_de_medida_mod_atr_pot">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="type_array_punto_de_medida_recargar">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="type_array_punto_de_medida_tar_zone">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
     </string-array>
 </resources>

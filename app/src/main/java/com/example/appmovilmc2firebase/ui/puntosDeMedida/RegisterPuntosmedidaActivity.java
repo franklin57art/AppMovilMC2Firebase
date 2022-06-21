@@ -269,7 +269,7 @@ public class RegisterPuntosmedidaActivity extends AppCompatActivity implements A
     private void showAlert() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Error");
-        builder.setMessage("Se ha producido un error registrando al usuario");
+        builder.setMessage("Se ha producido un error registrando el punto de medida");
         builder.setPositiveButton("Aceptar", null);
         builder.create();
         builder.show();

@@ -9,10 +9,6 @@
         android:id="@+id/recyclerviewEstadoDeMedidores"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:itemCount="5"
-        tools:layoutManager="android.support.v7.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_row_estadodemedidores"
-        tools:spanCount="2" />
+        />
 
 </LinearLayout>

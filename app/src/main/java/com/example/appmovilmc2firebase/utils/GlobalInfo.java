@@ -6,6 +6,8 @@ public class GlobalInfo {
     public static final String URL_USER = "http://192.168.1.62/pt__users?select=*";
     public static final String URL_PUNTOS_DE_MEDIDA = "http://192.168.1.62/sys__connections?select=*";
     public static final String URL_REGISTER_PUNTO_DE_MEDIDA = "http://192.168.1.62/sys__connections?addpuntomedida=true";
+    public static final String URL_REGISTER_INCIDENCIA_PUNTO_DE_MEDIDA = "http://192.168.1.62/sys__connections?nameId=id_conn&token=no&except=id_conn&id=";
+    public static final String URL_DELETE_PUNTO_DE_MEDIDA = "http://192.168.1.62/sys__connections?token=no&except=id_conn&nameId=id_conn&id=";
     public static final String URL_CLIENT = "http://192.168.1.62/sys__clients?select=*";
     public static final String URL_CLIENT_SPINNER = "http://192.168.1.62/sys__clients?select=id_client,name&orderBy=id_client&orderMode=ASC";
     public static final String URL_REGISTER_CLIENT = "http://192.168.1.62/sys__clients?addclient=true";
@@ -14,5 +16,4 @@ public class GlobalInfo {
     public static final String URL_PARTNER = "http://192.168.1.62/sys__partners?select=*";
     public static final String URL_SENDPASSWORD = "http://192.168.1.62/pt__users?sendpassword=true&suffix=user";
     public static final String URL_CHANGEPASSWORD = "http://192.168.1.62/pt__users?changepassword=true&suffix=user";
-    public static final String URL_INNER_JOIN_PUNTOS_DE_MEDIDA_CLIENTES = "http://192.168.1.62/sys__connections?rel=sys__connections,sys__clients&type=sys__connection,sys__client&select=name";
 }

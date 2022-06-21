@@ -4,11 +4,12 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.google.type.DateTime;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class PuntosDeMedida {
+public class PuntosDeMedida implements Serializable {
 
     @SerializedName("id_conn")
     @Expose
@@ -468,11 +469,12 @@ public class PuntosDeMedida {
     }
 
     public Integer getId_conn() {
-        return id_conn;
+        return this.id_conn;
     }
 
-    public void setId_conn(Integer id_conn) {
+    public Integer setId_conn(Integer id_conn) {
         this.id_conn = id_conn;
+        return id_conn;
     }
 
     public Integer getId_creator() {
@@ -487,8 +489,9 @@ public class PuntosDeMedida {
         return id_client;
     }
 
-    public void setId_client(Integer id_client) {
+    public Integer setId_client(Integer id_client) {
         this.id_client = id_client;
+        return id_client;
     }
 
     public Integer getId_client2() {
@@ -503,8 +506,9 @@ public class PuntosDeMedida {
         return id_psum_for_client;
     }
 
-    public void setId_psum_for_client(String id_psum_for_client) {
+    public String setId_psum_for_client(String id_psum_for_client) {
         this.id_psum_for_client = id_psum_for_client;
+        return id_psum_for_client;
     }
 
     public Integer getId_psum_ref() {
@@ -527,8 +531,9 @@ public class PuntosDeMedida {
         return id_country;
     }
 
-    public void setId_country(Integer id_country) {
+    public Integer setId_country(Integer id_country) {
         this.id_country = id_country;
+        return id_country;
     }
 
     public Integer getIdpto() {
@@ -607,16 +612,18 @@ public class PuntosDeMedida {
         return name;
     }
 
-    public void setName(String name) {
+    public String setName(String name) {
         this.name = name;
+        return name;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public String setDescription(String description) {
         this.description = description;
+        return description;
     }
 
     public String getStatus() {
@@ -631,48 +638,54 @@ public class PuntosDeMedida {
         return cups;
     }
 
-    public void setCups(String cups) {
+    public String setCups(String cups) {
         this.cups = cups;
+        return cups;
     }
 
     public String getCups_obras() {
         return cups_obras;
     }
 
-    public void setCups_obras(String cups_obras) {
+    public String setCups_obras(String cups_obras) {
         this.cups_obras = cups_obras;
+        return cups_obras;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public String setAddress(String address) {
         this.address = address;
+        return address;
     }
 
     public String getCod_postal() {
         return cod_postal;
     }
 
-    public void setCod_postal(String cod_postal) {
+    public String setCod_postal(String cod_postal) {
         this.cod_postal = cod_postal;
+        return cod_postal;
     }
 
     public Integer getType_plant() {
         return type_plant;
     }
 
-    public void setType_plant(Integer type_plant) {
+    public Integer setType_plant(Integer type_plant) {
         this.type_plant = type_plant;
+        return type_plant;
     }
 
     public Integer getId_poblacion() {
         return id_poblacion;
     }
 
-    public void setId_poblacion(Integer id_poblacion) {
+    public Integer setId_poblacion(Integer id_poblacion) {
         this.id_poblacion = id_poblacion;
+        return id_poblacion;
     }
 
     public String getProvincia() {
@@ -719,8 +732,9 @@ public class PuntosDeMedida {
         return alquiler_equipo;
     }
 
-    public void setAlquiler_equipo(Integer alquiler_equipo) {
+    public Float setAlquiler_equipo(Integer alquiler_equipo) {
         this.alquiler_equipo = alquiler_equipo;
+        return null;
     }
 
     public Double getLat() {
@@ -919,16 +933,18 @@ public class PuntosDeMedida {
         return mod_alq_eq;
     }
 
-    public void setMod_alq_eq(Integer mod_alq_eq) {
+    public Integer setMod_alq_eq(Integer mod_alq_eq) {
         this.mod_alq_eq = mod_alq_eq;
+        return mod_alq_eq;
     }
 
     public Integer getModo_atr_potencia() {
         return modo_atr_potencia;
     }
 
-    public void setModo_atr_potencia(Integer modo_atr_potencia) {
+    public Integer setModo_atr_potencia(Integer modo_atr_potencia) {
         this.modo_atr_potencia = modo_atr_potencia;
+        return modo_atr_potencia;
     }
 
     public Integer getIec_download() {
@@ -983,8 +999,9 @@ public class PuntosDeMedida {
         return id_comerc;
     }
 
-    public void setId_comerc(Integer id_comerc) {
+    public Integer setId_comerc(Integer id_comerc) {
         this.id_comerc = id_comerc;
+        return id_comerc;
     }
 
     public Integer getScope_mc2() {
@@ -1039,8 +1056,9 @@ public class PuntosDeMedida {
         return recharge_temp;
     }
 
-    public void setRecharge_temp(Integer recharge_temp) {
+    public Integer setRecharge_temp(Integer recharge_temp) {
         this.recharge_temp = recharge_temp;
+        return recharge_temp;
     }
 
     public Integer getContrat_duration() {
@@ -1071,16 +1089,18 @@ public class PuntosDeMedida {
         return tar_zone;
     }
 
-    public void setTar_zone(Integer tar_zone) {
+    public Integer setTar_zone(Integer tar_zone) {
         this.tar_zone = tar_zone;
+        return tar_zone;
     }
 
     public Integer getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public Integer setType(Integer type) {
         this.type = type;
+        return type;
     }
 
     public Integer getType_photovoltaic() {
@@ -1135,8 +1155,9 @@ public class PuntosDeMedida {
         return estimated_annual_consumption;
     }
 
-    public void setEstimated_annual_consumption(Integer estimated_annual_consumption) {
+    public Integer setEstimated_annual_consumption(Integer estimated_annual_consumption) {
         this.estimated_annual_consumption = estimated_annual_consumption;
+        return estimated_annual_consumption;
     }
 
     public Date getInicio_compras_omie() {

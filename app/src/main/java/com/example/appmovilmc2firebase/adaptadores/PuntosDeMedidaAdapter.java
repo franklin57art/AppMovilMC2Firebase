@@ -8,15 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TableRow;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appmovilmc2firebase.models.PuntosDeMedida;
-import com.example.appmovilmc2firebase.ui.puntosDeMedida.GeneralDataPuntosmedidaActivity;
 import com.example.appmovilmc2firebase.ui.puntosDeMedida.RegisterPuntosmedidaActivity;
 import com.example.appmovilmc2firebase.utils.PreferenceHelper;
 
@@ -24,29 +22,35 @@ import java.util.ArrayList;
 
 import appmovilmc2firebase.R;
 
-public class PuntosDeMedidaAdapter extends RecyclerView.Adapter<PuntosDeMedidaAdapter.PuntosDeMedidaHolder> {
+public class PuntosDeMedidaAdapter extends RecyclerView.Adapter<PuntosDeMedidaAdapter.PuntosDeMedidaHolder> implements View.OnClickListener{
 
+    private LayoutInflater inflater;
     private ArrayList<PuntosDeMedida> mPuntosDeMedidaList;
 
     private Context context;
 
     public Button mAddPuntoMedidaButton;
-    public TableRow mDataPuntoMedidaTable;
 
     private PreferenceHelper preferenceHelper;
 
     private int typeUser = 00;
 
-    public PuntosDeMedidaAdapter(ArrayList<PuntosDeMedida> puntosDeMedidaList) {
+    //listener
+    private View.OnClickListener listener;
+
+    public PuntosDeMedidaAdapter(Context context, ArrayList<PuntosDeMedida> puntosDeMedidaList) {
+        this.inflater = LayoutInflater.from(context);
         this.mPuntosDeMedidaList = puntosDeMedidaList;
     }
 
     @NonNull
     @Override
     public PuntosDeMedidaHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_puntosdemedida, parent, false);
+        View itemView = inflater.inflate(R.layout.item_row_puntosdemedida, parent, false);
         RecyclerView.LayoutParams layoutParams = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         itemView.setLayoutParams(layoutParams);
+
+        itemView.setOnClickListener(this);
 
         context = parent.getContext();
 
@@ -68,18 +72,12 @@ public class PuntosDeMedidaAdapter extends RecyclerView.Adapter<PuntosDeMedidaAd
             }
         });
 
-        mDataPuntoMedidaTable = itemView.findViewById(R.id.tableRowDatosPuntosDeMedida);
-        mDataPuntoMedidaTable.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, GeneralDataPuntosmedidaActivity.class);
-                context.startActivity(intent);
-            }
-        });
-
         return new PuntosDeMedidaHolder(itemView);
     }
 
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener = listener;
+    }
 
     @Override
     public void onBindViewHolder(@NonNull PuntosDeMedidaHolder holder, int position) {
@@ -95,19 +93,24 @@ public class PuntosDeMedidaAdapter extends RecyclerView.Adapter<PuntosDeMedidaAd
         return mPuntosDeMedidaList.size();
     }
 
+    @Override
+    public void onClick(View v) {
+        if (listener != null){
+            listener.onClick(v);
+        }
+    }
+
     public static class PuntosDeMedidaHolder extends RecyclerView.ViewHolder {
-        public TextView mEspacio, mEspacio2, mNombre, mNombre2, mCups, mCups2, mCliente, mCliente2, mMonotorizacion, mMonotorizacion2;
-        public SearchView mSearchView;
+        public TextView mNombre, mNombre2, mCups, mCups2, mCliente, mCliente2, mMonotorizacion, mMonotorizacion2;
+        public ImageView mImageView;
 
         public PuntosDeMedidaHolder(View itemView) {
             super(itemView);
-            mSearchView = itemView.findViewById(R.id.searchViewPuntoDeMedida);
-            mEspacio = itemView.findViewById(R.id.espacioindice);
+            mImageView = itemView.findViewById(R.id.ivPuntosDeMedida);
             mNombre = itemView.findViewById(R.id.nombreindice);
             mCups = itemView.findViewById(R.id.cupsindice);
             mCliente = itemView.findViewById(R.id.clienteindice);
             mMonotorizacion = itemView.findViewById(R.id.monitorizacionindice);
-            mEspacio2 = itemView.findViewById(R.id.espacioindice2);
             mNombre2 = itemView.findViewById(R.id.nombreindice2);
             mCups2 = itemView.findViewById(R.id.cupsindice2);
             mCliente2 = itemView.findViewById(R.id.clienteindice2);

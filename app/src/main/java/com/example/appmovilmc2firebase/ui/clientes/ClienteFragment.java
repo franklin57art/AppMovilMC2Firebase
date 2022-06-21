@@ -1,5 +1,6 @@
 package com.example.appmovilmc2firebase.ui.clientes;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -24,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appmovilmc2firebase.adaptadores.ClientesAdapter;
+import com.example.appmovilmc2firebase.interfaces.iComunicaFragments;
 import com.example.appmovilmc2firebase.models.Client;
 import com.example.appmovilmc2firebase.utils.GlobalInfo;
 import com.example.appmovilmc2firebase.utils.PreferenceHelper;
@@ -60,6 +62,10 @@ public class ClienteFragment extends Fragment implements View.OnClickListener {
 
     private ArrayList<Integer> idClientList;
 
+    //referencia para comunicar fragments
+    Activity activity;
+    iComunicaFragments interfaceComunicaFragments;
+
     public ClienteFragment() {
 
     }
@@ -70,29 +76,31 @@ public class ClienteFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View vista = inflater.inflate(R.layout.fragment_client, container, false);
 
+        listaClients = new ArrayList<>();
+        idClientList = new ArrayList<>();
+
         mRecyclerView = vista.findViewById(R.id.recyclerviewClient);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         mRecyclerView.setHasFixedSize(true);
 
         preferenceHelper = new PreferenceHelper(this.getActivity());
         //Convierto la variable id_pt_user obtenida en el login y guardada con el shared preferences como String a Int.
         typeUser = Integer.parseInt(preferenceHelper.getType());
 
-        listaClients = new ArrayList<>();
-        idClientList = new ArrayList<>();
-
-        request = Volley.newRequestQueue(getContext());
         //Leo el valor del AUTH TOKEN KEY guardado al hacer el Login
         SharedPreferences sharedPref = this.getActivity().getSharedPreferences("AUTHTOKENKEY", Context.MODE_PRIVATE);
         String authTokenValue = sharedPref.getString("AuthTokenKey", GlobalInfo.AUTH_TOKEN);
         authValue = authTokenValue;
 
-        cargarWebService();
+        request = Volley.newRequestQueue(getContext());
+
+        cargarDatos();
 
         return vista;
     }
 
     //Con este metodo hago la conexion con el web service
-    private void cargarWebService() {
+    private void cargarDatos() {
 
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, GlobalInfo.URL_CLIENT, null, new Response.Listener<JSONObject>() {
             @Override
@@ -126,29 +134,31 @@ public class ClienteFragment extends Fragment implements View.OnClickListener {
                         Log.e(TAG, String.valueOf(idClientList));
                     }
 
-                    //Paso una lista con los id_clientes que tiene el partner de Fragment a Fragment
+                    //Paso una lista con los id_clientes que tiene el partner de este Fragment a los Fragment EstadoDeMedidoresFragment y a PuntosDeMedidaFragment
                     //Crear bundle, que son los datos que pasaremos
                     Bundle datosAEnviar = new Bundle();
-                    // Aquí pon todos los datos que quieras en formato clave, valor
+                    // Aquí pongo todos los datos que quiera en formato clave, valor
                     datosAEnviar.putIntegerArrayList("id_client", idClientList);
                     getParentFragmentManager().setFragmentResult("key", datosAEnviar);
                     Log.e(TAG, datosAEnviar.toString());
-
-                    //Paso una lista con los id_clientes que tiene el partner de Fragment a Activity
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                     showError(e.toString());
                 }
+
+
                 mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                mRecyclerView.setHasFixedSize(true);
                 clientesAdapter = new ClientesAdapter(getContext(),listaClients);
                 mRecyclerView.setAdapter(clientesAdapter);
                 mRecyclerView.setClickable(true);
                 clientesAdapter.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String id = listaClients.get(mRecyclerView.getChildAdapterPosition(v)).getName();
-                        Toast.makeText(getContext(), "ID del elemento seleccionado: " + id.toString(), Toast.LENGTH_LONG).show();
+                        String name = listaClients.get(mRecyclerView.getChildAdapterPosition(v)).getName();
+                        //Toast.makeText(getContext(), "Name del elemento seleccionado: " + name.toString(), Toast.LENGTH_LONG).show();
+                        interfaceComunicaFragments.enviarCliente(listaClients.get(mRecyclerView.getChildAdapterPosition(v))); //aqui envio to do el objeto
                     }
                 });
             }
@@ -175,8 +185,21 @@ public class ClienteFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View v) {
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity) {
+            this.activity = (Activity) context;
+            interfaceComunicaFragments = (iComunicaFragments) this.activity;
+        }
+    }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+
+    @Override
+    public void onClick(View v) {
 
     }
 

@@ -1,20 +1,15 @@
 package com.example.appmovilmc2firebase.adaptadores;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appmovilmc2firebase.interfaces.iComunicaFragments;
 import com.example.appmovilmc2firebase.models.PuntosDeMedida;
-import com.example.appmovilmc2firebase.ui.estadoMedidores.GeneralDataEstadomedidoresActivity;
 
 import java.util.ArrayList;
 
@@ -27,14 +22,8 @@ public class EstadoDeMedidoresAdapter extends RecyclerView.Adapter<EstadoDeMedid
 
     private Context context;
 
-    public TableRow mDataEstadoMedidoresTable;
-
     //listener
     private View.OnClickListener listener;
-
-    //referencias para comunicar con fragment
-    Activity activity;
-    iComunicaFragments interfaceComunicaFragments;
 
     public EstadoDeMedidoresAdapter(Context context, ArrayList<PuntosDeMedida> estadoMedidoresList){
         this.inflater = LayoutInflater.from(context);
@@ -51,15 +40,6 @@ public class EstadoDeMedidoresAdapter extends RecyclerView.Adapter<EstadoDeMedid
         itemView.setOnClickListener(this);
 
         context = parent.getContext();
-
-        mDataEstadoMedidoresTable = itemView.findViewById(R.id.tableRowDatosEstadoDeMedidores);
-        mDataEstadoMedidoresTable.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, GeneralDataEstadomedidoresActivity.class);
-                context.startActivity(intent);
-            }
-        });
 
         return new EstadoDeMedidoresHolder(itemView);
     }

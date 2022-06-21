@@ -425,16 +425,18 @@ public class Client implements Serializable {
         return nombre_cliente;
     }
 
-    public void setNombre_cliente(String nombre_cliente) {
+    public String setNombre_cliente(String nombre_cliente) {
         this.nombre_cliente = nombre_cliente;
+        return nombre_cliente;
     }
 
     public String getNombre_empresa() {
         return nombre_empresa;
     }
 
-    public void setNombre_empresa(String nombre_empresa) {
+    public String setNombre_empresa(String nombre_empresa) {
         this.nombre_empresa = nombre_empresa;
+        return nombre_empresa;
     }
 
     public String getId_fiscal() {
@@ -666,8 +668,9 @@ public class Client implements Serializable {
         return id_tecnico;
     }
 
-    public void setId_tecnico(Integer id_tecnico) {
+    public Integer setId_tecnico(Integer id_tecnico) {
         this.id_tecnico = id_tecnico;
+        return id_tecnico;
     }
 
     public Integer getPanel_type() {

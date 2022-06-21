@@ -1,136 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true"
+    android:orientation="vertical"
+    android:background="#e7eef1">
 
-    <ScrollView
+    <RelativeLayout
+        android:id="@+id/DatosEstadoDeMedidores"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:padding="10dp">
 
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_baseline_puntosdemedida_24"
+            app:tint="@color/md_black_1000"></ImageView>
 
-            <TableLayout
-                android:id="@+id/tablaEstadoDeMedidores"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="2dp"
-                android:stretchColumns="1,2,3,4">
+        <TextView
+            android:id="@+id/nombreEstadoDeMedidores"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="10dp"
+            android:padding="2dp"
+            android:text="Nombre: "
+            android:textColor="@color/md_text"
+            android:textStyle="bold" />
 
-                <TableRow
-                    android:id="@+id/tableRowCabecerasEstadoDeMedidores"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/table_degradate_shape">
+        <TextView
+            android:id="@+id/nombreEstadoDeMedidoresDatos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="165dp"
+            android:layout_marginTop="10dp"
+            android:padding="2dp"
+            android:text="Nombre"
+            android:textColor="@color/md_text" />
 
-                    <TextView
-                        android:id="@+id/nombreEstadoDeMedidores"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="left"
-                        android:padding="5dp"
-                        android:text="Nombre"
-                        android:textColor="@color/md_text_white"
-                        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/datosEstadoDeMedidores"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="40dp"
+            android:padding="2dp"
+            android:text="Datos: "
+            android:textColor="@color/md_text"
+            android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/datosEstadoDeMedidores"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="2"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="left"
-                        android:padding="5dp"
-                        android:text="Datos"
-                        android:textColor="@color/md_text_white"
-                        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/datosEstadoDeMedidoresDatos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="155dp"
+            android:layout_marginTop="40dp"
+            android:padding="2dp"
+            android:text=""
+            android:textColor="@color/md_text" />
 
-                    <TextView
-                        android:id="@+id/discontinuidadEstadoDeMedidores"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="3"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="left"
-                        android:padding="5dp"
-                        android:text="Discontinuidad"
-                        android:textColor="@color/md_text_white"
-                        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/discontinuidadEstadoDeMedidores"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="70dp"
+            android:padding="2dp"
+            android:text="Discontinuidad: "
+            android:textColor="@color/md_text"
+            android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/ultimos7diasEstadoDeMedidores"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="4"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="left"
-                        android:padding="5dp"
-                        android:text="Últimos 7 días"
-                        android:textColor="@color/md_text_white"
-                        android:textStyle="bold" />
-                </TableRow>
+        <TextView
+            android:id="@+id/discontinuidadEstadoDeMedidoresDatos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="210dp"
+            android:layout_marginTop="70dp"
+            android:padding="2dp"
+            android:text="0 (0Q)"
+            android:textColor="@color/md_text" />
 
-                <TableRow
-                    android:id="@+id/tableRowDatosEstadoDeMedidores"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/md_text_white"
-                    android:clickable="true">
+        <TextView
+            android:id="@+id/ultimos7diasEstadoDeMedidores"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="100dp"
+            android:padding="2dp"
+            android:text="Últimos 7 días: "
+            android:textColor="@color/md_text"
+            android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/nombreEstadoDeMedidoresDatos"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="left"
-                        android:padding="5dp"
-                        android:text="name"
-                        android:textColor="@color/md_text" />
+        <TextView
+            android:id="@+id/ultimos7diasEstadoDeMedidoresDatos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="205dp"
+            android:layout_marginTop="100dp"
+            android:padding="2dp"
+            android:text=""
+            android:textColor="@color/md_text" />
 
-                    <TextView
-                        android:id="@+id/datosEstadoDeMedidoresDatos"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="2"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="left"
-                        android:padding="5dp"
-                        android:text=""
-                        android:textColor="@color/md_text" />
+    </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/discontinuidadEstadoDeMedidoresDatos"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="3"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="left"
-                        android:padding="5dp"
-                        android:text="0 (0Q)"
-                        android:textColor="@color/md_disabled_hint_text"
-                        android:textStyle="italic" />
-
-                    <TextView
-                        android:id="@+id/ultimos7diasEstadoDeMedidoresDatos"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="4"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="left"
-                        android:padding="5dp"
-                        android:text=""
-                        android:textColor="@color/md_disabled_hint_text"
-                        android:textStyle="italic" />
-                </TableRow>
-
-            </TableLayout>
-        </HorizontalScrollView>
-    </ScrollView>
-
-</LinearLayout>
+</androidx.cardview.widget.CardView>

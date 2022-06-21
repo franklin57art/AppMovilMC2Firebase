@@ -4,8 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:fillViewport="true">
 
     <LinearLayout
@@ -17,8 +17,8 @@
         tools:context="com.example.appmovilmc2firebase.ui.puntosDeMedida.GeneralDataPuntosmedidaActivity">
 
         <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -111,6 +111,17 @@
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@+id/actvGeneralDataPuntosDeMedidaCliente"
                     app:layout_constraintTop_toBottomOf="@id/actvGeneralDataPuntosDeMedidaCliente" />
+
+                <ImageView
+                    android:id="@+id/ivInfoSpinnerFGDPMTipoPunto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintStart_toEndOf="@+id/tvGeneralDataPuntosDeMedidaTipoDePunto"
+                    app:layout_constraintTop_toTopOf="@+id/tvGeneralDataPuntosDeMedidaTipoDePunto"
+                    app:srcCompat="@drawable/ic_baseline_info_24" />
 
                 <Spinner
                     android:id="@+id/spinnerGeneralDataPuntosDeMedidaPais"
@@ -219,6 +230,17 @@
                     app:layout_constraintStart_toStartOf="@+id/tietGeneralDataPuntosDeMedidaDireccion"
                     app:layout_constraintTop_toBottomOf="@id/lineaseparacion1" />
 
+                <ImageView
+                    android:id="@+id/ivInfoSpinnerFGDPMPais"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintStart_toEndOf="@+id/tvGeneralDataPuntosDeMedidaPais"
+                    app:layout_constraintTop_toTopOf="@+id/tvGeneralDataPuntosDeMedidaPais"
+                    app:srcCompat="@drawable/ic_baseline_info_24" />
+
                 <Spinner
                     android:id="@+id/spinnerGeneralDataPuntosDeMedidaTipoDePunto"
                     android:layout_width="175dp"
@@ -240,6 +262,17 @@
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@+id/spinnerGeneralDataPuntosDeMedidaPais"
                     app:layout_constraintTop_toBottomOf="@id/lineaseparacion1" />
+
+                <ImageView
+                    android:id="@+id/ivInfoSpinnerFGDPMTipoPlanta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintStart_toEndOf="@+id/tvGeneralDataPuntosDeMedidaTipoDePlanta"
+                    app:layout_constraintTop_toTopOf="@+id/tvGeneralDataPuntosDeMedidaTipoDePlanta"
+                    app:srcCompat="@drawable/ic_baseline_info_24" />
 
                 <Spinner
                     android:id="@+id/spinnerGeneralDataPuntosDeMedidaTipoDePlanta"
@@ -344,9 +377,20 @@
                     android:layout_marginTop="10dp"
                     android:text="Alquiler equipos"
                     android:textColor="@color/md_black_1000"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="@id/tietGeneralDataPuntosDeMedidaCups"
                     app:layout_constraintTop_toBottomOf="@id/lineaseparacion2" />
+
+                <ImageView
+                    android:id="@+id/ivInfoSpinnerFGDPMAlquEquipos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintStart_toEndOf="@+id/tvGeneralDataPuntosDeMedidaAlquilerEquipos"
+                    app:layout_constraintTop_toTopOf="@+id/tvGeneralDataPuntosDeMedidaAlquilerEquipos"
+                    app:srcCompat="@drawable/ic_baseline_info_24" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tietGeneralDataPuntosDeMedidaAlquilerEquipos"
@@ -379,9 +423,20 @@
                     android:layout_marginTop="10dp"
                     android:text="M. ATR potencia"
                     android:textColor="@color/md_black_1000"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="@+id/spinnerGeneralDataPuntosDeMedidaModoATRPotencia"
                     app:layout_constraintTop_toBottomOf="@id/lineaseparacion2" />
+
+                <ImageView
+                    android:id="@+id/ivInfoSpinnerFGDPMATRPotencia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintStart_toEndOf="@+id/tvGeneralDataPuntosDeMedidaAlquilerModoATRPotencia"
+                    app:layout_constraintTop_toTopOf="@+id/tvGeneralDataPuntosDeMedidaAlquilerModoATRPotencia"
+                    app:srcCompat="@drawable/ic_baseline_info_24" />
 
                 <Spinner
                     android:id="@+id/spinnerGeneralDataPuntosDeMedidaModoATRPotencia"
@@ -403,9 +458,20 @@
                     android:layout_marginTop="10dp"
                     android:text="Zona tarifaria"
                     android:textColor="@color/md_black_1000"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="@+id/spinnerGeneralDataPuntosDeMedidaZonaTarifaria"
                     app:layout_constraintTop_toBottomOf="@id/lineaseparacion2" />
+
+                <ImageView
+                    android:id="@+id/ivInfoSpinnerFGDPMZonaTarifaria"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintStart_toEndOf="@+id/tvGeneralDataPuntosDeMedidaAlquilerZonaTarifaria"
+                    app:layout_constraintTop_toTopOf="@+id/tvGeneralDataPuntosDeMedidaAlquilerZonaTarifaria"
+                    app:srcCompat="@drawable/ic_baseline_info_24" />
 
                 <Spinner
                     android:id="@+id/spinnerGeneralDataPuntosDeMedidaZonaTarifaria"
@@ -454,6 +520,17 @@
                     app:layout_constraintStart_toStartOf="@id/spinnerGeneralDataPuntosDeMedidaRecargo"
                     app:layout_constraintTop_toBottomOf="@id/spinnerGeneralDataPuntosDeMedidaZonaTarifaria" />
 
+                <ImageView
+                    android:id="@+id/ivInfoSpinnerFGDPMRecargo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintStart_toEndOf="@+id/tvGeneralDataPuntosDeMedidaRecargo"
+                    app:layout_constraintTop_toTopOf="@+id/tvGeneralDataPuntosDeMedidaRecargo"
+                    app:srcCompat="@drawable/ic_baseline_info_24" />
+
                 <Spinner
                     android:id="@+id/spinnerGeneralDataPuntosDeMedidaRecargo"
                     android:layout_width="180dp"
@@ -499,21 +576,49 @@
                     app:layout_constraintTop_toBottomOf="@id/tvGeneralDataPuntosDeMedidaDescripcionPuntoMedida" />
 
                 <Button
-                    android:id="@+id/buttonGeneralDataClienteEliminarPuntoDeMedida"
-                    android:layout_width="101dp"
-                    android:layout_height="32dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/bordes_redondos_rojo"
-                    android:drawableLeft="@drawable/ic_baseline_delete_24"
-                    android:text="Eliminar este punto"
+                    android:id="@+id/buttonAtrasGeneralDataPuntosDeMedida"
+                    android:layout_width="95dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bordes_redondos_azul"
+                    android:drawableLeft="@drawable/ic_baseline_arrow_back_24"
+                    android:text="VOLVER  "
+                    android:textColor="@color/md_text_white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/editText"
+                    app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+                <Button
+                    android:id="@+id/buttonActualizarGeneralDataPuntosDeMedida"
+                    android:layout_width="110dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bordes_redondos"
+                    android:drawableLeft="@drawable/ic_baseline_system_update_alt_24"
+                    android:text="ACTUALIZAR  DATOS "
                     android:textColor="@color/md_text_white"
                     android:textSize="12sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/editText"
-                    app:layout_constraintStart_toEndOf="@+id/tvGeneralDataPuntosDeMedidaTitleObservaciones" />
+                    app:layout_constraintEnd_toStartOf="@+id/buttonGeneralDataEliminarPuntoDeMedida"
+                    app:layout_constraintStart_toEndOf="@+id/buttonAtrasGeneralDataPuntosDeMedida"
+                    app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+                <Button
+                    android:id="@+id/buttonGeneralDataEliminarPuntoDeMedida"
+                    android:layout_width="110dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bordes_redondos_rojo"
+                    android:drawableLeft="@drawable/ic_baseline_delete_24"
+                    android:text="Eliminar este punto  "
+                    android:textColor="@color/md_text_white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/editText"
+                    app:layout_constraintTop_toBottomOf="@+id/editText" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

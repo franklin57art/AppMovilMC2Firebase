@@ -17,11 +17,8 @@ public class GeneralDataClientActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_general_data_client);
-
         //Icono para volver atras.
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
     }
 
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

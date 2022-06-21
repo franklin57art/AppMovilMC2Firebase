@@ -1,23 +1,18 @@
 package com.example.appmovilmc2firebase.adaptadores;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appmovilmc2firebase.interfaces.iComunicaFragments;
 import com.example.appmovilmc2firebase.models.Client;
 import com.example.appmovilmc2firebase.ui.clientes.RegisterClientActivity;
 import com.example.appmovilmc2firebase.utils.PreferenceHelper;
@@ -29,10 +24,7 @@ import appmovilmc2firebase.R;
 
 public class ClientesAdapter extends RecyclerView.Adapter<ClientesAdapter.ClientesHolder> implements View.OnClickListener{
 
-    private static final String TAG = "ClientesAdapter";
-
     public Button mAddClientButton;
-    public TableRow mDataClientTable;
 
     private LayoutInflater inflater;
     private ArrayList<Client> mClientList;
@@ -50,9 +42,6 @@ public class ClientesAdapter extends RecyclerView.Adapter<ClientesAdapter.Client
     //listener
     private View.OnClickListener listener;
 
-    //referencias para comunicar con fragment
-    Activity activity;
-    iComunicaFragments interfaceComunicaFragments;
 
     public ClientesAdapter(Context context, ArrayList<Client> clientList) {
         this.inflater = LayoutInflater.from(context);
@@ -88,33 +77,6 @@ public class ClientesAdapter extends RecyclerView.Adapter<ClientesAdapter.Client
 
         celdaList = new ArrayList<>();
 
-        mDataClientTable = itemView.findViewById(R.id.tableRowDatosClientes);
-        mDataClientTable.setClickable(true);
-        mDataClientTable.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mDataClientTable = (TableRow) v;
-                cl = new Client();
-
-                for (int i = 0; i < mClientList.size(); i++) {
-                    TextView cell = (TextView) mDataClientTable.getChildAt(i);
-                    celda = cell.getText().toString();
-                    Log.e(TAG, celda);
-                    celdaList.add(celda);
-                }
-
-                Log.e(TAG, celdaList.toString());
-
-                Intent intent = new Intent(context, GeneralDataClientesAdapter.class);
-                //Paso datos de este Activity al Activity GDClientesAdapter
-                intent.putExtra("valorCelda", (Parcelable) celdaList);
-
-                //Paso datos de este Activity al FragmentGDClientFragment
-
-                context.startActivity(intent);
-            }
-        });
-
 
         return new ClientesHolder(itemView);
     }
@@ -143,25 +105,17 @@ public class ClientesAdapter extends RecyclerView.Adapter<ClientesAdapter.Client
         }
     }
 
-    public static class ClientesHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public static class ClientesHolder extends RecyclerView.ViewHolder{
         public TextView mNombre, mNombre2, mIdfiscal, mIdfiscal2, mUltimoacceso, mUltimoacceso2;
-        public SearchView mSearchView;
 
         public ClientesHolder(View itemView) {
             super(itemView);
-            mSearchView = itemView.findViewById(R.id.searchViewClient);
             mNombre = itemView.findViewById(R.id.nombrerazonsocialindice);
             mIdfiscal = itemView.findViewById(R.id.idfiscalindice);
             mUltimoacceso = itemView.findViewById(R.id.ultimoaccesoindice);
             mNombre2 = itemView.findViewById(R.id.nombrerazonsocialindice2);
             mIdfiscal2 = itemView.findViewById(R.id.idfiscalindice2);
             mUltimoacceso2 = itemView.findViewById(R.id.ultimoaccesoindice2);
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View v) {
-
         }
     }
 

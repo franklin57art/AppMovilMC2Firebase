@@ -1,5 +1,6 @@
 package com.example.appmovilmc2firebase.ui.puntosDeMedida;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableRow;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,9 +26,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appmovilmc2firebase.adaptadores.PuntosDeMedidaAdapter;
+import com.example.appmovilmc2firebase.interfaces.iComunicaFragments;
 import com.example.appmovilmc2firebase.models.PuntosDeMedida;
 import com.example.appmovilmc2firebase.utils.GlobalInfo;
-import com.example.appmovilmc2firebase.utils.PreferenceHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,10 +40,11 @@ import java.util.Map;
 
 import appmovilmc2firebase.R;
 
-public class PuntosmedidaFragment extends Fragment {
+public class PuntosmedidaFragment extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "PuntosMedidaFragment";
 
+    private PuntosDeMedidaAdapter puntoDeMedidaAdapter;
     private RecyclerView mRecyclerView;
 
     private ArrayList<PuntosDeMedida> listaPuntosDeMedida;
@@ -51,7 +52,6 @@ public class PuntosmedidaFragment extends Fragment {
     private RequestQueue request;
     private JsonObjectRequest jsonObjectRequest;
 
-    private PreferenceHelper preferenceHelper;
     private String authValue = "";
 
     private int typeUser = 00;
@@ -61,7 +61,9 @@ public class PuntosmedidaFragment extends Fragment {
 
     private ArrayList<Integer> idClientList;
 
-    public TableRow mDataPuntosDeMedidaTable;
+    //referencia para comunicar fragments
+    Activity activity;
+    iComunicaFragments interfaceComunicaFragments;
 
     public PuntosmedidaFragment() {
 
@@ -74,7 +76,6 @@ public class PuntosmedidaFragment extends Fragment {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                 idClientList = result.getIntegerArrayList("id_client");
-                Log.e(TAG, idClientList.toString());
             }
         });
     }
@@ -92,22 +93,20 @@ public class PuntosmedidaFragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         mRecyclerView.hasFixedSize();
 
-        request = Volley.newRequestQueue(getContext());
-
         //Leo el valor del AUTH TOKEN KEY guardado al hacer el Login
         SharedPreferences sharedPref = this.getActivity().getSharedPreferences("AUTHTOKENKEY", Context.MODE_PRIVATE);
         String authTokenValue = sharedPref.getString("AuthTokenKey", GlobalInfo.AUTH_TOKEN);
         authValue = authTokenValue;
 
+        request = Volley.newRequestQueue(getContext());
 
-
-        cargarWebService();
+        cargarDatos();
 
         return vista;
     }
 
     //Con este metodo hago la conexion con el web service
-    public void cargarWebService() {
+    public void cargarDatos() {
 
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, GlobalInfo.URL_PUNTOS_DE_MEDIDA, null, new Response.Listener<JSONObject>() {
 
@@ -149,8 +148,19 @@ public class PuntosmedidaFragment extends Fragment {
                     showError(e.toString());
                 }
 
-                PuntosDeMedidaAdapter adapter = new PuntosDeMedidaAdapter(listaPuntosDeMedida);
-                mRecyclerView.setAdapter(adapter);
+                mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                mRecyclerView.setHasFixedSize(true);
+                puntoDeMedidaAdapter = new PuntosDeMedidaAdapter(getContext(), listaPuntosDeMedida);
+                mRecyclerView.setAdapter(puntoDeMedidaAdapter);
+                mRecyclerView.setClickable(true);
+                puntoDeMedidaAdapter.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String name = listaPuntosDeMedida.get(mRecyclerView.getChildAdapterPosition(v)).getName();
+                        //Toast.makeText(getContext(), "Name del elemento seleccionado: " + name.toString(), Toast.LENGTH_LONG).show();
+                        interfaceComunicaFragments.enviarPuntoDeMedida(listaPuntosDeMedida.get(mRecyclerView.getChildAdapterPosition(v))); //aqui envio to do el objeto
+                    }
+                });
             }
         },
                 new Response.ErrorListener() {
@@ -174,6 +184,25 @@ public class PuntosmedidaFragment extends Fragment {
 
         ;
         request.add(jsonObjectRequest);
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity) {
+            this.activity = (Activity) context;
+            interfaceComunicaFragments = (iComunicaFragments) this.activity;
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

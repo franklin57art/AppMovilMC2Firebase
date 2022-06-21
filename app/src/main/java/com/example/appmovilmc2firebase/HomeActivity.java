@@ -15,17 +15,26 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.appmovilmc2firebase.interfaces.iComunicaFragments;
+import com.example.appmovilmc2firebase.models.Client;
+import com.example.appmovilmc2firebase.models.PuntosDeMedida;
+import com.example.appmovilmc2firebase.ui.clientes.GeneralDataClientFragment;
+import com.example.appmovilmc2firebase.ui.estadoMedidores.GeneralDataEstadomedidoresFragment;
+import com.example.appmovilmc2firebase.ui.estadoMedidores.IncidenciaEstadoMedidoresFragment;
+import com.example.appmovilmc2firebase.ui.puntosDeMedida.GeneralDataPuntosmedidaFragment;
 import com.example.appmovilmc2firebase.utils.PreferenceHelper;
 import com.google.android.material.navigation.NavigationView;
 
 import appmovilmc2firebase.R;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements iComunicaFragments {
 
     private static final String TAG = "HomeActivity";
 
@@ -37,6 +46,13 @@ public class HomeActivity extends AppCompatActivity {
     private PreferenceHelper preferenceHelper;
 
     private String authValue = "";
+
+    //variable del fragment
+    GeneralDataEstadomedidoresFragment generalDataEstadomedidoresFragment;
+    GeneralDataClientFragment generalDataClientFragment;
+    GeneralDataPuntosmedidaFragment generalDataPuntosDeMedidaFragment;
+    IncidenciaEstadoMedidoresFragment incidenciaEstadoMedidoresFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +84,7 @@ public class HomeActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_clientes, R.id.nav_puntosdemedida, R.id.nav_estadomedidores, R.id.nav_visualizadorgráficas, R.id.nav_usuarios, R.id.nav_configuracion)
+                R.id.nav_clientes, R.id.nav_puntosdemedida, R.id.nav_estadomedidores, R.id.nav_usuarios, R.id.nav_configuracion)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -147,4 +163,82 @@ public class HomeActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    @Override
+    public void enviarEstadoDeMedidores(PuntosDeMedida pdm) {
+        //Aqui se realiza toda la logica del envio de datos desde el fragment Estado de medidores al general data estado de medidores
+        generalDataEstadomedidoresFragment = new GeneralDataEstadomedidoresFragment();
+        //objeto bundle para pasar la informacion
+        Bundle envioDatos = new Bundle();
+        //eviamos el objeto que esta llegando con el serializable
+        envioDatos.putSerializable("objetoPuntoDeMedida", pdm);
+        generalDataEstadomedidoresFragment.setArguments(envioDatos);
+        //abrir Fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.contenedor, generalDataEstadomedidoresFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+
+    @Override
+    public void enviarCliente(Client cl) {
+        //Aqui se realiza toda la logica del envio de datos desde el fragment Clientes al general data estado de medidores
+        generalDataClientFragment = new GeneralDataClientFragment();
+        //objeto bundle para pasar la informacion
+        Bundle envioDatos = new Bundle();
+        //eviamos el objeto que esta llegando con el serializable
+        envioDatos.putSerializable("objetoCliente", cl);
+        generalDataClientFragment.setArguments(envioDatos);
+        //abrir Fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.contenedor, generalDataClientFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+
+    @Override
+    public void enviarPuntoDeMedida(PuntosDeMedida pdm) {
+        //Aqui se realiza toda la logica del envio de datos desde el fragment Estado de medidores al general data estado de medidores
+        generalDataPuntosDeMedidaFragment = new GeneralDataPuntosmedidaFragment();
+        //objeto bundle para pasar la informacion
+        Bundle envioDatos = new Bundle();
+        //eviamos el objeto que esta llegando con el serializable
+        envioDatos.putSerializable("objetoPuntoDeMedida", pdm);
+        generalDataPuntosDeMedidaFragment.setArguments(envioDatos);
+        //abrir Fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.contenedor, generalDataPuntosDeMedidaFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+
+    /*public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == event.KEYCODE_BACK) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("¿Desea salir de Emece2App?")
+                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(Intent.ACTION_MAIN);
+                            intent.addCategory(Intent.CATEGORY_HOME);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                        }
+                    })
+                    .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            builder.show();
+        }
+        return super.onKeyDown(keyCode, event);
+    }*/
 }

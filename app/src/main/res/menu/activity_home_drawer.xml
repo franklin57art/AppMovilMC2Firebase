@@ -17,10 +17,6 @@
             android:icon="@drawable/ic_baseline_estadomedidores_24"
             android:title="Estado medidores" />
         <item
-            android:id="@+id/nav_visualizadorgráficas"
-            android:icon="@drawable/ic_baseline_graph_24"
-            android:title="Visualizador gráficas" />
-        <item
             android:id="@+id/nav_usuarios"
             android:icon="@drawable/ic_baseline_usuario_24"
             android:title="Usuarios" />

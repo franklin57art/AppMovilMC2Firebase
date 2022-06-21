@@ -1,5 +1,6 @@
 package com.example.appmovilmc2firebase.ui.estadoMedidores;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableRow;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appmovilmc2firebase.adaptadores.EstadoDeMedidoresAdapter;
+import com.example.appmovilmc2firebase.interfaces.iComunicaFragments;
 import com.example.appmovilmc2firebase.models.PuntosDeMedida;
 import com.example.appmovilmc2firebase.utils.GlobalInfo;
 
@@ -39,8 +40,6 @@ import java.util.Map;
 
 import appmovilmc2firebase.R;
 
-;
-
 public class EstadomedidoresFragment extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "EstadoDeMedidoresFragment";
@@ -48,7 +47,7 @@ public class EstadomedidoresFragment extends Fragment implements View.OnClickLis
     private EstadoDeMedidoresAdapter estadoDeMedidoresAdapter;
     private RecyclerView mRecyclerView;
 
-    private ArrayList<PuntosDeMedida> listaPuntosDeMedidas;
+    private ArrayList<PuntosDeMedida> listaPuntosDeMedida;
 
     private RequestQueue request;
     private JsonObjectRequest jsonObjectRequest;
@@ -59,7 +58,9 @@ public class EstadomedidoresFragment extends Fragment implements View.OnClickLis
     private Integer idclient = 00;
     private Integer idclientjson = 00;
 
-    public TableRow mDataEstadoMedidoresTable;
+    //referencia para comunicar fragments
+    Activity activity;
+    iComunicaFragments interfaceComunicaFragments;
 
     public EstadomedidoresFragment() {
 
@@ -72,7 +73,6 @@ public class EstadomedidoresFragment extends Fragment implements View.OnClickLis
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                 idClientList = result.getIntegerArrayList("id_client");
-                Log.e(TAG, idClientList.toString());
             }
         });
     }
@@ -83,7 +83,7 @@ public class EstadomedidoresFragment extends Fragment implements View.OnClickLis
         // Inflate the layout for this fragment
         View vista = inflater.inflate(R.layout.fragment_estadomedidores, container, false);
 
-        listaPuntosDeMedidas = new ArrayList<>();
+        listaPuntosDeMedida = new ArrayList<>();
         idClientList = new ArrayList<>();
 
         mRecyclerView = (RecyclerView) vista.findViewById(R.id.recyclerviewEstadoDeMedidores);
@@ -97,14 +97,14 @@ public class EstadomedidoresFragment extends Fragment implements View.OnClickLis
 
         request = Volley.newRequestQueue(getContext());
 
-        cargarWebService();
+        cargarDatos();
 
         return vista;
     }
 
 
     //Con este metodo hago la conexion con el web service
-    private void cargarWebService() {
+    private void cargarDatos() {
 
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, GlobalInfo.URL_PUNTOS_DE_MEDIDA, null, new Response.Listener<JSONObject>() {
 
@@ -127,7 +127,7 @@ public class EstadomedidoresFragment extends Fragment implements View.OnClickLis
                                     JSONObject jsonObject = null;
                                     jsonObject = json.getJSONObject(i);
                                     pdm.setName(jsonObject.optString("name"));
-                                    listaPuntosDeMedidas.add(pdm);
+                                    listaPuntosDeMedida.add(pdm);
                                 } else {
                                     Log.d(TAG, "NO HAY COINCIDENCIA EN EL ATRIBUTO ID_CLIENT. " + idclient + " Y " + idclientjson);
                                 }
@@ -144,14 +144,16 @@ public class EstadomedidoresFragment extends Fragment implements View.OnClickLis
                 }
 
                 mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                estadoDeMedidoresAdapter = new EstadoDeMedidoresAdapter(getContext(), listaPuntosDeMedidas);
+                mRecyclerView.setHasFixedSize(true);
+                estadoDeMedidoresAdapter = new EstadoDeMedidoresAdapter(getContext(), listaPuntosDeMedida);
                 mRecyclerView.setAdapter(estadoDeMedidoresAdapter);
                 mRecyclerView.setClickable(true);
                 estadoDeMedidoresAdapter.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String name = listaPuntosDeMedidas.get(mRecyclerView.getChildAdapterPosition(v)).getName();
-                        Toast.makeText(getContext(), "ID del elemento seleccionado: " + name.toString(), Toast.LENGTH_LONG).show();
+                        String name = listaPuntosDeMedida.get(mRecyclerView.getChildAdapterPosition(v)).getName();
+                        //Toast.makeText(getContext(), "Name del elemento seleccionado: " + name.toString(), Toast.LENGTH_LONG).show();
+                        interfaceComunicaFragments.enviarEstadoDeMedidores(listaPuntosDeMedida.get(mRecyclerView.getChildAdapterPosition(v))); //aqui envio to do el objeto
                     }
                 });
             }
@@ -178,8 +180,21 @@ public class EstadomedidoresFragment extends Fragment implements View.OnClickLis
     }
 
     @Override
-    public void onClick(View v) {
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity) {
+            this.activity = (Activity) context;
+            interfaceComunicaFragments = (iComunicaFragments) this.activity;
+        }
+    }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+
+    @Override
+    public void onClick(View v) {
 
     }
 
@@ -192,15 +207,6 @@ public class EstadomedidoresFragment extends Fragment implements View.OnClickLis
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Error");
         builder.setMessage("Se ha producido un error al obtener respuesta del servidor. " + s);
-        builder.setPositiveButton("Aceptar", null);
-        builder.create();
-        builder.show();
-    }
-
-    private void showErrorID(String s, String ss) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("Error");
-        builder.setMessage("NO HAY COINCIDENCIA EN EL ATRIBUTO ID_CLIENT. " + s + ", " + ss);
         builder.setPositiveButton("Aceptar", null);
         builder.create();
         builder.show();
