@@ -33,8 +33,6 @@ import appmovilmc2firebase.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private static final String TAG = "LoginActivity";
-
     private TextInputEditText emailEditText, passwordEditText;
     private TextView olvidarContraseniaTextView;
     private Button logInButton;

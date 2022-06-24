@@ -18,7 +18,10 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
@@ -90,16 +93,26 @@ public class GeneralDataPuntosmedidaFragment extends Fragment implements Adapter
 
     }
 
-    public void onCreate(Bundle savedInstanceState) {
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @NonNull ViewGroup container, @NonNull Bundle savedInstanceState) {
 
-        getActivity().setTitle("Datos Punto de medida");
+        return inflater.inflate(R.layout.fragment_general_data_puntosmedida, container, false);
 
-        View vista = inflater.inflate(R.layout.fragment_general_data_puntosmedida, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
 
         context = this.getContext();
 
@@ -107,34 +120,34 @@ public class GeneralDataPuntosmedidaFragment extends Fragment implements Adapter
         //Convierto la variable id_pt_user obtenida en el login y guardada con el shared preferences como String a Int.
         typeUser = Integer.parseInt(preferenceHelper.getType());
 
-        mNombre = vista.findViewById(R.id.tietGeneralDataPuntosDeMedidaNombre);
-        mIdCliente = vista.findViewById(R.id.tietGeneralDataPuntosDeMedidaIdCliente);
-        mDireccion = vista.findViewById(R.id.tietGeneralDataPuntosDeMedidaDireccion);
-        mCp = vista.findViewById(R.id.tietGeneralDataPuntosDeMedidaCp);
-        mCups = vista.findViewById(R.id.tietGeneralDataPuntosDeMedidaCups);
-        mCupsObras = vista.findViewById(R.id.tietGeneralDataPuntosDeMedidaCupsDeObras);
-        mAlquiler = vista.findViewById(R.id.tietGeneralDataPuntosDeMedidaAlquilerEquipos);
-        mConsumo = vista.findViewById(R.id.tietGeneralDataPuntosDeMedidaConsumoAnual);
-        mCliente = vista.findViewById(R.id.actvGeneralDataPuntosDeMedidaCliente);
-        mPoblacion = vista.findViewById(R.id.actvGeneralDataPuntosDeMedidaPoblacion);
-        mComercializadora = vista.findViewById(R.id.actvGeneralDataPuntosDeMedidaComercializadora);
-        mEditText = vista.findViewById(R.id.editText);
+        mNombre = view.findViewById(R.id.tietGeneralDataPuntosDeMedidaNombre);
+        mIdCliente = view.findViewById(R.id.tietGeneralDataPuntosDeMedidaIdCliente);
+        mDireccion = view.findViewById(R.id.tietGeneralDataPuntosDeMedidaDireccion);
+        mCp = view.findViewById(R.id.tietGeneralDataPuntosDeMedidaCp);
+        mCups = view.findViewById(R.id.tietGeneralDataPuntosDeMedidaCups);
+        mCupsObras = view.findViewById(R.id.tietGeneralDataPuntosDeMedidaCupsDeObras);
+        mAlquiler = view.findViewById(R.id.tietGeneralDataPuntosDeMedidaAlquilerEquipos);
+        mConsumo = view.findViewById(R.id.tietGeneralDataPuntosDeMedidaConsumoAnual);
+        mCliente = view.findViewById(R.id.actvGeneralDataPuntosDeMedidaCliente);
+        mPoblacion = view.findViewById(R.id.actvGeneralDataPuntosDeMedidaPoblacion);
+        mComercializadora = view.findViewById(R.id.actvGeneralDataPuntosDeMedidaComercializadora);
+        mEditText = view.findViewById(R.id.editText);
 
-        spinnerPais = vista.findViewById(R.id.spinnerGeneralDataPuntosDeMedidaPais);
-        spinnerTipoPunto = vista.findViewById(R.id.spinnerGeneralDataPuntosDeMedidaTipoDePunto);
-        spinnerTipoPlanta = vista.findViewById(R.id.spinnerGeneralDataPuntosDeMedidaTipoDePlanta);
-        spinnerModAlq = vista.findViewById(R.id.spinnerGeneralDataPuntosDeMedidaModoAlq);
-        spinnerAtrPotencia = vista.findViewById(R.id.spinnerGeneralDataPuntosDeMedidaModoATRPotencia);
-        spinnerZonaTari = vista.findViewById(R.id.spinnerGeneralDataPuntosDeMedidaZonaTarifaria);
-        spinnerRecargo = vista.findViewById(R.id.spinnerGeneralDataPuntosDeMedidaRecargo);
+        spinnerPais = view.findViewById(R.id.spinnerGeneralDataPuntosDeMedidaPais);
+        spinnerTipoPunto = view.findViewById(R.id.spinnerGeneralDataPuntosDeMedidaTipoDePunto);
+        spinnerTipoPlanta = view.findViewById(R.id.spinnerGeneralDataPuntosDeMedidaTipoDePlanta);
+        spinnerModAlq = view.findViewById(R.id.spinnerGeneralDataPuntosDeMedidaModoAlq);
+        spinnerAtrPotencia = view.findViewById(R.id.spinnerGeneralDataPuntosDeMedidaModoATRPotencia);
+        spinnerZonaTari = view.findViewById(R.id.spinnerGeneralDataPuntosDeMedidaZonaTarifaria);
+        spinnerRecargo = view.findViewById(R.id.spinnerGeneralDataPuntosDeMedidaRecargo);
 
-        ivSpPais = vista.findViewById(R.id.ivInfoSpinnerFGDPMPais);
-        ivSpTipoPunto = vista.findViewById(R.id.ivInfoSpinnerFGDPMTipoPunto);
-        ivSpTipoPlanta = vista.findViewById(R.id.ivInfoSpinnerFGDPMTipoPlanta);
-        ivSpModAlq = vista.findViewById(R.id.ivInfoSpinnerFGDPMAlquEquipos);
-        ivSpAtrPot = vista.findViewById(R.id.ivInfoSpinnerFGDPMATRPotencia);
-        ivSpZonaTari = vista.findViewById(R.id.ivInfoSpinnerFGDPMZonaTarifaria);
-        ivSpRecargo = vista.findViewById(R.id.ivInfoSpinnerFGDPMRecargo);
+        ivSpPais = view.findViewById(R.id.ivInfoSpinnerFGDPMPais);
+        ivSpTipoPunto = view.findViewById(R.id.ivInfoSpinnerFGDPMTipoPunto);
+        ivSpTipoPlanta = view.findViewById(R.id.ivInfoSpinnerFGDPMTipoPlanta);
+        ivSpModAlq = view.findViewById(R.id.ivInfoSpinnerFGDPMAlquEquipos);
+        ivSpAtrPot = view.findViewById(R.id.ivInfoSpinnerFGDPMATRPotencia);
+        ivSpZonaTari = view.findViewById(R.id.ivInfoSpinnerFGDPMZonaTarifaria);
+        ivSpRecargo = view.findViewById(R.id.ivInfoSpinnerFGDPMRecargo);
 
         listaPuntosDeMedida = new ArrayList<>();
 
@@ -211,7 +224,7 @@ public class GeneralDataPuntosmedidaFragment extends Fragment implements Adapter
             }
         });
 
-        mDeletePuntoMedidaButton = vista.findViewById(R.id.buttonGeneralDataEliminarPuntoDeMedida);
+        mDeletePuntoMedidaButton = view.findViewById(R.id.buttonGeneralDataEliminarPuntoDeMedida);
         mDeletePuntoMedidaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -224,16 +237,16 @@ public class GeneralDataPuntosmedidaFragment extends Fragment implements Adapter
             }
         });
 
-        volver = vista.findViewById(R.id.buttonAtrasGeneralDataPuntosDeMedida);
+        volver = view.findViewById(R.id.buttonAtrasGeneralDataPuntosDeMedida);
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, HomeActivity.class);
-                context.startActivity(intent);
+                Intent intent = new Intent(getActivity(), HomeActivity.class);
+                startActivity(intent);
             }
         });
 
-        actualizar = vista.findViewById(R.id.buttonActualizarGeneralDataPuntosDeMedida);
+        actualizar = view.findViewById(R.id.buttonActualizarGeneralDataPuntosDeMedida);
         actualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -247,8 +260,6 @@ public class GeneralDataPuntosmedidaFragment extends Fragment implements Adapter
         });
 
         cargarDatos();
-
-        return vista;
 
     }
 

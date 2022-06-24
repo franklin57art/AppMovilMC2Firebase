@@ -84,14 +84,21 @@ public class PuntosmedidaFragment extends Fragment implements View.OnClickListen
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container,
                              @NonNull Bundle savedInstanceState) {
-        View vista = inflater.inflate(R.layout.fragment_puntosdemedida, container, false);
+        return inflater.inflate(R.layout.fragment_puntosdemedida, container, false);
+
+    }
+
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         listaPuntosDeMedida = new ArrayList<>();
         idClientList = new ArrayList<>();
 
-        mRecyclerView = (RecyclerView) vista.findViewById(R.id.recyclerviewPsum);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        mRecyclerView.hasFixedSize();
+        mRecyclerView = view.findViewById(R.id.recyclerviewPsum);
+        LinearLayoutManager manager = new LinearLayoutManager(this.getContext());
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(manager);
+        mRecyclerView.setHasFixedSize(true);
 
         //Leo el valor del AUTH TOKEN KEY guardado al hacer el Login
         SharedPreferences sharedPref = this.getActivity().getSharedPreferences("AUTHTOKENKEY", Context.MODE_PRIVATE);
@@ -101,8 +108,6 @@ public class PuntosmedidaFragment extends Fragment implements View.OnClickListen
         request = Volley.newRequestQueue(getContext());
 
         cargarDatos();
-
-        return vista;
     }
 
     //Con este metodo hago la conexion con el web service
@@ -148,8 +153,7 @@ public class PuntosmedidaFragment extends Fragment implements View.OnClickListen
                     showError(e.toString());
                 }
 
-                mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                mRecyclerView.setHasFixedSize(true);
+
                 puntoDeMedidaAdapter = new PuntosDeMedidaAdapter(getContext(), listaPuntosDeMedida);
                 mRecyclerView.setAdapter(puntoDeMedidaAdapter);
                 mRecyclerView.setClickable(true);
@@ -205,10 +209,7 @@ public class PuntosmedidaFragment extends Fragment implements View.OnClickListen
 
     }
 
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        mRecyclerView = view.findViewById(R.id.recyclerviewPsum);
-    }
+
 
     private void showError(String s) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

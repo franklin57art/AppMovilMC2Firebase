@@ -2,6 +2,7 @@ package com.example.appmovilmc2firebase.ui.usuarios;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,10 +25,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.appmovilmc2firebase.adaptadores.UserAdapter;
+import com.example.appmovilmc2firebase.adaptadores.UserDataAdapter;
 import com.example.appmovilmc2firebase.models.User;
 import com.example.appmovilmc2firebase.utils.GlobalInfo;
 import com.example.appmovilmc2firebase.utils.PreferenceHelper;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,11 +41,15 @@ import java.util.Map;
 
 import appmovilmc2firebase.R;
 
-public class UsuariosFragment extends Fragment {
+public class UsuariosFragment extends Fragment implements SearchView.OnQueryTextListener {
 
     private static final String TAG = "UsuariosFragment";
 
+    private SearchView mSearchView;
+    private FloatingActionButton mAddUserButton;
     private RecyclerView mRecyclerView;
+    private UserDataAdapter adapter;
+
     private ArrayList<User> listaUsers;
 
     private RequestQueue request;
@@ -58,17 +65,25 @@ public class UsuariosFragment extends Fragment {
 
     }
 
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @NonNull ViewGroup container, @NonNull Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_usuarios,  container, false);
+    }
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container,
-                             @NonNull Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View vista = inflater.inflate(R.layout.fragment_usuarios, container, false);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        mSearchView = view.findViewById(R.id.txtBuscar);
+        mRecyclerView = view.findViewById(R.id.item_row_usuarios);
+        mAddUserButton = view.findViewById(R.id.favNuevo);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         listaUsers = new ArrayList<>();
 
-        mRecyclerView = (RecyclerView) vista.findViewById(R.id.recyclerviewUsuarios);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        mRecyclerView.setHasFixedSize(true);
+        preferenceHelper = new PreferenceHelper(getContext());
+        //Convierto la variable id_pt_user obtenida en el login y guardada con el shared preferences como String a Int.
+        typeUser = Integer.parseInt(preferenceHelper.getType());
 
         //Leo el valor del AUTH TOKEN KEY guardado al hacer el Login
         SharedPreferences sharedPref = this.getActivity().getSharedPreferences("AUTHTOKENKEY", Context.MODE_PRIVATE);
@@ -79,7 +94,15 @@ public class UsuariosFragment extends Fragment {
 
         cargarWebService();
 
-        return vista;
+        mAddUserButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), RegisterUserActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mSearchView.setOnQueryTextListener(this);
     }
 
     //Con este metodo hago la conexion con el web service
@@ -91,7 +114,7 @@ public class UsuariosFragment extends Fragment {
             public void onResponse(JSONObject response) {
                 User user = null;
 
-                preferenceHelper = new PreferenceHelper(getActivity());
+                preferenceHelper = new PreferenceHelper(getContext());
 
                 JSONArray json = response.optJSONArray("result");
 
@@ -107,25 +130,27 @@ public class UsuariosFragment extends Fragment {
                             jsonObject = json.getJSONObject(i);
                             user.setName(jsonObject.optString("name"));
                             user.setUsername(jsonObject.optString("username"));
-                            user.setType(jsonObject.optInt("type"));
+                            String.valueOf(user.setType(jsonObject.optInt("type")));
                             listaUsers.add(user);
                         }
-                        UserAdapter adapter = new UserAdapter(listaUsers);
+
+                        adapter = new UserDataAdapter(listaUsers);
                         mRecyclerView.setAdapter(adapter);
+
                     } else {
                         Log.e(TAG, "EL TYPE DEL USUARIO NO ES DE TIPO PARTNER ADMINISTRADOR. Es un type tipo: " + typeUser);
                         showAlert();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(getContext(), "No se ha podido establecer conexion con el servidor " + response.toString(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "No se ha podido establecer conexion con el servidor " + response.toString(), Toast.LENGTH_LONG).show();
                 }
             }
         },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getContext(), "No se puede conectar " + error.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "No se puede conectar " + error.toString(), Toast.LENGTH_LONG).show();
                         System.out.println();
                         Log.d(TAG, "ERROR: " + error.toString());
                     }
@@ -143,18 +168,24 @@ public class UsuariosFragment extends Fragment {
         request.add(jsonObjectRequest);
     }
 
-
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        mRecyclerView = view.findViewById(R.id.recyclerviewUsuarios);
-    }
-
     private void showAlert() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Error");
         builder.setMessage("No es usted un usuario ADMMINISTRADOR. No tiene permiso de escritura");
         builder.setPositiveButton("Aceptar", null);
         builder.create();
         builder.show();
+    }
+
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        adapter.filtrado(newText);
+        return false;
     }
 }

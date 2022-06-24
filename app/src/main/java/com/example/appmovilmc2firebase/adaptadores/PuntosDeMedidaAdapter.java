@@ -29,7 +29,7 @@ public class PuntosDeMedidaAdapter extends RecyclerView.Adapter<PuntosDeMedidaAd
 
     private Context context;
 
-    public Button mAddPuntoMedidaButton;
+    private Button mAddPuntoMedidaButton;
 
     private PreferenceHelper preferenceHelper;
 

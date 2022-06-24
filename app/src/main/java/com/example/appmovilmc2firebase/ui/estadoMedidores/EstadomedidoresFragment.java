@@ -73,6 +73,7 @@ public class EstadomedidoresFragment extends Fragment implements View.OnClickLis
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                 idClientList = result.getIntegerArrayList("id_client");
+                Log.e(TAG, String.valueOf(idClientList.size()));
             }
         });
     }
@@ -81,13 +82,19 @@ public class EstadomedidoresFragment extends Fragment implements View.OnClickLis
     public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container,
                              @NonNull Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View vista = inflater.inflate(R.layout.fragment_estadomedidores, container, false);
+        return inflater.inflate(R.layout.fragment_estadomedidores, container, false);
+    }
+
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         listaPuntosDeMedida = new ArrayList<>();
         idClientList = new ArrayList<>();
 
-        mRecyclerView = (RecyclerView) vista.findViewById(R.id.recyclerviewEstadoDeMedidores);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        mRecyclerView = view.findViewById(R.id.recyclerviewEstadoDeMedidores);
+        LinearLayoutManager manager = new LinearLayoutManager(this.getContext());
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setHasFixedSize(true);
 
         //Leo el valor del AUTH TOKEN KEY guardado al hacer el Login
@@ -97,11 +104,9 @@ public class EstadomedidoresFragment extends Fragment implements View.OnClickLis
 
         request = Volley.newRequestQueue(getContext());
 
+
         cargarDatos();
-
-        return vista;
     }
-
 
     //Con este metodo hago la conexion con el web service
     private void cargarDatos() {
@@ -143,8 +148,6 @@ public class EstadomedidoresFragment extends Fragment implements View.OnClickLis
                     showError(e.toString());
                 }
 
-                mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                mRecyclerView.setHasFixedSize(true);
                 estadoDeMedidoresAdapter = new EstadoDeMedidoresAdapter(getContext(), listaPuntosDeMedida);
                 mRecyclerView.setAdapter(estadoDeMedidoresAdapter);
                 mRecyclerView.setClickable(true);
@@ -196,11 +199,6 @@ public class EstadomedidoresFragment extends Fragment implements View.OnClickLis
     @Override
     public void onClick(View v) {
 
-    }
-
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        mRecyclerView = view.findViewById(R.id.recyclerviewEstadoDeMedidores);
     }
 
     private void showError(String s) {

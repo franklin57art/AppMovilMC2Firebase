@@ -1,7 +1,5 @@
 
 ARREGLAR
-- Metodo Update solo para ususarios type = 7. en general data client fragment y general data puntos de medida fragment.
-- SearchView para que funcionen, Usuarios.
 - Fragment Configuración. En la parte de contraseñas que al pulsar el boton para ver la contraseña, mostrar esta desencriptada.
 
 

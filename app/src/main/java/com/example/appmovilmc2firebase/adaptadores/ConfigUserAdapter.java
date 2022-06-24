@@ -25,7 +25,7 @@ public class ConfigUserAdapter extends RecyclerView.Adapter<ConfigUserAdapter.Co
 
     private Context contextUser;
 
-    public Button mSalir, mAceptar;
+    private Button mSalir, mAceptar;
 
     public ConfigUserAdapter(ArrayList<User> userList) {
         this.mUserList = userList;

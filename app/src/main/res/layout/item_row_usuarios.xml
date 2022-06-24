@@ -1,171 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/md_green_500">
+        android:orientation="horizontal">
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchViewUser"
-            android:layout_width="280dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@color/md_disabled_hint_text"
-            android:backgroundTint="@color/md_grey_300"
-            android:iconifiedByDefault="false"
-            android:queryHint="Buscar aqui"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".1"
+            android:padding="2dp"
+            app:srcCompat="@drawable/ic_baseline_usuario_24"
+            tools:srcCompat="@drawable/ic_baseline_usuario_24" />
 
-            <requestFocus />
-        </androidx.appcompat.widget.SearchView>
-
-        <Button
-            android:id="@+id/buttonAddUser"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="8dp"
-            android:background="@color/md_disabled_hint_text"
-            android:backgroundTint="@color/md_grey_300"
-            android:text="Añadir usuario"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/searchViewUser"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="77dp">
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="3dp">
 
-            <HorizontalScrollView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="1dp">
 
-                <TableLayout
-                    android:id="@+id/tablaUsuarios"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:stretchColumns="1,2,3,4">
+                <TextView
+                    android:id="@+id/nombreUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Nombre"
+                    android:textAlignment="2"
+                    android:textColor="@color/md_text"
+                    android:textStyle="bold"
+                    android:background="@drawable/cell_linear"></TextView>
 
-                    <TableRow
-                        android:id="@+id/tableRowCabecerasUsuarios"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/table_degradate_shape">
+                <TextView
+                    android:id="@+id/nombreUserData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Nombre"
+                    android:textAlignment="2"
+                    android:textColor="@color/md_text"
+                    android:background="@drawable/cell_linear"></TextView>
 
-                        <TextView
-                            android:id="@+id/nombreusuarioindice"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="1"
-                            android:background="@drawable/cell_shape"
-                            android:gravity="left"
-                            android:padding="5dp"
-                            android:text="Nombre"
-                            android:textColor="@color/md_text_white"
-                            android:textStyle="bold" />
+            </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/usuarioindice"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="2"
-                            android:background="@drawable/cell_shape"
-                            android:gravity="left"
-                            android:padding="5dp"
-                            android:text="Username"
-                            android:textColor="@color/md_text_white"
-                            android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="2dp">
 
-                        <TextView
-                            android:id="@+id/tipousuarioindice"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="3"
-                            android:background="@drawable/cell_shape"
-                            android:gravity="left"
-                            android:padding="5dp"
-                            android:text="Tipo"
-                            android:textColor="@color/md_text_white"
-                            android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/usernameUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Usuario"
+                    android:textAlignment="2"
+                    android:textColor="@color/md_text"
+                    android:textStyle="bold"
+                    android:background="@drawable/cell_linear"></TextView>
 
-                        <TextView
-                            android:id="@+id/ultimoaccesousuarioindice"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="4"
-                            android:background="@drawable/cell_shape"
-                            android:gravity="left"
-                            android:padding="5dp"
-                            android:text="Último acceso"
-                            android:textColor="@color/md_text_white"
-                            android:textStyle="bold" />
-                    </TableRow>
+                <TextView
+                    android:id="@+id/usernameUserData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Usuario"
+                    android:textAlignment="2"
+                    android:textColor="@color/md_text"
+                    android:background="@drawable/cell_linear"></TextView>
 
-                    <TableRow
-                        android:id="@+id/tableRowDatosUsuarios"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/md_text_white">
+            </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/nombreusuariodatos"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="1"
-                            android:background="@drawable/cell_shape"
-                            android:gravity="left"
-                            android:padding="5dp"
-                            android:text="name"
-                            android:textColor="@color/md_text" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="1dp">
 
-                        <TextView
-                            android:id="@+id/usuariodatos"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="2"
-                            android:background="@drawable/cell_shape"
-                            android:gravity="left"
-                            android:padding="5dp"
-                            android:text="id fiscal"
-                            android:textColor="@color/md_text" />
+                <TextView
+                    android:id="@+id/TipoUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Tipo"
+                    android:textAlignment="2"
+                    android:textColor="@color/md_text"
+                    android:textStyle="bold"
+                    android:background="@drawable/cell_linear"></TextView>
 
-                        <TextView
-                            android:id="@+id/tipousuariodatos"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="3"
-                            android:background="@drawable/cell_shape"
-                            android:gravity="left"
-                            android:padding="5dp"
-                            android:text="id fiscal"
-                            android:textColor="@color/md_text" />
+                <TextView
+                    android:id="@+id/TipoUserData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Tipo"
+                    android:textAlignment="2"
+                    android:textColor="@color/md_text"
+                    android:background="@drawable/cell_linear"></TextView>
+            </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/ultimoaccesousuariodatos"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_column="4"
-                            android:background="@drawable/cell_shape"
-                            android:gravity="left"
-                            android:padding="5dp"
-                            android:text="Sin configurar"
-                            android:textColor="@color/md_disabled_hint_text"
-                            android:textStyle="italic" />
-                    </TableRow>
-                </TableLayout>
-            </HorizontalScrollView>
-        </ScrollView>
-</LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="1dp">
+
+                <TextView
+                    android:id="@+id/UltimoAccesoUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Último acceso"
+                    android:textAlignment="2"
+                    android:textColor="@color/md_text"
+                    android:textStyle="bold"
+                    android:background="@drawable/cell_linear"></TextView>
+
+                <TextView
+                    android:id="@+id/UltimoAccesoUserData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Sin configurar"
+                    android:textAlignment="2"
+                    android:textColor="@color/md_disabled_hint_text"
+                    android:textStyle="italic"
+                    android:background="@drawable/cell_linear"></TextView>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

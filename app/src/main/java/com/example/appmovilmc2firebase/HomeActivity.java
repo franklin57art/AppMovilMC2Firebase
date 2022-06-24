@@ -27,7 +27,6 @@ import com.example.appmovilmc2firebase.models.Client;
 import com.example.appmovilmc2firebase.models.PuntosDeMedida;
 import com.example.appmovilmc2firebase.ui.clientes.GeneralDataClientFragment;
 import com.example.appmovilmc2firebase.ui.estadoMedidores.GeneralDataEstadomedidoresFragment;
-import com.example.appmovilmc2firebase.ui.estadoMedidores.IncidenciaEstadoMedidoresFragment;
 import com.example.appmovilmc2firebase.ui.puntosDeMedida.GeneralDataPuntosmedidaFragment;
 import com.example.appmovilmc2firebase.utils.PreferenceHelper;
 import com.google.android.material.navigation.NavigationView;
@@ -35,8 +34,6 @@ import com.google.android.material.navigation.NavigationView;
 import appmovilmc2firebase.R;
 
 public class HomeActivity extends AppCompatActivity implements iComunicaFragments {
-
-    private static final String TAG = "HomeActivity";
 
     private AppBarConfiguration mAppBarConfiguration;
     private ProgressDialog pdDialog;
@@ -51,8 +48,6 @@ public class HomeActivity extends AppCompatActivity implements iComunicaFragment
     GeneralDataEstadomedidoresFragment generalDataEstadomedidoresFragment;
     GeneralDataClientFragment generalDataClientFragment;
     GeneralDataPuntosmedidaFragment generalDataPuntosDeMedidaFragment;
-    IncidenciaEstadoMedidoresFragment incidenciaEstadoMedidoresFragment;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

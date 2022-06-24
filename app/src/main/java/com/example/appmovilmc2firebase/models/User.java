@@ -100,16 +100,18 @@ public class User {
         return name;
     }
 
-    public void setName(String name) {
+    public String setName(String name) {
         this.name = name;
+        return name;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public String setUsername(String username) {
         this.username = username;
+        return username;
     }
 
     public String getEmail() {
@@ -148,8 +150,9 @@ public class User {
         return type;
     }
 
-    public void setType(Integer type) {
+    public Integer setType(Integer type) {
         this.type = type;
+        return type;
     }
 
     public Integer getId_pt_user() {

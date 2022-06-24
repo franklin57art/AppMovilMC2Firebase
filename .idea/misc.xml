@@ -5,18 +5,29 @@
       <map>
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable-anydpi/ic_baseline_home_24.xml" value="0.3425" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable-hdpi/bordes_redondos_rojo.xml" value="0.3145" />
+        <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable-hdpi/cell_shape.xml" value="0.246" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1945" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/bordes_redondos.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/bordes_redondos_azul.xml" value="0.1505" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/bordes_redondos_blanco.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/cell_linear.xml" value="0.219" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/cell_shape.xml" value="0.187" />
+        <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/ic_add.xml" value="0.1845" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/ic_baseline_alarm_24.xml" value="0.3425" />
+        <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/ic_baseline_alternate_email_24.xml" value="0.337" />
+        <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.337" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/ic_baseline_client_24.xml" value="0.3675" />
+        <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/ic_baseline_configuracion_24.xml" value="0.337" />
+        <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.337" />
+        <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.337" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/ic_baseline_estadomedidores_24.xml" value="0.302" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/ic_baseline_graph_24.xml" value="0.1945" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.3425" />
+        <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/ic_baseline_info_24.xml" value="0.337" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/ic_baseline_informes_24.xml" value="0.1945" />
+        <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.337" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/ic_baseline_puntosdemedida_24.xml" value="0.302" />
+        <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/ic_baseline_system_update_alt_24.xml" value="0.337" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/ic_baseline_usuario_24.xml" value="0.3425" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/ic_baseline_visibility_24.xml" value="0.3675" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/drawable/ic_baseline_warning_24.xml" value="0.302" />
@@ -32,7 +43,7 @@
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/activity_change_password_config.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/activity_forget_password.xml" value="0.35462962962962963" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/activity_general_data_client.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/activity_general_data_estadomedidores.xml" value="0.1" />
+        <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/activity_general_data_estadomedidores.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/activity_general_data_puntosdemedida.xml" value="0.3194444444444444" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/activity_general_data_puntosmedida.xml" value="0.33" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/activity_home.xml" value="0.28940217391304346" />
@@ -49,6 +60,7 @@
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/activity_registeruser.xml" value="0.1" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/activity_registeruser_popup.xml" value="0.5072886297376094" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/activity_user_data.xml" value="0.1403985507246377" />
+        <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/activity_usuarios.xml" value="0.36102564102564105" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/app_bar_main.xml" value="0.28940217391304346" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/call_activity_general_data_estadomedidores.xml" value="0.1" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/cell_shape.xml" value="0.1875" />
@@ -80,7 +92,7 @@
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/fragment_puntosDeMedida.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/fragment_puntosdemedida.xml" value="0.1" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/fragment_slideshow.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/fragment_usuarios.xml" value="0.20202020202020202" />
+        <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/fragment_usuarios.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/general_data_client.xml" value="0.36102564102564105" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/general_data_estadomedidores.xml" value="0.36102564102564105" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/general_data_puntosmedida.xml" value="0.36666666666666664" />
@@ -93,10 +105,11 @@
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/item_row_estadodemedidores.xml" value="0.33" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/item_row_medidores_home.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/item_row_puntosdemedida.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/item_row_search_button.xml" value="0.365625" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/item_row_user.xml" value="0.8300720906282183" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/item_row_user_config.xml" value="0.67" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/item_row_user_puntosdemedida.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/item_row_usuarios.xml" value="0.33" />
+        <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/item_row_usuarios.xml" value="0.36102564102564105" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/lista_psum.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/nav_header_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/layout/psum_view.xml" value="0.36666666666666664" />
@@ -105,6 +118,8 @@
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/menu/activity_main_drawer.xml" value="0.36102564102564105" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/menu/home.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/FranciscoArestizabal/AndroidStudioProjects/AppMovilMC2Firebase/app/src/main/res/menu/main.xml" value="0.2518518518518518" />
+        <entry key="..\:/Users/FranciscoArestizabal/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/activity_list_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/FranciscoArestizabal/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/list_content.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/FranciscoArestizabal/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_1.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/FranciscoArestizabal/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_spinner_dropdown_item.xml" value="0.17831813576494426" />
       </map>

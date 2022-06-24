@@ -17,6 +17,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
@@ -73,8 +75,6 @@ public class GeneralDataClientFragment extends Fragment {
     private Integer idTecnico = 00;
     private String namePdm = "";
 
-    ClienteFragment clienteFragment;
-
     public GeneralDataClientFragment() {
 
     }
@@ -82,17 +82,22 @@ public class GeneralDataClientFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @NonNull ViewGroup container, @NonNull Bundle savedInstanceState) {
 
-        getActivity().setTitle("Datos clientes");
+        return inflater.inflate(R.layout.fragment_general_data_client, container, false);
 
-        // Inflate the layout for this fragment
-        View vista = inflater.inflate(R.layout.fragment_general_data_client, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
 
         context = this.getContext();
 
@@ -100,12 +105,12 @@ public class GeneralDataClientFragment extends Fragment {
         //Convierto la variable id_pt_user obtenida en el login y guardada con el shared preferences como String a Int.
         typeUser = Integer.parseInt(preferenceHelper.getType());
 
-        mRazonSocial = vista.findViewById(R.id.tietGeneralDataClienteRazonSocial);
-        mIdFiscal = vista.findViewById(R.id.tietGeneralDataClienteIdFiscal);
-        mNombreCorto = vista.findViewById(R.id.tietGeneralDataClienteNombreCorto);
-        mNombreCliente = vista.findViewById(R.id.tietGeneralDataClienteNombreDelCliente);
-        mTecnico = vista.findViewById(R.id.actvGeneralDataClienteTecnicosAsignados);
-        mNombrePdm = vista.findViewById(R.id.lvTableDatosGeneralDataClienteNombrePuntosDeSuministro);
+        mRazonSocial = view.findViewById(R.id.tietGeneralDataClienteRazonSocial);
+        mIdFiscal = view.findViewById(R.id.tietGeneralDataClienteIdFiscal);
+        mNombreCorto = view.findViewById(R.id.tietGeneralDataClienteNombreCorto);
+        mNombreCliente = view.findViewById(R.id.tietGeneralDataClienteNombreDelCliente);
+        mTecnico = view.findViewById(R.id.actvGeneralDataClienteTecnicosAsignados);
+        mNombrePdm = view.findViewById(R.id.lvTableDatosGeneralDataClienteNombrePuntosDeSuministro);
 
         listaNamePdm = new ArrayList<String>();
 
@@ -130,7 +135,7 @@ public class GeneralDataClientFragment extends Fragment {
             Log.e(TAG, String.valueOf(idclient));
         }
 
-        mDeleteClientButton = vista.findViewById(R.id.buttonGeneralDataClienteEliminarCliente);
+        mDeleteClientButton = view.findViewById(R.id.buttonGeneralDataClienteEliminarCliente);
         mDeleteClientButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,15 +148,16 @@ public class GeneralDataClientFragment extends Fragment {
             }
         });
 
-        volver = vista.findViewById(R.id.buttonAtrasGeneralDataClient);
+        volver = view.findViewById(R.id.buttonAtrasGeneralDataClient);
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getParentFragmentManager().popBackStack();
+                Intent intent = new Intent(getActivity(), HomeActivity.class);
+                startActivity(intent);
             }
         });
 
-        update = vista.findViewById(R.id.buttonActualizarGeneralDataCliente);
+        update = view.findViewById(R.id.buttonActualizarGeneralDataCliente);
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,7 +173,6 @@ public class GeneralDataClientFragment extends Fragment {
         cargarDatos();
         cargarNombresPdm();
 
-        return vista;
     }
 
     private void updateData() {

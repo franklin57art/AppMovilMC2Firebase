@@ -24,7 +24,7 @@ import appmovilmc2firebase.R;
 
 public class ClientesAdapter extends RecyclerView.Adapter<ClientesAdapter.ClientesHolder> implements View.OnClickListener{
 
-    public Button mAddClientButton;
+    private Button mAddClientButton;
 
     private LayoutInflater inflater;
     private ArrayList<Client> mClientList;

@@ -13,6 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -62,22 +65,37 @@ public class GeneralDataEstadomedidoresFragment extends Fragment {
 
     EstadomedidoresFragment estadomedidoresFragment;
 
-    public GeneralDataEstadomedidoresFragment(){
+    public GeneralDataEstadomedidoresFragment() {
+
+    }
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
 
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container,
                              @NonNull Bundle savedInstanceState) {
 
-        getActivity().setTitle("Datos contadores");
-
         // Inflate the layout for this fragment
-        View vista = inflater.inflate(R.layout.fragment_general_data_estadomedidores, container, false);
+        return inflater.inflate(R.layout.fragment_general_data_estadomedidores, container, false);
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
 
         context = this.getContext();
 
-        mNombreTitulo = vista.findViewById(R.id.tvGeneralDataEstadoMedidoresNombreTítulo);
-        mCups = vista.findViewById(R.id.tvGeneralDataEstadoMedidoresCups);
+        mNombreTitulo = view.findViewById(R.id.tvGeneralDataEstadoMedidoresNombreTítulo);
+        mCups = view.findViewById(R.id.tvGeneralDataEstadoMedidoresCups);
 
         listaPuntosDeMedidas = new ArrayList<>();
 
@@ -92,24 +110,14 @@ public class GeneralDataEstadomedidoresFragment extends Fragment {
         Bundle objetoPuntoDeMedida = getArguments();
         PuntosDeMedida puntosDeMedida = null;
         //Validar para verificar si existen argumento enviados para mostrar
-        if(objetoPuntoDeMedida != null){
+        if (objetoPuntoDeMedida != null) {
             puntosDeMedida = (PuntosDeMedida) objetoPuntoDeMedida.getSerializable("objetoPuntoDeMedida");
             //Establecer los datos en las vistas
             nombrePuntoMedida = puntosDeMedida.getName();
             mNombreTitulo.setText(nombrePuntoMedida);
         }
 
-        /*editar = vista.findViewById(R.id.buttonGeneralDataEstadoMedidoresEditPuntoMedida);
-        editar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, GeneralDataPuntosmedidaActivity.class);
-                context.startActivity(intent);
-                getActivity().finish();
-            }
-        });*/
-
-        incidencia = vista.findViewById(R.id.buttonGeneralDataEstadoMedidoresIncidencia);
+        incidencia = view.findViewById(R.id.buttonGeneralDataEstadoMedidoresIncidencia);
         incidencia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,17 +129,17 @@ public class GeneralDataEstadomedidoresFragment extends Fragment {
             }
         });
 
-        volver = vista.findViewById(R.id.buttonAtrasGeneralDataEstadoMedidores);
+        volver = view.findViewById(R.id.buttonAtrasGeneralDataEstadoMedidores);
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, HomeActivity.class);
-                context.startActivity(intent);
+                Intent intent = new Intent(getActivity(), HomeActivity.class);
+                startActivity(intent);
             }
         });
 
         cargarDatos();
-        return vista;
+
     }
 
     private void cargarDatos() {

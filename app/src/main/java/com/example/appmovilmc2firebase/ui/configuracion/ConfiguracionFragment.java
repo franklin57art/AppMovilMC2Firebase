@@ -66,16 +66,20 @@ public class ConfiguracionFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View vista = inflater.inflate(R.layout.fragment_configuracion, container, false);
+        return inflater.inflate(R.layout.fragment_configuracion, container, false);
+    }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         listaUsuers = new ArrayList<>();
         listaPartners = new ArrayList<>();
 
-        mRecyclerViewPartner = (RecyclerView) vista.findViewById(R.id.recyclerviewConfiguracionPartner);
+        mRecyclerViewPartner = (RecyclerView) view.findViewById(R.id.recyclerviewConfiguracionPartner);
         mRecyclerViewPartner.setLayoutManager(new LinearLayoutManager(this.getContext()));
         mRecyclerViewPartner.setHasFixedSize(true);
 
-        mRecyclerViewUser = (RecyclerView) vista.findViewById(R.id.recyclerviewConfiguracionUser);
+        mRecyclerViewUser = (RecyclerView) view.findViewById(R.id.recyclerviewConfiguracionUser);
         mRecyclerViewUser.setLayoutManager(new LinearLayoutManager(this.getContext()));
         mRecyclerViewUser.setHasFixedSize(true);
 
@@ -88,8 +92,6 @@ public class ConfiguracionFragment extends Fragment {
 
         cargarWebServicePartner();
         cargarWebServiceUser();
-
-        return vista;
     }
 
     private void cargarWebServicePartner() {
@@ -221,14 +223,6 @@ public class ConfiguracionFragment extends Fragment {
         };
         request.add(jsonObjectRequest);
     }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        mRecyclerViewUser = view.findViewById(R.id.recyclerviewConfiguracionUser);
-        mRecyclerViewPartner = view.findViewById(R.id.recyclerviewConfiguracionPartner);
-    }
-
 
     private void showError(String s) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

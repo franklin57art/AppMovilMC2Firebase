@@ -48,7 +48,12 @@ package="appmovilmc2firebase">
     <activity
         android:name="com.example.appmovilmc2firebase.ui.clientes.GeneralDataClientActivity"
         android:exported="false"
-        android:theme="@style/AppThemeMc2Light" />
+        android:label="Datos clientes"
+        android:theme="@style/AppThemeMc2Light">
+    <meta-data
+        android:name="android.support.PARENT_ACTIVITY"
+        android:value="com.example.appmovilmc2firebase.HomeActivity" />
+    </activity>
 
     <activity
         android:name="com.example.appmovilmc2firebase.ui.puntosDeMedida.RegisterPuntosmedidaActivity"
@@ -63,14 +68,8 @@ package="appmovilmc2firebase">
     <activity
         android:name="com.example.appmovilmc2firebase.ui.estadoMedidores.GeneralDataEstadomedidoresActivity"
         android:exported="false"
-        android:theme="@style/AppThemeMc2Light"
+        android:theme="@style/AppThemeMc2Light.NoActionBar"
         tools:ignore="Instantiatable" />
-
-    <activity
-        android:name="com.example.appmovilmc2firebase.ui.estadoMedidores.IncidenciaEstadoMedidoresFragment"
-        android:exported="false"
-        android:theme="@style/AppThemeMc2Light.NoActionBar" />
-
 
     <activity
         android:name="com.example.appmovilmc2firebase.ui.usuarios.RegisterUserActivity"

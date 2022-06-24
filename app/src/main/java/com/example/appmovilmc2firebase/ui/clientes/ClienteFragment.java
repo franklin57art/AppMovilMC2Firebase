@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -66,6 +65,9 @@ public class ClienteFragment extends Fragment implements View.OnClickListener {
     Activity activity;
     iComunicaFragments interfaceComunicaFragments;
 
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+
     public ClienteFragment() {
 
     }
@@ -74,13 +76,19 @@ public class ClienteFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @NonNull ViewGroup container, @NonNull Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View vista = inflater.inflate(R.layout.fragment_client, container, false);
+        return inflater.inflate(R.layout.fragment_client, container, false);
+    }
+
+    public void onViewCreated(@NonNull View view, @NonNull Bundle savedInstanceState){
+        super.onViewCreated(view,savedInstanceState);
 
         listaClients = new ArrayList<>();
         idClientList = new ArrayList<>();
 
-        mRecyclerView = vista.findViewById(R.id.recyclerviewClient);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        mRecyclerView = view.findViewById(R.id.recyclerviewClient);
+        LinearLayoutManager manager = new LinearLayoutManager(this.getContext());
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setHasFixedSize(true);
 
         preferenceHelper = new PreferenceHelper(this.getActivity());
@@ -96,7 +104,6 @@ public class ClienteFragment extends Fragment implements View.OnClickListener {
 
         cargarDatos();
 
-        return vista;
     }
 
     //Con este metodo hago la conexion con el web service
@@ -142,14 +149,14 @@ public class ClienteFragment extends Fragment implements View.OnClickListener {
                     getParentFragmentManager().setFragmentResult("key", datosAEnviar);
                     Log.e(TAG, datosAEnviar.toString());
 
+                    //saveListIdCLient(getContext(), idClientList);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                     showError(e.toString());
                 }
 
 
-                mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                mRecyclerView.setHasFixedSize(true);
                 clientesAdapter = new ClientesAdapter(getContext(),listaClients);
                 mRecyclerView.setAdapter(clientesAdapter);
                 mRecyclerView.setClickable(true);
@@ -201,11 +208,6 @@ public class ClienteFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-    }
-
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        mRecyclerView = view.findViewById(R.id.recyclerviewClient);
     }
 
     private void showError(String s) {

@@ -25,8 +25,6 @@ import appmovilmc2firebase.R;
 
 public class ForgetPasswordActivity extends AppCompatActivity {
 
-    private static final String TAG = "ForgetPasswordActivity";
-
     private Button exit, aceptar;
     private TextInputEditText etemail;
 
